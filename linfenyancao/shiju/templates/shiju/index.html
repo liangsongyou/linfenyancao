@@ -1,0 +1,1016 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <title></title>
+    <link rel="stylesheet" href="{% static 'shiju/css/semantic.css' %}">
+    <link rel="stylesheet" href="{% static 'shiju/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'shiju/css/font-awesome.css' %}">
+    <link rel="stylesheet" href="{% static 'shiju/css/swiper.css' %}">
+    <link rel="stylesheet" href="{% static 'shiju/css/animate.css' %}">
+    <script src="{% static 'shiju/js/vue.js' %}" charset="utf-8"></script>
+    <script src="{% static 'shiju/js/wow.min.js' %}" charset="utf-8"></script>
+    <script type="text/javascript">
+        window.onload=function(){
+        document.onkeydown=function(){
+        var e=window.event||arguments[0];
+        if(e.keyCode==123){
+          return false;
+        }else if((e.ctrlKey)&&(e.shiftKey)&&(e.keyCode==73)){
+          return false;
+        }
+        };
+        document.oncontextmenu=function(){
+          return false;
+        }
+        }
+
+    </script>
+
+
+  </head>
+  <body>
+    <!-- 通用头部 -->
+  <div id="menu">
+    <template v-if='pingmuWidth > 750'>
+    <header v-show='show' class="dwebtoplogo ui vertical segment">
+      <!-- 顶部logo -->
+      <div class="ui grid container">
+        <div class="four wide column" style="float: right;margin-left: 75%;">
+          <span>
+            <i class="fa fa-home" aria-hidden="true"></i>
+            设为主页
+          </span>
+          <span style="margin-left: 20px;">
+            <i class="fa fa-clipboard" aria-hidden="true"></i>
+            加入收藏
+          </span>
+          <button class="ui circular green button" type="" name="button" style="margin-top: 20px;">
+            <i class="fa fa-user" aria-hidden="true"></i>
+            管理登录
+          </button>
+
+        </div>
+      </div>
+      <!-- end 顶部logo -->
+      <!-- 导航栏 -->
+      <div class="ui inverted green segment">
+        <div class="ui grid container">
+          <div class="twelve wide column" style="padding-top: 0px;padding-bottom: 0px;">
+            <div class="ui inverted green menu">
+              <a class="item" href="index.html">首页</a>
+              <a class="item" href="lingdao.html">领导班子</a>
+              <a class="item" href="dongtai.html">临烟动态</a>
+              <div class="ui dropdown item">党建工作
+                <div class="menu flipInX animated">
+
+                  <a class="item">文明创造</a>
+                  <a class="item">在线教育</a>
+                  <a class="item">企业文化</a>
+                  <a class="item">交流园地</a>
+                  <a class="item">网上调查</a>
+                </div>
+              </div>
+
+              <div class="ui dropdown item">
+                <a href="zhidu.html">规章制度</a>
+                <div class="menu flipInX animated">
+
+                  <a class="item">机构职能</a>
+                  <a class="item">工作制度</a>
+                  <a class="item">计划规划</a>
+                  <a class="item">部门动态</a>
+                </div>
+              </div>
+              <div class="ui dropdown item">办事公开
+                <div class="menu flipInX animated">
+
+                  <a class="item">三重一大</a>
+                  <a class="item">廉政建设</a>
+                  <a class="item">领导班子建设</a>
+                  <a class="item">职代会信息</a>
+                  <a class="item">经济运行</a>
+                  <a class="item">党务公开</a>
+                  <a class="item">文件共享</a>
+                </div>
+
+              </div>
+
+
+            </div>
+
+          </div>
+          <div class="four wide column" style="padding-top: 0px;padding-bottom: 0px;">
+            <div class="ui search">
+              <div class="ui icon input">
+                <input class="prompt" type="text" placeholder="搜索相关关键词">
+                <i class="search icon"></i>
+              </div>
+              <div class="results"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+  </template>
+
+
+  <!-- 手机顶部 -->
+  <template v-if='pingmuWidth < 750'>
+  <header v-show='show'>
+    <div class="ui fixed secondary menu" style="background:#008854;">
+      <div class="item">
+        <i v-on:click='mobileMenu = !mobileMenu' class="fa fa-bars fa-5" aria-hidden="true" style="color:#fff;font-size:35px;"></i>
+      </div>
+      <img class="ui image" src="{% static 'shiju/img/m-logo.png' %}" alt="" style="width:150px;height:40px;margin-top:10px;">
+      <div class="right menu">
+        <div class="item">
+          <button class="ui circular green button" type="button" name="button">
+            <i class="fa fa-user" aria-hidden="true"></i>
+            管理登录
+          </button>
+
+        </div>
+      </div>
+    </div>
+    <div v-show='mobileMenu' class="ui left fixed vertical menu fadeInLeft animated">
+      <a href="/">
+        <img class="ui fluid image" src="{% static 'shiju/img/m-logo.png' %}">
+      </a>
+
+      <a href="/" class="item">首页</a>
+      <a href="lingdao.html" class="item">领导班子</a>
+      <a href="dongtai.html" class="item">临烟动态</a>
+      <a href="" class="item">党建工作</a>
+      <a href="zhidu.html" class="item">规章制度</a>
+      <a href="" class="item">办事公开</a>
+
+      <a v-on:click='leftLeave()'   class="item">
+        <i class="angle double left icon"></i>
+        收起边栏
+      </a>
+    </div>
+  </header>
+  <!-- end 手机顶部 -->
+</template>
+  </div>
+  <!-- end 通用头部 -->
+
+    <!-- 首页内容 -->
+    <div class="ui vertical basic segment" style="margin-top: 40px;">
+      <div class="ui three column stackable grid container" style="background:#fff;">
+        <div class="four wide column wow fadeInUp">
+          <div class="ui secondary pointing menu">
+            <a class="active item" style="color:#008854;">
+              <i class="fa fa-caret-right" aria-hidden="true" style="margin-right: 5px;color:#008854;"></i>
+               领导讲话
+            </a>
+            <div class="right menu">
+              <a class="ui item" style="color:#008854;">more </a>
+            </div>
+          </div>
+          <div class="ui bulleted list">
+            <div class="item">
+              <a href="artical.html">国家局党组召开党组(扩...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">国家局党组召开党组(扩...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">国家局党组召开党组会议...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">党的十九大后国家局党组...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">2018烟草行业个各直属...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">2018烟草行业个各直属...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">国家局党组召开党组(扩...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">国家局党组召开党组(扩...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">国家局党组召开党组会议...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">党的十九大后国家局党组...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">2018烟草行业个各直属...</a>
+              <span>2018-11-11</span>
+            </div>
+
+          </div>
+
+
+        </div>
+        <div class="eight wide column wow fadeInUp">
+          <div class="ui secondary pointing menu">
+            <a class="active item" style="color:#008854;">
+              <i class="fa fa-caret-right" aria-hidden="true" style="margin-right: 5px;color:#008854;"></i>
+               企业文化理念
+            </a>
+            <div class="right menu">
+              <a class="ui item" style="color:#008854;">more </a>
+            </div>
+          </div>
+          <div class="swiper-container">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <img class="ui fluid image" src="{% static 'shiju/img/banner.jpg' %}" alt="">
+              </div>
+              <div class="swiper-slide">
+                <img class="ui fluid image" src="{% static 'shiju/img/banner.jpg' %}" alt="">
+              </div>
+              <div class="swiper-slide">
+                <img class="ui fluid image" src="{% static 'shiju/img/banner.jpg' %}" alt="">
+              </div>
+              <div class="swiper-slide">
+                <img class="ui fluid image" src="{% static 'shiju/img/banner.jpg' %}" alt="">
+              </div>
+            </div>
+            <!-- Add Pagination -->
+            <div class="swiper-pagination"></div>
+
+          </div>
+
+        </div>
+        <div class="four wide column wow fadeInUp">
+          <div class="ui secondary pointing menu">
+            <a class="active item" style="color:#008854;">
+              <i class="fa fa-caret-right" aria-hidden="true" style="margin-right: 5px;color:#008854;"></i>
+               值班表
+            </a>
+            <div class="right menu">
+              <a class="ui item" style="color:#008854;">more </a>
+            </div>
+          </div>
+
+          <div class="center aligned ui segment">
+            <a href="#">2018年10月27日</a>
+            <span style="float:right;">星期五</span>
+            <a class="ui horizontal divider header"><i class="tag icon"></i> 值班人员 </a>
+            <button class="ui button" type="button" name="button">
+              副经理：周满超
+            </button>
+
+            <button class="ui button" type="button" name="button" style="margin-top: 5px;">
+              值班人员：雷云
+            </button>
+          </div>
+        </div>
+
+        <div class="four wide column wow fadeInUp">
+          <div class="ui secondary pointing menu">
+            <a class="active item" style="color:#008854;">
+              <i class="fa fa-caret-right" aria-hidden="true" style="margin-right: 5px;color:#008854;"></i>
+               例会专会
+            </a>
+            <div class="right menu">
+              <a class="ui item" style="color:#008854;">more </a>
+            </div>
+          </div>
+          <div class="ui bulleted list">
+            <div class="item">
+              <a href="artical.html">国家局党组召开党组(扩...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">国家局党组召开党组(扩...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">国家局党组召开党组会议...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">党的十九大后国家局党组...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">2018烟草行业个各直属...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">2018烟草行业个各直属...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">国家局党组召开党组(扩...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">国家局党组召开党组(扩...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">国家局党组召开党组会议...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">党的十九大后国家局党组...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">2018烟草行业个各直属...</a>
+              <span>2018-11-11</span>
+            </div>
+
+          </div>
+
+
+        </div>
+
+        <div class="eight wide column wow fadeInUp">
+          <div class="ui secondary pointing menu">
+            <a class="active item" style="color:#008854;">
+              <i class="fa fa-caret-right" aria-hidden="true" style="margin-right: 5px;color:#008854;"></i>
+               图片新闻
+            </a>
+            <div class="right menu">
+              <a class="ui item" style="color:#008854;">more </a>
+            </div>
+          </div>
+          <div class="center aligned ui vertical basic segment">
+            <h4 style="color:#008854;">习近平：加快推进战区指挥能力建设 坚决完成担负的使命任务</h4>
+            <p style="color:#666;">习近平强调：深入贯彻新时代党的强军思想,贯彻新形式下军事战略方针|勉励战区发扬改革创新精神,持续深化实践探索</p>
+          </div>
+          <div class="ui two column stackable grid container">
+            <div class="six wide column">
+              <img class="ui fluid image" src="{% static 'shiju/img/artical-img.png' %}" alt="">
+            </div>
+            <div class="ten wide column">
+              <div class="ui bulleted list">
+                <div class="item">
+                  <a href="#">山西省局(公司)宋政峰局长一行到晋中市局..</a>
+                </div>
+                <div class="item">
+                  <a href="#">山西省局(公司)组织开展全省系统2018年卷烟..</a>
+                </div>
+                <div class="item">
+                  <a href="#">山西省局(公司)召开巡查及巡视巡查整改“回头..</a>
+                </div>
+                <div class="item">
+                  <a href="#">山西省局(公司)烟草收购工作检查组到长治指导..</a>
+                </div>
+                <div class="item">
+                  <a href="#">山西省局(公司)举办全省系统人事管理工作培训..</a>
+                </div>
+                <div class="item">
+                  <a href="#">山西省局(公司)机关第三党支部开展‘自觉交纳党..</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="four wide column wow fadeInUp">
+          <div class="ui secondary pointing menu">
+            <a class="active item" style="color:#008854;">
+              <i class="fa fa-caret-right" aria-hidden="true" style="margin-right: 5px;color:#008854;"></i>
+               通知信息
+            </a>
+            <div class="right menu">
+              <a class="ui item" style="color:#008854;">more </a>
+            </div>
+          </div>
+          <div class="ui bulleted list">
+            <div class="item">
+              <a href="#">国家局党组召开党组(扩...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="#">国家局党组召开党组(扩...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="#">国家局党组召开党组会议...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="#">党的十九大后国家局党组...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="#">2018烟草行业个各直属...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="#">2018烟草行业个各直属...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="#">国家局党组召开党组(扩...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="#">国家局党组召开党组(扩...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="#">国家局党组召开党组会议...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="#">党的十九大后国家局党组...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="#">2018烟草行业个各直属...</a>
+              <span>2018-11-11</span>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="four wide column wow fadeInUp">
+          <div class="ui secondary pointing menu">
+            <a class="active item" style="color:#008854;">
+              <i class="fa fa-caret-right" aria-hidden="true" style="margin-right: 5px;color:#008854;"></i>
+               烟草网络连接
+            </a>
+            <div class="right menu">
+              <a class="ui item" style="color:#008854;">more </a>
+            </div>
+          </div>
+          <div class="ui fluid image">
+            <img src="{% static 'shiju/img/lefttitle-1.jpg' %}" alt="">
+            <img src="{% static 'shiju/img/lefttitle-2.jpg' %}" alt="">
+            <img src="{% static 'shiju/img/lefttitle-3.jpg' %}" alt="">
+            <img src="{% static 'shiju/img/lefttitle-3.jpg' %}" alt="">
+
+          </div>
+        </div>
+
+        <div class="eight wide column wow fadeInUp">
+          <div class="ui secondary pointing menu">
+            <a class="active item" style="color:#008854;">
+              <i class="fa fa-caret-right" aria-hidden="true" style="margin-right: 5px;color:#008854;"></i>
+               局发文件
+            </a>
+            <div class="right menu">
+              <a class="ui item" style="color:#008854;">more </a>
+            </div>
+          </div>
+          <div class="ui bulleted list">
+            <div class="item">
+              <a href="#">李克强对2018世界生命科学大会做出重要批示...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="#">人民大会堂这条走廊只有几十米,但浓缩了中日友好和经贸合作40年...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="#">李克强和日本首相安倍晋三共同出席首届中日第三方市场合作论坛...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="#">李克强和日本首相安倍晋三共同会见记者...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="#">李克强和日本首相安倍晋举行会谈...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="#">日历|推动中日关系在重回正轨基础上行稳致远...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="#">孙春兰在辽宁调研...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="#">魏凤和与出席北京香山论坛客人会见会谈...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="#">王毅会见日本外相河野太郎...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="#">赵克志与孟加拉国内政部部长阿萨杜扎曼·汗举行会谈...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="#">首届中日第三方市场合作论坛上，李克强与安倍都说了什么...</a>
+              <span>2018-11-11</span>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="four wide column wow fadeInUp">
+          <div class="ui secondary pointing menu">
+            <a class="active item" style="color:#008854;">
+              <i class="fa fa-caret-right" aria-hidden="true" style="margin-right: 5px;color:#008854;"></i>
+               公示公告
+            </a>
+            <div class="right menu">
+              <a class="ui item" style="color:#008854;">more </a>
+            </div>
+          </div>
+          <div class="ui bulleted list">
+            <div class="item">
+              <a href="#">国家局党组召开党组(扩...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="#">国家局党组召开党组(扩...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="#">国家局党组召开党组会议...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="#">党的十九大后国家局党组...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="#">2018烟草行业个各直属...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="#">2018烟草行业个各直属...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="#">国家局党组召开党组(扩...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="#">国家局党组召开党组(扩...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="#">国家局党组召开党组会议...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="#">党的十九大后国家局党组...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="#">2018烟草行业个各直属...</a>
+              <span>2018-11-11</span>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="four wide column wow fadeInUp">
+          <div class="ui secondary pointing menu">
+            <a class="active item" style="color:#008854;">
+              <i class="fa fa-caret-right" aria-hidden="true" style="margin-right: 5px;color:#008854;"></i>
+               各科室链接
+            </a>
+            <div class="right menu">
+              <a class="ui item" style="color:#008854;">more </a>
+            </div>
+          </div>
+          <div class="ui three column triple grid">
+            <div class="column">
+              <button class="ui green basic button" type="button" name="button">整顿办</button>
+            </div>
+            <div class="column">
+              <button class="ui green basic button" type="button" name="button">人事科</button>
+            </div>
+            <div class="column">
+              <button class="ui green basic button" type="button" name="button">保卫科</button>
+            </div>
+            <div class="column">
+              <button class="ui green basic button" type="button" name="button" style="font-size: 13px;padding-left: 5px;padding-right: 5px;">信息中心</button>
+            </div>
+            <div class="column">
+              <button class="ui green basic button" type="button" name="button" style="font-size: 13px;padding-left: 5px;padding-right: 5px;">机关后勤</button>
+            </div>
+            <div class="column">
+              <button class="ui green basic button" type="button" name="button">企管科</button>
+            </div>
+            <div class="column">
+              <button class="ui green basic button" type="button" name="button">项目办</button>
+            </div>
+            <div class="column">
+              <button class="ui green basic button" type="button" name="button">法规科</button>
+            </div>
+            <div class="column">
+              <button class="ui green basic button" type="button" name="button">烟叶科</button>
+            </div>
+            <div class="column">
+              <button class="ui green basic button" type="button" name="button">三项办</button>
+            </div>
+            <div class="column">
+              <button class="ui green basic button" type="button" name="button">监察科</button>
+            </div>
+            <div class="column">
+              <button class="ui green basic button" type="button" name="button">审计科</button>
+            </div>
+            <div class="column">
+              <button class="ui green basic button" type="button" name="button">政工科</button>
+            </div>
+            <div class="column">
+              <button class="ui green basic button" type="button" name="button">办公室</button>
+            </div>
+            <div class="column">
+              <button class="ui green basic button" type="button" name="button">内管办</button>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="eight wide column wow fadeInUp">
+          <div class="ui secondary pointing menu">
+            <a class="active item" style="color:#008854;">
+              <i class="fa fa-caret-right" aria-hidden="true" style="margin-right: 5px;color:#008854;"></i>
+               市局动态
+            </a>
+            <div class="right menu">
+              <a class="ui item" style="color:#008854;">more </a>
+            </div>
+          </div>
+          <div class="ui bulleted list">
+            <div class="item">
+              <a href="#">李克强对2018世界生命科学大会做出重要批示...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="#">人民大会堂这条走廊只有几十米,但浓缩了中日友好和经贸合作40年...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="#">李克强和日本首相安倍晋三共同出席首届中日第三方市场合作论坛...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="#">李克强和日本首相安倍晋三共同会见记者...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="#">李克强和日本首相安倍晋举行会谈...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="#">日历|推动中日关系在重回正轨基础上行稳致远...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="#">孙春兰在辽宁调研...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="#">魏凤和与出席北京香山论坛客人会见会谈...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="#">王毅会见日本外相河野太郎...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="#">赵克志与孟加拉国内政部部长阿萨杜扎曼·汗举行会谈...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="#">首届中日第三方市场合作论坛上，李克强与安倍都说了什么...</a>
+              <span>2018-11-11</span>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="four wide column wow fadeInUp">
+          <div class="ui secondary pointing menu">
+            <a class="active item" style="color:#008854;">
+              <i class="fa fa-caret-right" aria-hidden="true" style="margin-right: 5px;color:#008854;"></i>
+               专题报道
+            </a>
+            <div class="right menu">
+              <a class="ui item" style="color:#008854;">more </a>
+            </div>
+          </div>
+          <div class="ui fluid image">
+            <img src="{% static 'shiju/img/rightimg-1.jpg' %}" alt="" style="margin-top: 40px;">
+            <img src="{% static 'shiju/img/rightimg-1.jpg' %}" alt="" style="margin-top: 20px;">
+
+          </div>
+        </div>
+
+        <div class="four wide column wow fadeInUp">
+          <div class="ui secondary pointing menu">
+            <a class="active item" style="color:#008854;">
+              <i class="fa fa-caret-right" aria-hidden="true" style="margin-right: 5px;color:#008854;"></i>
+               各县局
+            </a>
+            <div class="right menu">
+              <a class="ui item" style="color:#008854;">more </a>
+            </div>
+          </div>
+          <div class="ui three column triple grid">
+            <div class="column">
+              <button class="ui green basic button" type="button" name="button">隰县</button>
+            </div>
+            <div class="column">
+              <button class="ui green basic button" type="button" name="button">大宁县</button>
+            </div>
+            <div class="column">
+              <button class="ui green basic button" type="button" name="button">乡宁县</button>
+            </div>
+            <div class="column">
+              <button class="ui green basic button" type="button" name="button">汾西县</button>
+            </div>
+            <div class="column">
+              <button class="ui green basic button" type="button" name="button">洪洞县</button>
+            </div>
+            <div class="column">
+              <button class="ui green basic button" type="button" name="button">蒲县</button>
+            </div>
+            <div class="column">
+              <button class="ui green basic button" type="button" name="button">曲沃县</button>
+            </div>
+            <div class="column">
+              <button class="ui green basic button" type="button" name="button">永和县</button>
+            </div>
+            <div class="column">
+              <button class="ui green basic button" type="button" name="button">霍州县</button>
+            </div>
+            <div class="column">
+              <button class="ui green basic button" type="button" name="button">浮山县</button>
+            </div>
+            <div class="column">
+              <button class="ui green basic button" type="button" name="button">安泽县</button>
+            </div>
+            <div class="column">
+              <button class="ui green basic button" type="button" name="button">古县</button>
+            </div>
+            <div class="column">
+              <button class="ui green basic button" type="button" name="button">翼城县</button>
+            </div>
+            <div class="column">
+              <button class="ui green basic button" type="button" name="button">襄汾县</button>
+            </div>
+            <div class="column">
+              <button class="ui green basic button" type="button" name="button">侯马县</button>
+            </div>
+            <div class="column">
+              <button class="ui green basic button" type="button" name="button" style="font-size: 13px;padding-left: 5px;padding-right: 5px;">尧都区县</button>
+            </div>
+            <div class="column">
+              <button class="ui green basic button" type="button" name="button">吉县</button>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="eight wide column wow fadeInUp">
+          <div class="ui secondary pointing menu">
+            <a class="active item" style="color:#008854;">
+              <i class="fa fa-caret-right" aria-hidden="true" style="margin-right: 5px;color:#008854;"></i>
+               市局动态
+            </a>
+            <div class="right menu">
+              <a class="ui item" style="color:#008854;">more </a>
+            </div>
+          </div>
+          <div class="ui bulleted list">
+            <div class="item">
+              <a href="#">李克强对2018世界生命科学大会做出重要批示...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="#">人民大会堂这条走廊只有几十米,但浓缩了中日友好和经贸合作40年...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="#">李克强和日本首相安倍晋三共同出席首届中日第三方市场合作论坛...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="#">李克强和日本首相安倍晋三共同会见记者...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="#">李克强和日本首相安倍晋举行会谈...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="#">日历|推动中日关系在重回正轨基础上行稳致远...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="#">孙春兰在辽宁调研...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="#">魏凤和与出席北京香山论坛客人会见会谈...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="#">王毅会见日本外相河野太郎...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="#">赵克志与孟加拉国内政部部长阿萨杜扎曼·汗举行会谈...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="#">首届中日第三方市场合作论坛上，李克强与安倍都说了什么...</a>
+              <span>2018-11-11</span>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="four wide column wow fadeInUp">
+          <div class="ui secondary pointing menu">
+            <a class="active item" style="color:#008854;">
+              <i class="fa fa-caret-right" aria-hidden="true" style="margin-right: 5px;color:#008854;"></i>
+               公示公告
+            </a>
+            <div class="right menu">
+              <a class="ui item" style="color:#008854;">more </a>
+            </div>
+          </div>
+          <div class="ui bulleted list">
+            <div class="item">
+              <a href="#">国家局党组召开党组(扩...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="#">国家局党组召开党组(扩...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="#">国家局党组召开党组会议...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="#">党的十九大后国家局党组...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="#">2018烟草行业个各直属...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="#">2018烟草行业个各直属...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="#">国家局党组召开党组(扩...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="#">国家局党组召开党组(扩...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="#">国家局党组召开党组会议...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="#">党的十九大后国家局党组...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="#">2018烟草行业个各直属...</a>
+              <span>2018-11-11</span>
+            </div>
+
+          </div>
+        </div>
+
+        <h4 class="ui horizontal inverted divider wow fadeInUp">行业链接 </h4>
+        <div class="ui celled horizontal list wow fadeInUp">
+          <div class="item">
+            <a href="#">国家烟草专卖局行业网站</a>
+          </div>
+          <div class="item">
+            <a href="#">国家烟草专卖局内网</a>
+          </div>
+          <div class="item">
+            <a href="#">山西省烟草公司内网</a>
+          </div>
+          <div class="item">
+            <a href="#">山西烟草专卖局行业网站</a>
+          </div>
+          <div class="item">
+            <a href="#">东方烟草网</a>
+          </div>
+          <div class="item">
+            <a href="#">中国烟草在线</a>
+          </div>
+          <div class="item">
+            <a href="#">山西省烟草公司云门户</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- end 首页内容 -->
+    <!-- 通用底部 -->
+    <div class="dweb ui divider wow fadeInUp"></div>
+    <div class="center aligned ui vertical segment wow fadeInUp">
+      <div class="dwebfoot ui celled horizontal list">
+        <div class="item">
+          <a href="#">关于我们</a>
+        </div>
+        <div class="item">
+          <a href="#">About Us</a>
+        </div>
+        <div class="item">
+          <a href="#">联系我们</a>
+        </div>
+        <div class="item">
+          <a href="#">广告服务</a>
+        </div>
+        <div class="item">
+          <a href="#">供稿服务</a>
+        </div>
+        <div class="item">
+          <a href="#">法律声明</a>
+        </div>
+        <div class="item">
+          <a href="#">招聘信息</a>
+        </div>
+        <div class="item">
+          <a href="#">网站地图</a>
+        </div>
+      </div>
+
+      <p style="color:#008854;">本网站含有烟草内容，十八岁以下人士谢绝访问！
+        <img src="{% static 'shiju/img/footicon.png' %}" alt="">
+        吸烟有害健康！晋ICP备06005891号</p>
+
+      <p style="color:#666;">版权所有 Copyright ©️ 2011-2018临汾市烟草专卖局(公司) All Right R</p>
+
+    </div>
+    <!-- end 通用底部 -->
+
+  <script type="text/javascript">
+     new Vue({
+       el:'#menu',
+       data:{
+         show:true,
+         mobileMenu:false,
+         pingmuWidth:document.body.clientWidth,
+       },
+       methods:{
+         leftLeave:function(){
+           this.mobileMenu = false;
+         },
+       },
+
+     })
+   </script>
+  <script>
+    var wow = new WOW({
+    　　　　boxClass: 'wow',
+    　　　　animateClass: 'animated',
+    　　　　offset: 100,
+    　　　　mobile: true,
+    　　　　live: true
+    	});
+    	wow.init();
+  </script>
+
+  <script src="{% static 'shiju/js/swiper.js' %}" charset="utf-8"></script>
+  <script>
+    var swiper = new Swiper('.swiper-container', {
+      slidesPerView: 1,
+      spaceBetween: 30,
+      loop: true,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      // navigation: {
+      //   nextEl: '.swiper-button-next',
+      //   prevEl: '.swiper-button-prev',
+      // },
+      autoplay: {
+        delay: 2500,
+        disableOnInteraction: false,
+      },
+    });
+  </script>
+
+  </body>
+</html>

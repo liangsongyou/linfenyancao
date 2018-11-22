@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <title></title>
+    <link rel="stylesheet" href="css/semantic.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/font-awesome.css">
+    <link rel="stylesheet" href="css/swiper.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <script src="js/vue.js" charset="utf-8"></script>
+    <script src="js/wow.min.js" charset="utf-8"></script>
+    <script type="text/javascript">
+        window.onload=function(){
+        document.onkeydown=function(){
+        var e=window.event||arguments[0];
+        if(e.keyCode==123){
+          return false;
+        }else if((e.ctrlKey)&&(e.shiftKey)&&(e.keyCode==73)){
+          return false;
+        }
+        };
+        document.oncontextmenu=function(){
+          return false;
+        }
+        }
+
+    </script>
+
+  </head>
+  <body>
+    <!-- 通用头部 -->
+  <div id="menu">
+    <template v-if='pingmuWidth > 750'>
+    <header v-show='show' class="dwebtoplogo ui vertical segment">
+      <!-- 顶部logo -->
+      <div class="ui grid container">
+        <div class="four wide column" style="float: right;margin-left: 75%;">
+          <span>
+            <i class="fa fa-home" aria-hidden="true"></i>
+            设为主页
+          </span>
+          <span style="margin-left: 20px;">
+            <i class="fa fa-clipboard" aria-hidden="true"></i>
+            加入收藏
+          </span>
+          <button class="ui circular green button" type="" name="button" style="margin-top: 20px;">
+            <i class="fa fa-user" aria-hidden="true"></i>
+            管理登录
+          </button>
+
+        </div>
+      </div>
+      <!-- end 顶部logo -->
+      <!-- 导航栏 -->
+      <div class="ui inverted green segment">
+        <div class="ui grid container">
+          <div class="twelve wide column" style="padding-top: 0px;padding-bottom: 0px;">
+            <div class="ui inverted green menu">
+              <a class="item" href="index.html">首页</a>
+              <a class="item" href="lingdao.html">领导班子</a>
+              <a class="item" href="dongtai.html">临烟动态</a>
+              <div class="ui dropdown item">党建工作
+                <div class="menu flipInX animated">
+
+                  <a class="item">文明创造</a>
+                  <a class="item">在线教育</a>
+                  <a class="item">企业文化</a>
+                  <a class="item">交流园地</a>
+                  <a class="item">网上调查</a>
+                </div>
+              </div>
+
+              <div class="ui dropdown item">
+                <a href="zhidu.html">规章制度</a>
+                <div class="menu flipInX animated">
+
+                  <a class="item">机构职能</a>
+                  <a class="item">工作制度</a>
+                  <a class="item">计划规划</a>
+                  <a class="item">部门动态</a>
+                </div>
+              </div>
+              <div class="ui dropdown item">办事公开
+                <div class="menu flipInX animated">
+
+                  <a class="item">三重一大</a>
+                  <a class="item">廉政建设</a>
+                  <a class="item">领导班子建设</a>
+                  <a class="item">职代会信息</a>
+                  <a class="item">经济运行</a>
+                  <a class="item">党务公开</a>
+                  <a class="item">文件共享</a>
+                </div>
+
+              </div>
+
+
+            </div>
+
+          </div>
+          <div class="four wide column" style="padding-top: 0px;padding-bottom: 0px;">
+            <div class="ui search">
+              <div class="ui icon input">
+                <input class="prompt" type="text" placeholder="搜索相关关键词">
+                <i class="search icon"></i>
+              </div>
+              <div class="results"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+  </template>
+
+
+  <!-- 手机顶部 -->
+  <template v-if='pingmuWidth < 750'>
+  <header v-show='show'>
+    <div class="ui fixed secondary menu" style="background:#008854;">
+      <div class="item">
+        <i v-on:click='mobileMenu = !mobileMenu' class="fa fa-bars fa-5" aria-hidden="true" style="color:#fff;font-size:35px;"></i>
+      </div>
+      <img class="ui image" src="img/m-logo.png" alt="" style="width:150px;height:40px;margin-top:10px;">
+      <div class="right menu">
+        <div class="item">
+          <button class="ui circular green button" type="button" name="button">
+            <i class="fa fa-user" aria-hidden="true"></i>
+            管理登录
+          </button>
+
+        </div>
+      </div>
+    </div>
+    <div v-show='mobileMenu' class="ui left fixed vertical menu fadeInLeft animated">
+      <a href="/">
+        <img class="ui fluid image" src="img/m-logo.png">
+      </a>
+
+      <a href="/" class="item">首页</a>
+      <a href="lingdao.html" class="item">领导班子</a>
+      <a href="dongtai.html" class="item">临烟动态</a>
+      <a href="" class="item">党建工作</a>
+      <a href="zhidu.html" class="item">规章制度</a>
+      <a href="" class="item">办事公开</a>
+
+      <a v-on:click='leftLeave()'   class="item">
+        <i class="angle double left icon"></i>
+        收起边栏
+      </a>
+    </div>
+  </header>
+  <!-- end 手机顶部 -->
+</template>
+  </div>
+  <!-- end 通用头部 -->
+
+    <!-- 内容页内容 -->
+    <div class="ui vertical basic segment" style="margin-top: 40px;">
+      <div class="ui two column stackable grid container" >
+        <div class="thirteen wide column" style="background:#fff;">
+          <div class="ui secondary pointing menu">
+            <a class="active item wow fadeInLeftBig" style="color:#008854;">
+              <i class="fa fa-caret-right" aria-hidden="true" style="margin-right: 5px;color:#008854;"></i>
+               李克强和日本首相安倍晋三共同会见记者
+            </a>
+
+          </div>
+
+          <div class="ui segment container wow fadeInUp">
+            <h1 class="center aligned ui header">李克强和日本首相安倍晋三共同会见记者</h1>
+            <i class="icon grey unhide"></i>
+            <span style="color:#bbbbbb">126</span>
+            <span class="" style="color:rgb(226, 226, 226)">|</span>
+            <i class="icon grey checkmark"></i>
+            <span style="color:#bbbbbb">88 点赞</span>
+            <div class="ui divider"></div>
+            <p>
+              国务院总理李克强10月26日上午在人民大会堂与日本首相安倍晋三共同会见记者。<br>
+              李克强介绍了会谈成果，表示中日关系重回正常发展轨道，反映了两国人民对中日和平友好、互利合作、共同发展的期盼，顺应了地区国家和国际社会维护和平稳定、携手应对挑战的期待。希望双方以此访为契机，进一步相向而行，共同努力，持之以恒，推动两国关系在重回正轨基础上取得新的发展。<br>
+              李克强指出，双方一致确认，将恪守中日四个政治文件的各项原则，妥善处理历史、台湾问题，维护两国关系政治基础。以实际行动体现互为合作伙伴、互不构成威胁、相互支持对方和平发展的政治共识，建设性管控分歧。进一步加强良性互动，本着以史为鉴、面向未来的精神，使两国关系改善发展成为持续不断的进程。<br>
+              李克强表示，双方一致同意，加强对中日关系的高层引领，继续用好中日高级别政治对话、中日经济高层对话等渠道保持沟通。面对当前新一轮产业革命，中日应发挥各自比较优势，在更高层次开展务实合作，推进科技创新、节能环保、养老医疗、财政金融等领域合作，继续开展外交、宏观经济、财政、商务、文化、防务等各部门间对话与交流。进一步加强人文交流，同意将明年作为“中日青少年交流促进年”，以相继举办奥运会为契机加强交流合作。当前国际形势下，共同维护自由贸易、反对保护主义，加速推进中日韩自贸区和区域全面经济伙伴关系协定谈判，以实际行动推动亚太区域经济一体化进程。<br>
+              安倍晋三表示，半年内，我同李克强总理实现互访。日中关系已进入由竞争转向协调的新时代。双方再次确认互为近邻和合作伙伴，互不构成威胁的原则，并将付诸具体行动。日方愿同中方加强第三方市场、科技创新等合作，以更为活跃的贸易关系与民众交往拉紧两国关系与人民间的纽带。日中对当前世界的重要挑战负有重要责任，愿携手为国际和平与繁荣发挥建设性作用。<br>
+              王毅、何立峰出席活动。
+            </p>
+            <div class="ui divider"></div>
+          </div>
+          <div class="center aligned ui vertical segment wow fadeInUp">
+            <div class="ui buttons">
+              <button class="ui button">上一篇</button>
+              <div class="or"></div>
+              <button class="ui positive button">下一篇</button>
+            </div>
+          </div>
+
+        </div>
+        <div class="three wide column wow fadeInRight">
+          <div class="ui vertical inverted green menu">
+            <div class="item">
+              <div class="ui input"><input type="text" placeholder="搜索..."></div>
+            </div>
+            <div class="item">栏目列表
+              <div class="menu">
+                <a class="active item">领导班子</a>
+                <a class="item">党建工作</a>
+                <a class="item">规章制度</a>
+                <a class="item">办事公开</a>
+              </div>
+            </div>
+            <a class="item"><i class="grid layout icon"></i> 动态新闻 </a>
+            <a class="item">通知信息 </a>
+            <div class="ui dropdown item">更多 <i class="dropdown icon"></i>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+
+
+
+    <!-- end 内容页内容 -->
+
+
+
+
+
+
+    <!-- 通用底部 -->
+    <div class="dweb ui divider wow fadeInUp"></div>
+    <div class="center aligned ui vertical segment wow fadeInUp">
+      <div class="dwebfoot ui celled horizontal list">
+        <div class="item">
+          <a href="#">关于我们</a>
+        </div>
+        <div class="item">
+          <a href="#">About Us</a>
+        </div>
+        <div class="item">
+          <a href="#">联系我们</a>
+        </div>
+        <div class="item">
+          <a href="#">广告服务</a>
+        </div>
+        <div class="item">
+          <a href="#">供稿服务</a>
+        </div>
+        <div class="item">
+          <a href="#">法律声明</a>
+        </div>
+        <div class="item">
+          <a href="#">招聘信息</a>
+        </div>
+        <div class="item">
+          <a href="#">网站地图</a>
+        </div>
+      </div>
+
+      <p style="color:#008854;">本网站含有烟草内容，十八岁以下人士谢绝访问！
+        <img src="img/footicon.png" alt="">
+        吸烟有害健康！晋ICP备06005891号</p>
+
+      <p style="color:#666;">版权所有 Copyright ©️ 2011-2018临汾市烟草专卖局(公司) All Right R</p>
+
+    </div>
+    <!-- end 通用底部 -->
+
+  <script type="text/javascript">
+     new Vue({
+       el:'#menu',
+       data:{
+         show:true,
+         mobileMenu:false,
+         pingmuWidth:document.body.clientWidth,
+       },
+       methods:{
+         leftLeave:function(){
+           this.mobileMenu = false;
+         },
+       },
+
+     })
+   </script>
+  <script>
+    var wow = new WOW({
+    　　　　boxClass: 'wow',
+    　　　　animateClass: 'animated',
+    　　　　offset: 100,
+    　　　　mobile: true,
+    　　　　live: true
+      });
+      wow.init();
+  </script>
+
+  <script src="js/swiper.js" charset="utf-8"></script>
+  <script>
+    var swiper = new Swiper('.swiper-container', {
+      slidesPerView: 1,
+      spaceBetween: 30,
+      loop: true,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      // navigation: {
+      //   nextEl: '.swiper-button-next',
+      //   prevEl: '.swiper-button-prev',
+      // },
+      autoplay: {
+        delay: 2500,
+        disableOnInteraction: false,
+      },
+    });
+  </script>
+
+  </body>
+</html>

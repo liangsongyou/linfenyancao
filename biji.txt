@@ -1,0 +1,6 @@
+1. 创建 linfenyancao 项目
+2. 创建 shiju app
+3. 将 shiju app 添加到项目 settings 中
+4. 创建 shiju/templates , shiju/static目录，以及其中css,js,img子目录
+5. 配置 static, media 的 settings选项，配置开发环境的url.
+6. pip install Pillow 下载 PIL

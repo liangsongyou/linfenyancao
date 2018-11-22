@@ -1,0 +1,141 @@
+body {
+  background:#eeeeee;
+}
+
+a {
+    color: #000;
+    text-decoration: none;
+}
+
+.dwebtoplogo.ui.segment {
+  background-image: url('../img/toplogo.png');
+  background-repeat: no-repeat;
+  background-size:100%;
+  background-size:cover;
+  background-position:center;
+  height: 120px;
+}
+
+.ui.inverted.green.segment {
+    background-color: #008854 !important;
+    color: #FFFFFF !important;
+}
+
+.ui.circular.button {
+  background-color: #008854;
+}
+
+.ui.inverted.green.menu {
+    background-color: #008854;
+}
+
+.ui.secondary.pointing.menu .active.item {
+    background-color: transparent;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border-color: #008854;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.95);
+}
+
+.ui.secondary.pointing.menu {
+    margin-left: 0em;
+    margin-right: 0em;
+    border-bottom: 2px solid #008854;
+}
+
+.ui.bulleted.list span {
+    float: right;
+    color: #666;
+}
+
+.ui.green.basic.button {
+  box-shadow: 0px 0px 0px 1px #008854 inset !important;
+  color: #000 !important;
+  padding-left: 10px;
+  padding-right: 10px;
+
+}
+
+.ui.grid > .column:not(.row) {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.ui.horizontal.inverted.divider {
+    color: #008854;
+}
+
+.ui.celled.horizontal.list a {
+  color:#008854;
+}
+
+.dweb.ui.divider {
+  border-top: 3px solid #fff !important;
+  border-bottom: 3px solid #008854 !important;
+  margin-top: 0px;
+}
+
+.dwebfoot.ui.celled.horizontal.list a {
+  color:#666;
+}
+
+.ui.breadcrumb a {
+    color: #008854;
+}
+
+.ui.three.column.triple.grid button {
+  width: 62px;
+  height: 36px;
+}
+
+.ui.dropdown.item:hover .menu {
+  display: block;
+}
+
+.ui.menu .dropdown.item .menu {
+    min-width: calc(100% - 1px);
+    border-radius: 0em 0em 0.28571429rem 0.28571429rem;
+    background: #008854cc;
+    margin: 0em 0px 0px;
+    -webkit-box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.08);
+    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.08);
+    -webkit-box-orient: vertical !important;
+    -webkit-box-direction: normal !important;
+    -ms-flex-direction: column !important;
+    flex-direction: column !important;
+    color: #fff;
+}
+
+.ui.menu .ui.dropdown .menu > .item {
+    margin: 0;
+    text-align: left;
+    font-size: 1em !important;
+    padding: 0.78571429em 1.14285714em !important;
+    background: transparent !important;
+    color: rgb(255, 255, 255) !important;
+    text-transform: none !important;
+    font-weight: normal !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    -webkit-transition: none !important;
+    transition: none !important;
+}
+
+.ui.left.fixed.vertical.menu {
+  background: #008854!important;
+}
+
+
+.ui.left.fixed.vertical.menu .item:hover{
+  background: #000!important;
+}
+
+.ui.left.fixed.vertical.menu a {
+  color: #fff!important;
+}
+
+.swiper-pagination-bullet-active {
+    opacity: 1;
+    background: #008854!important;
+}
