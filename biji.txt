@@ -4,3 +4,10 @@
 4. 创建 shiju/templates , shiju/static目录，以及其中css,js,img子目录
 5. 配置 static, media 的 settings选项，配置开发环境的url.
 6. pip install Pillow 下载 PIL
+7. 创建views 的 shiju, 增加 static， 增加template的内容，修改index.html.
+8. 模块化 index.html 的内容。
+9. 创建 领导讲话 路由。
+10. 创建 Artical, Lanmu models.迁移数据库。
+11. 将 Artical, Lamnu 注册到admin后台
+12. 创建 superuser: liangsongyou:password0320
+13: 实现 市局，领导班子，临烟动态，文章，四个页面。

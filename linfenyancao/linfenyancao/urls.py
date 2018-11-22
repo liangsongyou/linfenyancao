@@ -24,5 +24,12 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     # 市局
     path('shiju/', views.shiju, name='shiju'),
+    # 领导
+    path('lingdao/',views.lingdao, name='领导班子'),
+    # 领导讲话
+    path('<str:name>/', views.dongtai, name='临烟动态'),
+    # 文章细节页面
+    path('artical/<int:pk>/',views.artical, name='文章'),
+
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) \
 + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
