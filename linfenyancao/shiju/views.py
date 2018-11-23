@@ -78,4 +78,51 @@ def cms_newLanmu(request):
 
 # dwebcms栏目列表
 def cms_listLanmu(request):
-    return render(request, 'dwebcms/listLanmu.html')
+    shiju = get_object_or_404(Jigou,name='市局')
+    dj_lanmus = Suplanmu.objects.filter(jigou=shiju)
+
+    jigous = Jigou.objects.all()
+
+    context = {
+        'dj_lanmus':dj_lanmus,
+        'jigous':jigous,
+    }
+    return render(request, 'dwebcms/listLanmu.html',context)
+
+
+def cms_deleteSubLanmu(request,pk=None):
+    item_lanmu = get_object_or_404(Lanmu,pk=pk)
+    item_lanmu.delete()
+    return redirect('listLanmu')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

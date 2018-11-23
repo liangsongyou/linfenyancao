@@ -24,6 +24,8 @@ urlpatterns = [
     path('cms/newlanmu',views.cms_newLanmu, name='newLanmu'),
     # dwebcms栏目列表
     path('cms/listlanmu',views.cms_listLanmu, name='listLanmu'),
+    # dwebcms删除子栏目
+    path('cms/sublanmu/<int:pk>/delete/',views.cms_deleteSubLanmu, name="删除子栏目"),
 
     # accounts
     path('cms/', include('django.contrib.auth.urls')),

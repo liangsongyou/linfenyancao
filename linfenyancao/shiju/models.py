@@ -10,12 +10,22 @@ class Jigou(models.Model):
     def __str__(self):
         return '%s' % self.name
 
+    def get_sub_lanmu(self):
+        return self.lanmu_set.all()
+
+    def get_sup_lanmu(self):
+        return self.suplanmu_set.all()
+
 
 class Suplanmu(models.Model):
     name = models.CharField(default='',blank=True,null=True,max_length=255)
+    jigou = models.ForeignKey(Jigou, on_delete=models.CASCADE,blank=True, null=True)
 
     def __str__(self):
-        return '%s' % self.name
+        return '%s' % (self.name)
+
+    def get_sub_lanmu(self):
+        return self.sub_lanmu.all()
 
 
 class Lanmu(models.Model):

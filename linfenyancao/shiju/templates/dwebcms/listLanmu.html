@@ -12,89 +12,45 @@
 				</div>
 				<div class="card-body">
 					<div class="panel-group" id="accordion1" role="tablist" aria-multiselectable="true">
-						<div class="panel panel-default active">
-							<div class="panel-heading " role="tab" id="lstfList1">
-								<h4 class="panel-title">
-									<a role="button" data-toggle="collapse" data-parent="#accordion1" href="#lanmu1" aria-expanded="true" aria-controls="lanmu1">领导讲话
-									</a>
-								</h4>
-							</div>
-							<div id="lanmu1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="lanmu1">
-                <div class="card-body">
-									<ul class="list-group">
-                    <li class="list-group-item justify-content-between">
-										二级栏目
-										<span class="badgetext badge badge-danger badge-pill">
-                      <a href="" style="color:#fff;font-weight: 500;">删除</a>
-                    </span>
-										</li>
-                  </ul>
-								</div>
-							</div>
-						</div>
-						<div class="panel panel-default mt-2">
-							<div class="panel-heading" role="tab" id="leftList2">
-								<h4 class="panel-title">
-									<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion1" href="#lanmu2" aria-expanded="false" aria-controls="lanmu2">
-
-										新闻频道
-									</a>
-								</h4>
-							</div>
-							<div id="lanmu2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="lanmu2">
-                <div class="card-body">
-									<ul class="list-group">
-                    <li class="list-group-item justify-content-between">
-										图片新闻
-										<span class="badgetext badge badge-danger badge-pill">
-                      <a href="" style="color:#fff;font-weight: 500;">删除</a>
-                    </span>
-										</li>
-                    <li class="list-group-item justify-content-between">
-										行业动态
-										<span class="badgetext badge badge-danger badge-pill">
-                      <a href="" style="color:#fff;font-weight: 500;">删除</a>
-                    </span>
-										</li>
-                    <li class="list-group-item justify-content-between">
-										临烟动态
-										<span class="badgetext badge badge-danger badge-pill">
-                      <a href="" style="color:#fff;font-weight: 500;">删除</a>
-                    </span>
-                  </li>
-                  <li class="list-group-item justify-content-between">
-                  县局动态
-                  <span class="badgetext badge badge-danger badge-pill">
-                    <a href="" style="color:#fff;font-weight: 500;">删除</a>
-                  </span>
-                  </li>
-                  </ul>
-								</div>
-							</div>
-						</div>
-						<div class="panel panel-default mt-2">
-							<div class="panel-heading" role="tab" id="leftList3">
-								<h4 class="panel-title">
-									<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion1" href="#lanmu3" aria-expanded="false" aria-controls="lanmu3">
-
-										法律法规
-									</a>
-								</h4>
-							</div>
-							<div id="lanmu3" class="panel-collapse collapse" role="tabpanel" aria-labelledby="leftList3">
-                <div class="card-body">
-									<ul class="list-group">
-                    <li class="list-group-item justify-content-between">
-										无下级
-										<span class="badgetext badge badge-danger badge-pill">
-                      <a href="" style="color:#fff;font-weight: 500;">删除该栏目</a>
-                    </span>
-										</li>
-
-                  </ul>
-								</div>
-							</div>
-						</div>
+            {% for dj_lanmu in dj_lanmus %}
+  						<div class="panel panel-default mt-2">
+  							<div class="panel-heading" role="tab" id="leftList{{ dj_lanmu.pk }}">
+  								<h4 class="panel-title">
+  									<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion1" href="#lanmu{{ dj_lanmu.pk }}" aria-expanded="false" aria-controls="lanmu{{ dj_lanmu.pk }}">
+  										{{ dj_lanmu.name }}
+  									</a>
+  								</h4>
+  							</div>
+  							<div id="lanmu{{ dj_lanmu.pk }}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="leftList{{ dj_lanmu.pk }}">
+                  <div class="card-body">
+  									<ul class="list-group">
+                      {% for sub_lanmu in dj_lanmu.get_sub_lanmu  %}
+                        <li class="list-group-item justify-content-between">
+    										{{ sub_lanmu.name }}
+    										<span class="badgetext badge badge-danger badge-pill">
+                          <a href="{% url '删除子栏目' sub_lanmu.pk %}" style="color:#fff;font-weight: 500;">删除该栏目</a>
+                        </span>
+    										</li>
+                      {% empty %}
+                        <li class="list-group-item justify-content-between">
+                        无下级
+                        </li>
+                      {% endfor %}
+                    </ul>
+  								</div>
+  							</div>
+  						</div>
+            {% empty %}
+              <div class="panel panel-default mt-2">
+                <div class="panel-heading" role="tab" id="leftListNone">
+                  <h4 class="panel-title">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion1" href="#lanmuNone" aria-expanded="false" aria-controls="lanmuNone">
+                      无栏目
+                    </a>
+                  </h4>
+                </div>
+              </div>
+            {% endfor %}
 					</div><!-- panel-group -->
 				</div>
 			</div>
@@ -110,80 +66,38 @@
         </div>
         <div class="card-body">
           <div class="panel-group1" id="accordion2">
-            <div class="panel panel-default mb-4">
+            {% for jigou in jigous %}
+            {% if jigou.name != "市局" %}
+              <div class="panel panel-default mb-4">
               <div class="panel-heading1 ">
                 <h4 class="panel-title1">
-                  <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion2" href="#jigou1" aria-expanded="false">办公室</a>
+                  <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion2" href="#jigou{{ jigou.pk }}" aria-expanded="false">{{ jigou.name }}</a>
                 </h4>
               </div>
-              <div id="jigou1" class="panel-collapse collapse" role="tabpanel" aria-expanded="false">
+              <div id="jigou{{ jigou.pk }}" class="panel-collapse collapse" role="tabpanel" aria-expanded="false">
                 <div class="card-body">
-									<ul class="list-group">
-                    <li class="list-group-item justify-content-between">
-										图片新闻
-										<span class="badgetext badge badge-danger badge-pill">
-                      <a href="" style="color:#fff;font-weight: 500;">删除</a>
-                    </span>
-										</li>
-                    <li class="list-group-item justify-content-between">
-										行业动态
-										<span class="badgetext badge badge-danger badge-pill">
-                      <a href="" style="color:#fff;font-weight: 500;">删除</a>
-                    </span>
-										</li>
-                    <li class="list-group-item justify-content-between">
-										临烟动态
-										<span class="badgetext badge badge-danger badge-pill">
-                      <a href="" style="color:#fff;font-weight: 500;">删除</a>
-                    </span>
-                  </li>
-                  <li class="list-group-item justify-content-between">
-                  县局动态
-                  <span class="badgetext badge badge-danger badge-pill">
-                    <a href="" style="color:#fff;font-weight: 500;">删除</a>
-                  </span>
-                  </li>
+                  <ul class="list-group">
+                    
+                      {% for sub_lanmu in jigou.get_sub_lanmu %}
+                      <li class="list-group-item justify-content-between">
+                      {{ sub_lanmu.name }}
+                      <span class="badgetext badge badge-danger badge-pill">
+                        <a href="{% url '删除子栏目' sub_lanmu.pk %}" style="color:#fff;font-weight: 500;">删除</a>
+                      </span>
+                      </li>
+                      {% empty %}
+                        <li class="list-group-item justify-content-between">
+                        无子栏目
+                        </li>
+                      {% endfor %}
+                   
                   </ul>
-								</div>
+                </div>
               </div>
+
             </div>
-            <div class="panel panel-default">
-              <div class="panel-heading1">
-                <h4 class="panel-title1">
-                  <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion2" href="#jigou2" aria-expanded="false">审计科</a>
-                </h4>
-              </div>
-              <div id="jigou2" class="panel-collapse collapse" role="tabpanel" aria-expanded="false">
-                <div class="card-body">
-									<ul class="list-group">
-                    <li class="list-group-item justify-content-between">
-										图片新闻
-										<span class="badgetext badge badge-danger badge-pill">
-                      <a href="" style="color:#fff;font-weight: 500;">删除</a>
-                    </span>
-										</li>
-                    <li class="list-group-item justify-content-between">
-										行业动态
-										<span class="badgetext badge badge-danger badge-pill">
-                      <a href="" style="color:#fff;font-weight: 500;">删除</a>
-                    </span>
-										</li>
-                    <li class="list-group-item justify-content-between">
-										临烟动态
-										<span class="badgetext badge badge-danger badge-pill">
-                      <a href="" style="color:#fff;font-weight: 500;">删除</a>
-                    </span>
-                  </li>
-                  <li class="list-group-item justify-content-between">
-                  县局动态
-                  <span class="badgetext badge badge-danger badge-pill">
-                    <a href="" style="color:#fff;font-weight: 500;">删除</a>
-                  </span>
-                  </li>
-                  </ul>
-								</div>
-              </div>
-            </div>
+            {% endif %}
+            {% endfor %}
           </div>
         </div>
       </div>
