@@ -1,0 +1,194 @@
+{% extends "dwebcms/index.html" %}
+{% block webRight %}
+<div class=" content-area">
+	<div class="page-header">
+		<h4 class="page-title">栏目列表</h4>
+  </div>
+	<div class="row row-deck">
+		<div class="col-md-6">
+			<div class="card">
+				<div class="card-header">
+					<h3 class="card-title">所有顶级栏目</h3>
+				</div>
+				<div class="card-body">
+					<div class="panel-group" id="accordion1" role="tablist" aria-multiselectable="true">
+						<div class="panel panel-default active">
+							<div class="panel-heading " role="tab" id="lstfList1">
+								<h4 class="panel-title">
+									<a role="button" data-toggle="collapse" data-parent="#accordion1" href="#lanmu1" aria-expanded="true" aria-controls="lanmu1">领导讲话
+									</a>
+								</h4>
+							</div>
+							<div id="lanmu1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="lanmu1">
+                <div class="card-body">
+									<ul class="list-group">
+                    <li class="list-group-item justify-content-between">
+										二级栏目
+										<span class="badgetext badge badge-danger badge-pill">
+                      <a href="" style="color:#fff;font-weight: 500;">删除</a>
+                    </span>
+										</li>
+                  </ul>
+								</div>
+							</div>
+						</div>
+						<div class="panel panel-default mt-2">
+							<div class="panel-heading" role="tab" id="leftList2">
+								<h4 class="panel-title">
+									<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion1" href="#lanmu2" aria-expanded="false" aria-controls="lanmu2">
+
+										新闻频道
+									</a>
+								</h4>
+							</div>
+							<div id="lanmu2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="lanmu2">
+                <div class="card-body">
+									<ul class="list-group">
+                    <li class="list-group-item justify-content-between">
+										图片新闻
+										<span class="badgetext badge badge-danger badge-pill">
+                      <a href="" style="color:#fff;font-weight: 500;">删除</a>
+                    </span>
+										</li>
+                    <li class="list-group-item justify-content-between">
+										行业动态
+										<span class="badgetext badge badge-danger badge-pill">
+                      <a href="" style="color:#fff;font-weight: 500;">删除</a>
+                    </span>
+										</li>
+                    <li class="list-group-item justify-content-between">
+										临烟动态
+										<span class="badgetext badge badge-danger badge-pill">
+                      <a href="" style="color:#fff;font-weight: 500;">删除</a>
+                    </span>
+                  </li>
+                  <li class="list-group-item justify-content-between">
+                  县局动态
+                  <span class="badgetext badge badge-danger badge-pill">
+                    <a href="" style="color:#fff;font-weight: 500;">删除</a>
+                  </span>
+                  </li>
+                  </ul>
+								</div>
+							</div>
+						</div>
+						<div class="panel panel-default mt-2">
+							<div class="panel-heading" role="tab" id="leftList3">
+								<h4 class="panel-title">
+									<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion1" href="#lanmu3" aria-expanded="false" aria-controls="lanmu3">
+
+										法律法规
+									</a>
+								</h4>
+							</div>
+							<div id="lanmu3" class="panel-collapse collapse" role="tabpanel" aria-labelledby="leftList3">
+                <div class="card-body">
+									<ul class="list-group">
+                    <li class="list-group-item justify-content-between">
+										无下级
+										<span class="badgetext badge badge-danger badge-pill">
+                      <a href="" style="color:#fff;font-weight: 500;">删除该栏目</a>
+                    </span>
+										</li>
+
+                  </ul>
+								</div>
+							</div>
+						</div>
+					</div><!-- panel-group -->
+				</div>
+			</div>
+		</div>
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">所有机构栏目</h3>
+          <div class="card-options">
+            <a href="#" class="card-options-collapse" data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
+            <a href="#" class="card-options-remove" data-toggle="card-remove"><i class="fe fe-x"></i></a>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="panel-group1" id="accordion2">
+            <div class="panel panel-default mb-4">
+              <div class="panel-heading1 ">
+                <h4 class="panel-title1">
+                  <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion2" href="#jigou1" aria-expanded="false">办公室</a>
+                </h4>
+              </div>
+              <div id="jigou1" class="panel-collapse collapse" role="tabpanel" aria-expanded="false">
+                <div class="card-body">
+									<ul class="list-group">
+                    <li class="list-group-item justify-content-between">
+										图片新闻
+										<span class="badgetext badge badge-danger badge-pill">
+                      <a href="" style="color:#fff;font-weight: 500;">删除</a>
+                    </span>
+										</li>
+                    <li class="list-group-item justify-content-between">
+										行业动态
+										<span class="badgetext badge badge-danger badge-pill">
+                      <a href="" style="color:#fff;font-weight: 500;">删除</a>
+                    </span>
+										</li>
+                    <li class="list-group-item justify-content-between">
+										临烟动态
+										<span class="badgetext badge badge-danger badge-pill">
+                      <a href="" style="color:#fff;font-weight: 500;">删除</a>
+                    </span>
+                  </li>
+                  <li class="list-group-item justify-content-between">
+                  县局动态
+                  <span class="badgetext badge badge-danger badge-pill">
+                    <a href="" style="color:#fff;font-weight: 500;">删除</a>
+                  </span>
+                  </li>
+                  </ul>
+								</div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading1">
+                <h4 class="panel-title1">
+                  <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion2" href="#jigou2" aria-expanded="false">审计科</a>
+                </h4>
+              </div>
+              <div id="jigou2" class="panel-collapse collapse" role="tabpanel" aria-expanded="false">
+                <div class="card-body">
+									<ul class="list-group">
+                    <li class="list-group-item justify-content-between">
+										图片新闻
+										<span class="badgetext badge badge-danger badge-pill">
+                      <a href="" style="color:#fff;font-weight: 500;">删除</a>
+                    </span>
+										</li>
+                    <li class="list-group-item justify-content-between">
+										行业动态
+										<span class="badgetext badge badge-danger badge-pill">
+                      <a href="" style="color:#fff;font-weight: 500;">删除</a>
+                    </span>
+										</li>
+                    <li class="list-group-item justify-content-between">
+										临烟动态
+										<span class="badgetext badge badge-danger badge-pill">
+                      <a href="" style="color:#fff;font-weight: 500;">删除</a>
+                    </span>
+                  </li>
+                  <li class="list-group-item justify-content-between">
+                  县局动态
+                  <span class="badgetext badge badge-danger badge-pill">
+                    <a href="" style="color:#fff;font-weight: 500;">删除</a>
+                  </span>
+                  </li>
+                  </ul>
+								</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

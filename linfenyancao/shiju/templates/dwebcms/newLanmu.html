@@ -1,0 +1,73 @@
+{% extends "dwebcms/index.html" %}
+{% block webRight %}
+  <div class=" content-area">
+		<div class="page-header">
+			<h4 class="page-title">新建栏目</h4>
+
+		</div>
+
+		 <div class="row">
+
+			<!-- end col -->
+			<div class="col-xl-6">
+				<div class="card m-b-20">
+					<div class="card-header">
+						<h3 class="card-title">网站栏目新建</h3>
+						
+					</div>
+					<div class="card-body mb-0">
+						<form class="form-horizontal" >
+							<div class="form-group ">
+								<div class="row">
+									<div class="col-md-3">
+										<label class="form-label" id="examplenameInputname2">栏目名称</label>
+									</div>
+									<div class="col-md-9">
+										<input type="text" class="form-control" id="examplenameInputname3"  placeholder="输入栏目名称">
+									</div>
+								</div>
+							</div>
+              <div class="form-group ">
+								<div class="row">
+									<div class="col-md-3">
+										<label class="form-label">选择所属机构</label>
+									</div>
+									<div class="col-md-9">
+										<select class="form-control">
+											<option selected>无归属</option>
+											<option>人事科</option>
+											<option>审计科</option>
+											<option>等等...</option>
+										</select>
+									</div>
+								</div>
+							</div>
+              <div class="form-group ">
+								<div class="row">
+									<div class="col-md-3">
+										<label class="form-label">选择上级栏目</label>
+									</div>
+									<div class="col-md-9">
+										<select class="form-control">
+											<option selected>无上级</option>
+											<option>领导讲话</option>
+											<option>例会专会</option>
+											<option>等等...</option>
+										</select>
+									</div>
+								</div>
+							</div>
+							<div class="form-group mb-0 row justify-content-end">
+								<div class="col-md-9 float-right">
+									<button type="submit" class="btn btn-primary waves-effect waves-light">提交</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- end row -->
+  </div>
+
+{% endblock %}

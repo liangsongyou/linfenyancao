@@ -11,3 +11,4 @@
 11. 将 Artical, Lamnu 注册到admin后台
 12. 创建 superuser: liangsongyou:password0320
 13: 实现 市局，领导班子，临烟动态，文章，四个页面。
+14: 实现登陆功能，###注册，错误提示需要考虑添加。###

@@ -29,3 +29,18 @@ def artical(request, pk=None):
 def lingdao(request):
     return render(request, 'shiju/lingdao.html', {})
 
+# dwebcms登录
+# def cms_login(request):
+#     return render(request, 'dwebcms/login.html')
+
+# dwebcms管理首页
+def cms_index(request):
+    return render(request, 'dwebcms/index.html')
+
+# dwebcms新建栏目
+def cms_newLanmu(request):
+    return render(request, 'dwebcms/newLanmu.html')
+
+# dwebcms栏目列表
+def cms_listLanmu(request):
+    return render(request, 'dwebcms/listLanmu.html')

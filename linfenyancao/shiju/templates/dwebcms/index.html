@@ -1,0 +1,477 @@
+{% load static %}
+<!doctype html>
+<html lang="en" dir="ltr">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+		<meta name="msapplication-TileColor" content="#0f75ff">
+		<meta name="theme-color" content="#2ddcd3">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="mobile-web-app-capable" content="yes">
+		<meta name="HandheldFriendly" content="True">
+		<meta name="MobileOptimized" content="320">
+		<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+
+		<!-- Title -->
+		<title>欢迎登录临汾烟草专卖局网站--管理中心</title>
+		<link rel="stylesheet" href="{% static "dwebcms/assets/fonts/fonts/font-awesome.min.css" %}">
+
+		<!-- Font Family-->
+		<link href="{% static "dwebcms/assets/css/fonts.css" %}" rel="stylesheet">
+
+		<!-- Sidemenu Css -->
+		<link href="{% static "dwebcms/assets/plugins/fullside-menu/css/style.css" %}" rel="stylesheet" />
+		<link href="{% static "dwebcms/assets/plugins/fullside-menu/waves.min.css" %}" rel="stylesheet" />
+
+		<!-- Bootstrap Css -->
+		<link href="{% static "dwebcms/assets/plugins/bootstrap-4.1.3/css/bootstrap.min.css" %}" rel="stylesheet" />
+
+		<!-- Dashboard Css -->
+		<link href="{% static "dwebcms/assets/css/dashboard.css" %}" rel="stylesheet" />
+
+		<!-- JQVMap -->
+		<link href="{% static "dwebcms/assets/plugins/jqvmap/jqvmap.min.css" %}" rel="stylesheet"/>
+
+		<!-- Morris.js Charts Plugin -->
+		<link href="{% static "dwebcms/assets/plugins/morris/morris.css" %}" rel="stylesheet" />
+
+		<!-- Custom scroll bar css-->
+		<link href="{% static "dwebcms/assets/plugins/scroll-bar/jquery.mCustomScrollbar.css" %}" rel="stylesheet" />
+
+		<!---Font icons-->
+		<link href="{% static "dwebcms/assets/plugins/iconfonts/plugin.css" %}" rel="stylesheet" />
+	</head>
+
+	<body>
+		{% block body %}
+		<div id="loading"></div>
+		<div class="page">
+			<div class="page-main">
+				<div class="app-header1 header py-1 d-flex">
+					<div class="container-fluid">
+						<div class="d-flex">
+							<a class="header-brand" href="/cms/index">
+								<img src="{% static "dwebcms/assets/images/brand/logo.png" %}" class="header-brand-img" alt="Uplor  logo">
+							</a>
+							<div class="menu-toggle-button">
+								<a class="nav-link wave-effect" href="#" id="sidebarCollapse">
+									<span class="fa fa-bars"></span>
+								</a>
+							</div>
+							<div>
+								<div class="searching">
+									<a href="javascript:void(0)" class="search-open searching1">
+										<i class="fa fa-search"></i>
+									</a>
+									<div class="search-inline">
+										<form>
+											<input type="text" class="form-control" placeholder="搜索关键词...">
+											<button type="submit">
+												<i class="fa fa-search"></i>
+											</button>
+											<a href="javascript:void(0)" class="search-close">
+												<i class="fa fa-times"></i>
+											</a>
+										</form>
+									</div>
+								</div>
+							</div>
+							<div class="d-flex order-lg-2 ml-auto">
+								<div class="dropdown d-none d-md-flex" >
+									<a  class="nav-link icon full-screen-link">
+										<i class="fe fe-maximize floating"  id="fullscreen-button"></i>
+									</a>
+								</div>
+								<div class="dropdown d-none d-md-flex">
+									<a class="nav-link icon" data-toggle="dropdown">
+										<i class="fa fa-envelope-o floating"></i>
+										<span class=" nav-unread badge badge-warning  badge-pill">3</span>
+									</a>
+									<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+										<a href="#" class="dropdown-item d-flex pb-3">
+
+											<div>
+												<strong>留言者ID</strong> 站内通信标题.......
+												<div class="small text-muted">30 mins ago</div>
+											</div>
+										</a>
+										<a href="#" class="dropdown-item d-flex pb-3">
+
+											<div>
+												<strong>留言者ID</strong> 站内通信标题.......
+												<div class="small text-muted">12 mins ago</div>
+											</div>
+										</a>
+										<a href="#" class="dropdown-item d-flex pb-3">
+
+											<div>
+												<strong>留言者ID</strong> 站内通信标题.......
+												<div class="small text-muted">1 hour ago</div>
+											</div>
+										</a>
+										<a href="#" class="dropdown-item d-flex pb-3">
+
+											<div>
+												<strong>留言者ID</strong> 站内通信标题.......
+												<div class="small text-muted">45 mins ago</div>
+											</div>
+										</a>
+										<div class="dropdown-divider"></div>
+										<a href="#" class="dropdown-item text-center">展示所有留言</a>
+									</div>
+								</div>
+
+								<div class="dropdown ">
+									<a href="#" class="nav-link pr-0 leading-none " data-toggle="dropdown" style="margin-top: 15px;color: #fff;">
+									  常用选项
+									</a>
+									<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow ">
+										<a class="dropdown-item" href="">
+											<i class="dropdown-icon si si-layers"></i> 所有文章
+										</a>
+										<a class="dropdown-item" href="">
+											<i class="dropdown-icon si si-action-undo"></i> 返回主页
+										</a>
+										<a class="dropdown-item" href="">
+											<i class="dropdown-icon si si-power"></i> 退出登录
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="wrapper">
+					<!-- Sidebar Holder -->
+					<nav id="sidebar" class="nav-sidebar">
+
+						<ul class="list-unstyled components" id="accordion">
+							<li class="border-0"><h3>用户名：管理员</h3><li>
+							<li>
+								<a href="#homeSubmenu" class="accordion-toggle wave-effect " data-toggle="collapse" aria-expanded="false">
+									<i class="fa fa-television mr-2 sidebarsuccess"></i>栏目管理
+								</a>
+								<ul class="collapse list-unstyled" id="homeSubmenu" data-parent="#accordion">
+									<li><a href="/cms/newlanmu">新建栏目</a></li>
+									<li><a href="/cms/listlanmu">栏目列表</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="#Submenu6" class="accordion-toggle wave-effect" data-toggle="collapse" aria-expanded="false">
+									<i class="fa fa-file-text mr-2 sidebarblue"></i> 文章管理
+								</a>
+								<ul class="collapse list-unstyled" id="Submenu6" data-parent="#accordion">
+									<li>
+										<a href="">发布文章</a>
+									</li>
+									<li>
+										<a href="">文章列表</a>
+									</li>
+									<li>
+										<a href="">回收站</a>
+									</li>
+								</ul>
+							</li>
+							<li >
+								<a href="#Submenu8" class="accordion-toggle wave-effect" data-toggle="collapse" aria-expanded="false">
+									<i class="fa fa-map  mr-2 sidebarlightgreen"></i>图片广告管理
+								</a>
+								<ul class="collapse list-unstyled" id="Submenu8" data-parent="#accordion">
+									<li>
+										<a href="icons.html">新建图片广告</a>
+									</li>
+									<li>
+										<a href="icons2.html">图片广告列表</a>
+									</li>
+								</ul>
+							</li>
+							<li>
+								<a href="#Submenu9" class="accordion-toggle wave-effect" data-toggle="collapse" aria-expanded="false">
+									<i class="fa fa-futbol-o mr-2 sidebarred"></i> 问卷调查
+								</a>
+								<ul class="collapse list-unstyled" id="Submenu9" data-parent="#accordion">
+									<li>
+										<a href="profile.html">新建问卷</a>
+									</li>
+									<li>
+										<a href="editprofile.html">所有问卷</a>
+									</li>
+								</ul>
+							</li>
+
+							<li>
+								<a href="#Submenu11" class="accordion-toggle wave-effect" data-toggle="collapse" aria-expanded="false">
+									<i class="fa fa-briefcase mr-2 sidebaryellow"></i>人员值班
+								</a>
+								<ul class="collapse list-unstyled" id="Submenu11" data-parent="#accordion">
+									<li>
+										<a href="login.html">增加人员</a>
+									</li>
+									<li>
+										<a href="register.html">所有人员</a>
+									</li>
+									<li>
+										<a href="forgot-password.html">值班排序</a>
+									</li>
+								</ul>
+							</li>
+
+							<li>
+								<a href="#Submenu13" class="accordion-toggle wave-effect" data-toggle="collapse" aria-expanded="false">
+									<i class="fa fa-compass mr-2 sidebarpink"></i>组织机构
+								</a>
+								<ul class="collapse list-unstyled" id="Submenu13" data-parent="#accordion">
+									<li>
+										<a href="#">新建机构</a>
+									</li>
+									<li>
+										<a href="#">机构列表</a>
+									</li>
+									<li>
+										<a href="#">角色权限</a>
+									</li>
+								</ul>
+							</li>
+						</ul>
+						<div class="sidebar-footer hidden-small">
+							<a href="">
+								<span class="fa fa-envelope" aria-hidden="true"></span>
+							</a>
+							<a href="">
+								<span class="fa fa-user" aria-hidden="true"></span>
+							</a>
+							<a href="">
+								<span class="fa fa-sign-in" aria-hidden="true"></span>
+								</a>
+						</div>
+					</nav>
+					{% block webRight %}
+					<div class=" content-area ">
+						<div class="page-header">
+							<h4 class="page-title">站内概况</h4>
+						</div>
+
+						<div class="row">
+							<div class="col-sm-12 col-lg-4">
+								<div class="card overflow-hidden">
+									<div class="card-header">
+										<h3 class="card-title">文章总数</h3>
+										<div class="card-options">
+											<a class="btn btn-sm btn-primary" href="#">查看全部</a>
+										</div>
+									</div>
+									<div class="card-body ">
+
+										<small class="h6">今日发布</small>
+										<div class="text-dark count mt-0 font-30">6,525</div>
+
+										<div class="progress progress-sm mt-0 mb-2">
+											<div class="progress-bar bg-success w-35" role="progressbar"></div>
+										</div>
+										<div class=""><i class="fa fa-caret-up text-green"></i>  10% 较前日</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-12 col-lg-4">
+								<div class="card overflow-hidden">
+									<div class="card-header">
+										<h3 class="card-title">问卷调查</h3>
+										<div class="card-options">
+											<a class="btn btn-sm btn-primary" href="#">展示全部</a>
+										</div>
+									</div>
+									<div class="card-body ">
+
+										<small class="h6">今日调查</small>
+										<div class="text-dark count mt-0 font-30">3,897</div>
+
+										<div class="progress progress-sm mt-0 mb-2">
+											<div class="progress-bar bg-primary w-55" role="progressbar" ></div>
+										</div>
+										<div class=""><i class="fa fa-caret-up text-green"></i> 10% 较前日</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-12 col-lg-4">
+								<div class="card overflow-hidden">
+									<div class="card-header">
+										<h3 class="card-title">文章点赞</h3>
+										<div class="card-options">
+											<a class="btn btn-sm btn-primary" href="#">点赞记录</a>
+										</div>
+									</div>
+									<div class="card-body ">
+
+										<small class="h6">今日点赞</small>
+										<div class="text-dark count mt-0 font-30">4,256</div>
+
+										<div class="progress progress-sm mt-0 mb-2">
+											<div class="progress-bar bg-danger w-15" role="progressbar" ></div>
+										</div>
+										<div class=""><i class="fa fa-caret-down text-danger"></i> 20% 较前日</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-lg-12">
+								<div class="card">
+									<div class="card-header">
+										<div class="card-title">最近发布</div>
+										<div class="card-options">
+											<a href="#" class="card-options-collapse" data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
+											<a href="#" class="card-options-remove" data-toggle="card-remove"><i class="fe fe-x"></i></a>
+										</div>
+									</div>
+									<div class="card-body">
+										<div class="table-responsive">
+											<table class="table table-bordered border mb-0 align-items-center" >
+												<thead>
+													<tr>
+														<th>Id</th>
+														<th>文章标题</th>
+														<th>所属栏目</th>
+														<th>发布时间</th>
+														<th>发布者</th>
+														<th>阅读量</th>
+														<th>点赞数</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td>#675</td>
+
+														<td>
+															<p class="mb-0">文章标题文章标题文章标题...</p>
+														</td>
+														<td class="font-weight-semibold">领导讲话</td>
+														<td>2018-11-11 9:00</td>
+														<td><span class="badge badge-success">admin</span></td>
+														<td class="text-green"> 123</td>
+														<td>55</td>
+													</tr>
+													<tr>
+														<td>#675</td>
+
+														<td>
+															<p class="mb-0">文章标题文章标题文章标题...</p>
+														</td>
+														<td class="font-weight-semibold">领导讲话</td>
+														<td>2018-11-11 9:00</td>
+														<td><span class="badge badge-success">admin</span></td>
+														<td class="text-green"> 123</td>
+														<td>55</td>
+													</tr>
+													<tr>
+														<td>#675</td>
+
+														<td>
+															<p class="mb-0">文章标题文章标题文章标题...</p>
+														</td>
+														<td class="font-weight-semibold">领导讲话</td>
+														<td>2018-11-11 9:00</td>
+														<td><span class="badge badge-success">admin</span></td>
+														<td class="text-green"> 123</td>
+														<td>55</td>
+													</tr>
+													<tr>
+														<td>#675</td>
+
+														<td>
+															<p class="mb-0">文章标题文章标题文章标题...</p>
+														</td>
+														<td class="font-weight-semibold">领导讲话</td>
+														<td>2018-11-11 9:00</td>
+														<td><span class="badge badge-success">admin</span></td>
+														<td class="text-green"> 123</td>
+														<td>55</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+					{% endblock %}
+				</div>
+			</div>
+
+			<!--footer-->
+			<footer class="footer">
+				<div class="container">
+					<div class="row align-items-center flex-row-reverse">
+						<div class="col-md-12 col-sm-12 mt-3 mt-lg-0 text-center">
+							Copyright © 2018 <a href="/">临汾市烟草专卖局(公司)  </a>.  All rights reserved.
+						</div>
+					</div>
+				</div>
+			</footer>
+			<!-- End Footer-->
+		</div>
+
+		<!-- Back to top -->
+		<a href="#top" id="back-to-top" ><i class="fa fa-angle-up"></i></a>
+
+		{% endblock %}
+
+
+		<!-- Dashboard Core -->
+		<script src="{% static "dwebcms/assets/js/vendors/jquery-3.2.1.min.js" %}"></script>
+		<script src="{% static "dwebcms/assets/plugins/bootstrap-4.1.3/popper.min.js" %}"></script>
+		<script src="{% static "dwebcms/assets/plugins/bootstrap-4.1.3/js/bootstrap.min.js" %}"></script>
+		<script src="{% static "dwebcms/assets/js/vendors/jquery.sparkline.min.js" %}"></script>
+		<script src="{% static "dwebcms/assets/js/vendors/selectize.min.js" %}"></script>
+		<script src="{% static "dwebcms/assets/js/vendors/jquery.tablesorter.min.js" %}"></script>
+		<script src="{% static "dwebcms/assets/js/vendors/circle-progress.min.js" %}"></script>
+		<script src="{% static "dwebcms/assets/plugins/rating/jquery.rating-stars.js" %}"></script>
+
+		<!-- Fullside-menu Js-->
+		<script src="{% static "dwebcms/assets/plugins/fullside-menu/jquery.slimscroll.min.js" %}"></script>
+		<script src="{% static "dwebcms/assets/plugins/fullside-menu/waves.min.js" %}"></script>
+
+		<!-- Chart.js -->
+		<script src="{% static "dwebcms/assets/plugins/Chart.js/Chart.js" %}"></script>
+
+		<!--Counters -->
+		<script src="{% static "dwebcms/assets/plugins/counters/counterup.min.js" %}"></script>
+		<script src="{% static "dwebcms/assets/plugins/counters/waypoints.min.js" %}"></script>
+
+		<!--Morris.js Charts Plugin -->
+		<script src="{% static "dwebcms/assets/plugins/morris/raphael-min.js" %}"></script>
+		<script src="{% static "dwebcms/assets/plugins/morris/morris.js" %}"></script>
+
+		<!-- Custom scroll bar Js-->
+		<script src="{% static "dwebcms/assets/plugins/scroll-bar/jquery.mCustomScrollbar.concat.min.js" %}"></script>
+
+		<!-- jQuery Sparklines -->
+		<script src="{% static "dwebcms/ssets/plugins/jquery-sparkline/jquery.sparkline.min.js" %}"></script>
+
+		<!-- JQVMap -->
+		<script src="{% static "dwebcms/assets/plugins/jqvmap/jquery.vmap.js" %}"></script>
+		<script src="{% static "dwebcms/assets/plugins/jqvmap/maps/jquery.vmap.world.js" %}"></script>
+		<script src="{% static "dwebcms/assets/plugins/jqvmap/jquery.vmap.sampledata.js" %}"></script>
+
+		<script src="{% static "dwebcms/assets/plugins/echarts/echarts.js" %}"></script>
+		<script src="{% static "dwebcms/assets/js/index1.js" %}"></script>
+
+
+		<!-- Custom Js-->
+		<script src="{% static "dwebcms/assets/js/custom.js" %}"></script>
+		<script src="{% static "dwebcms/assets/js/jqvmap.js" %}"></script>
+		<script src="{% static "dwebcms/assets/js/chartbundle.js" %}"></script>
+
+		<!--Counters js-->
+		<script>
+			$('.count').countUp();
+		</script>
+
+	</body>
+</html>
