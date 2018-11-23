@@ -1,6 +1,8 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
+from django.urls import reverse_lazy
 
-from .models import  Artical, Lanmu
+from .models import  Artical, Lanmu, Jigou, Suplanmu
+from .forms import LanmuForm
 
 
 # 市局
@@ -39,7 +41,40 @@ def cms_index(request):
 
 # dwebcms新建栏目
 def cms_newLanmu(request):
-    return render(request, 'dwebcms/newLanmu.html')
+    jigous = Jigou.objects.all()
+    sup_lanmus = Suplanmu.objects.all()
+    if request.method == 'POST':
+        form = LanmuForm(request.POST)
+        if form.is_valid():
+            
+            item_name = form.cleaned_data['name']
+
+            jigou_name = form.cleaned_data['jigou_name']
+            if jigou_name == "":
+                item_jigou = None
+            else:
+                item_jigou = get_object_or_404(Jigou, name=jigou_name)
+
+            sup_lanmu_name = form.cleaned_data['sup_lanmu_name']
+            if sup_lanmu_name == "":
+                item_sup_lanmu = None
+            else:
+                item_sup_lanmu = get_object_or_404(Suplanmu, name=sup_lanmu_name)
+
+            item = Lanmu.objects.create(name=item_name, jigou=item_jigou,sup_lanmu=item_sup_lanmu)
+            item.save()
+            return redirect(reverse_lazy('listLanmu'))
+        else:
+            error_message=form.errors
+    else:
+        form = LanmuForm()
+    context = {
+        'form':form,
+        'jigous':jigous,
+        'sup_lanmus':sup_lanmus,
+        'error_message':form.errors
+    }
+    return render(request, 'dwebcms/newLanmu.html', context)
 
 # dwebcms栏目列表
 def cms_listLanmu(request):

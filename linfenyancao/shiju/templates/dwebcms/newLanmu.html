@@ -16,14 +16,20 @@
 						
 					</div>
 					<div class="card-body mb-0">
-						<form class="form-horizontal" >
+						<form class="form-horizontal" method="POST" action="">
+							{% csrf_token %}
 							<div class="form-group ">
+								<div class="row">
+									<ul>
+										{{ error_message }}
+									</ul>
+								</div>
 								<div class="row">
 									<div class="col-md-3">
 										<label class="form-label" id="examplenameInputname2">栏目名称</label>
 									</div>
 									<div class="col-md-9">
-										<input type="text" class="form-control" id="examplenameInputname3"  placeholder="输入栏目名称">
+										<input name="name" type="text" class="form-control" id="examplenameInputname3"  placeholder="输入栏目名称">
 									</div>
 								</div>
 							</div>
@@ -33,11 +39,12 @@
 										<label class="form-label">选择所属机构</label>
 									</div>
 									<div class="col-md-9">
-										<select class="form-control">
-											<option selected>无归属</option>
-											<option>人事科</option>
-											<option>审计科</option>
-											<option>等等...</option>
+										<select name="jigou_name" class="form-control">
+											<option value="" selected>无归属</option>
+											{% for jigou in jigous %}
+												<option value="{{ jigou.name }}" >{{ jigou.name }}</option>
+											{% endfor %}
+											<option disabled>等等...</option>
 										</select>
 									</div>
 								</div>
@@ -48,11 +55,12 @@
 										<label class="form-label">选择上级栏目</label>
 									</div>
 									<div class="col-md-9">
-										<select class="form-control">
-											<option selected>无上级</option>
-											<option>领导讲话</option>
-											<option>例会专会</option>
-											<option>等等...</option>
+										<select name="sup_lanmu_name" class="form-control">
+											<option value="" selected>无上级</option>
+											{% for sup_lanmu in sup_lanmus %}
+												<option value="{{ sup_lanmu.name }}">{{ sup_lanmu.name }}</option>
+											{% endfor %}
+											<option disabled>等等...</option>
 										</select>
 									</div>
 								</div>

@@ -3,8 +3,26 @@ from django.urls import reverse
 from django.shortcuts import  get_object_or_404
 
 # Create your models here.
+class Jigou(models.Model):
+    name = models.CharField(default='',blank=True,null=True,max_length=255)
+
+
+    def __str__(self):
+        return '%s' % self.name
+
+
+class Suplanmu(models.Model):
+    name = models.CharField(default='',blank=True,null=True,max_length=255)
+
+    def __str__(self):
+        return '%s' % self.name
+
+
 class Lanmu(models.Model):
     name = models.CharField(max_length=255, default='')
+    jigou = models.ForeignKey(Jigou, on_delete=models.CASCADE,blank=True, null=True)
+    sup_lanmu = models.ForeignKey(Suplanmu,on_delete=models.CASCADE,related_name='sub_lanmu',blank=True,null=True)
+
 
     def __str__(self):
         return '%s' % self.name
