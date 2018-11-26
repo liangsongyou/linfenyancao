@@ -1,0 +1,145 @@
+{% extends "dwebcms/index.html" %}
+{% block webRight %}
+<div class=" content-area">
+  <div class="page-header">
+    <h4 class="page-title">文章回收站 </h4>
+  </div>
+  <div class="row row-cards">
+    <div class="col-xl-3 col-lg-4">
+      <div class="row">
+        <div class="col-md-12 col-lg-12">
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">已删筛选</div>
+
+            </div>
+            <div class="card-body">
+
+              <div class="form-group">
+                <label class="form-label">所属机构</label>
+                <select name="beast" id="select-beast" class="form-control custom-select">
+                  <option value="0">--Select--</option>
+                  <option value="1">临汾市局</option>
+                  <option value="2">襄汾县</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">所属栏目</label>
+                <select name="beast" id="select-beast1" class="form-control custom-select">
+                  <option value="0">--Select--</option>
+                  <option value="1">领导讲话</option>
+                  <option value="2">例会专会</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-8 col-xl-9">
+      <div class="input-group">
+        <input type="text" class="form-control br-tl-7 br-bl-7" placeholder="输入标题关键词搜索">
+        <div class="input-group-append ">
+          <button type="button" class="btn btn-white br-tr-7 br-br-7">
+            <i class="fa fa-search" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+      <div class="card mt-5 store">
+        <div class="table-responsive">
+          <table class="table card-table table-vcenter text-nowrap">
+            <tr>
+              <td><a href="/cms/wzxiugai" style="color:#000;">文章标题文章标题文章标题...</a></td>
+
+              <td class="text-right text-muted d-none d-md-table-cell text-nowrap">2018-11-11</td>
+              <td class="text-right text-muted d-none d-md-table-cell text-nowrap">
+                <a href="">彻底删除</a>
+                 </td>
+              <td class="text-right">
+                <strong>领导发言</strong>
+              </td>
+              <td class="text-right">
+                <strong>临汾市局</strong>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="/cms/wzxiugai" style="color:#000;">文章标题文章标题文章标题...</a>
+              </td>
+
+              <td class="text-right text-muted d-none d-md-table-cell text-nowrap">2018-11-11</td>
+              <td class="text-right text-muted d-none d-md-table-cell text-nowrap"><a href="">彻底删除</a> </td>
+              <td class="text-right">
+                <strong>领导发言</strong>
+              </td>
+              <td class="text-right">
+                <strong>临汾市局</strong>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="/cms/wzxiugai" style="color:#000;">文章标题文章标题文章标题...</a>
+              </td>
+
+              <td class="text-right text-muted d-none d-md-table-cell text-nowrap">2018-11-11</td>
+              <td class="text-right text-muted d-none d-md-table-cell text-nowrap"><a href="">彻底删除</a> </td>
+              <td class="text-right">
+                <strong>领导发言</strong>
+              </td>
+              <td class="text-right">
+                <strong>临汾市局</strong>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="/cms/wzxiugai" style="color:#000;">文章标题文章标题文章标题...</a>
+              </td>
+
+              <td class="text-right text-muted d-none d-md-table-cell text-nowrap">2018-11-11</td>
+              <td class="text-right text-muted d-none d-md-table-cell text-nowrap"><a href="">彻底删除</a> </td>
+              <td class="text-right">
+                <strong>领导发言</strong>
+              </td>
+              <td class="text-right">
+                <strong>临汾市局</strong>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="/cms/wzxiugai" style="color:#000;">文章标题文章标题文章标题...</a>
+              </td>
+
+              <td class="text-right text-muted d-none d-md-table-cell text-nowrap">2018-11-11</td>
+              <td class="text-right text-muted d-none d-md-table-cell text-nowrap"><a href="">彻底删除</a> </td>
+              <td class="text-right">
+                <strong>领导发言</strong>
+              </td>
+              <td class="text-right">
+                <strong>临汾市局</strong>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="float-right mb-5">
+        <ul class="pagination mb-0 justify-content-end ">
+          <li class="page-item page-prev disabled">
+            <a class="page-link" href="#" tabindex="-1">上一页</a>
+          </li>
+          <li class="page-item active"><a class="page-link" href="#">1</a></li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item"><a class="page-link" href="#">4</a></li>
+          <li class="page-item"><a class="page-link" href="#">5</a></li>
+          <li class="page-item page-next">
+            <a class="page-link" href="#">下一页</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}

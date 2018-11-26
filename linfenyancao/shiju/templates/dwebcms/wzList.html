@@ -1,0 +1,139 @@
+{% extends "dwebcms/index.html" %}
+{% block webRight %}
+<div class=" content-area">
+  <div class="page-header">
+    <h4 class="page-title">{{ title }} </h4>
+  </div>
+  <form method="GET" >
+  <div class="row row-cards">
+    <div class="col-xl-3 col-lg-4">
+      <div class="row">
+        <div class="col-md-12 col-lg-12">
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">栏目筛选</div>
+
+            </div>
+
+            <div class="card-body">
+
+              <div class="form-group">
+                <label class="form-label">所属机构</label>
+                <select name="jigou_pk" id="select-beast" class="form-control custom-select"
+                >
+                  {% if jigou %}
+                    <option value="{{jigou.pk}}" selected>
+                      {{ jigou.name }} 
+                    </option>
+                  {% else %}
+                    <option value="" selected>
+                      Select
+                    </option>
+                  {% endif %}
+                  
+                    {% for item in jigous %}
+                        <option value="{{ item.pk }}" >
+                            {{ item.name }} 
+                        </option>
+                    {% endfor %}
+                  
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">所属市局栏目</label>
+                <select name="sup_lanmu_pk" id="select-beast1" class="form-control custom-select"
+                  >
+                    {% if jigou.name == "临汾市局" %}
+                      {% for item in jigou.get_sup_lanmu %}
+                        <option value="{{item.pk}}">{{ item.name }}</option>
+                      {% endfor %}
+                    {% else %}
+                      <option value="">请选择市局</option>
+                    {% endif %}
+                    
+                </select>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-8 col-xl-9">
+      <div class="input-group">
+        
+          <input name="q" value="{{ request.GET.q }}" type="text" class="form-control br-tl-7 br-bl-7" placeholder="输入标题关键词搜索">
+        
+        <div class="input-group-append ">
+          <button type="submit" class="btn btn-white br-tr-7 br-br-7">
+            <i class="fa fa-search" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+      <div class="card mt-5 store">
+        <div class="table-responsive">
+          <table class="table card-table table-vcenter text-nowrap">
+            
+              {% for artical in articals %}
+                  <tr>
+                    
+                    <td>
+                      {% if title == "文章列表" %}
+                       <a href="{% url 'wzXiugai' artical.pk %}" style="color:#000;">{{ artical.biaoti }}</a>
+                      {% endif %}
+
+                      {% if title == "文章回收站" %}
+                        <a href="{% url 'wzHuanyuan' artical.pk %}" style="color:#000;">{{ artical.biaoti }}</a>
+                      {% endif %}
+                      
+                    </td>
+                    <td class="text-right text-muted d-none d-md-table-cell text-nowrap">{{ artical.fabiao_riqi|date:'Y-m-d' }}</td>
+                    <td class="text-right text-muted d-none d-md-table-cell text-nowrap">
+                      {% if title == "文章列表" %}
+                        <a href="{{ artical.get_delete_url }}">点击删除</a>
+                      {% endif %}
+
+                      {% if title == "文章回收站" %}
+                        <a href="{{ artical.get_delete_cd_url }}">彻底删除</a>
+                      {% endif %}
+                    </td>
+                    <td class="text-right">
+                      <strong>{{ artical.lanmu.name }}</strong>
+                    </td>
+                    <td class="text-right">
+                      <strong>{{ artical.lanmu.jigou.name }}</strong>
+                    </td>
+                  </tr>
+                    
+              {% endfor %}
+
+          
+          </table>
+        </div>
+      </div>
+      <div class="float-right mb-5">
+        <ul class="pagination mb-0 justify-content-end ">
+          {% if articals.has_previous %}
+            <li class="page-item "><a class="page-link" href="?page=1">首页</a></li>
+            <li class="page-item page-prev">
+              <a class="page-link" href="?page={{ contacts.previous_page_number }}" tabindex="-1">上一页</a>
+            </li>
+          {% endif %}
+
+          <li class="page-item active"><a class="page-link" href="#">{{ articals.number }}</a></li>
+
+          {% if articals.has_next %}
+            
+            <li class="page-item page-next">
+              <a class="page-link" href="?page={{ articals.next_page_number }}">下一页</a>
+            </li>
+            <li class="page-item"><a class="page-link" href="?page={{ articals.paginator.num_pages }}">尾页({{ articals.paginator.num_pages }})</a></li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

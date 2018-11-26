@@ -27,11 +27,31 @@ urlpatterns = [
     # dwebcms删除子栏目
     path('cms/sublanmu/<int:pk>/delete/',views.cms_deleteSubLanmu, name="删除子栏目"),
 
+    # dwebcms文章发布
+    path('cms/wztijiao/<str:jigou_name>/',views.cms_wzTijiao, name="wzTijiao"),
+    # dwebcms文章列表
+    path('cms/wzlist/',views.cms_wzList, name="wzList"),
+    # dwebcms文章删除
+    path('cms/wzdelete/<int:pk>/',views.cms_wzDelete, name="wzDelete"),
+
+    # dwebcms文章还原
+    path('cms/wzhuanyuan/<int:pk>/',views.cms_wzHuanyuan, name="wzHuanyuan"),
+
+    # dwebcms文章修改
+    path('cms/wzxiugai/<int:pk>/',views.cms_wzXiugai, name="wzXiugai"),
+    # dwebcms文章回收
+    path('cms/wzhuishou/',views.cms_wzHuishou, name="wzHuishou"),
+
+    # dwebcms文章彻底删除
+    path('cms/wzhuishou/<int:pk>/',views.cms_wzDelete_cd, name='wzDelete_cd'),
+
     # accounts
     path('cms/', include('django.contrib.auth.urls')),
 
     # 默认
     path('', views.shiju, ),
+    # 富文本
+    path('ueditor/', include('DjangoUeditor.urls' ) ),
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) \
 + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

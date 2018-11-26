@@ -3,8 +3,7 @@
   <div class=" content-area">
 		<div class="page-header">
 			<h4 class="page-title">新建栏目</h4>
-
-		</div>
+    </div>
 
 		 <div class="row">
 
@@ -13,7 +12,7 @@
 				<div class="card m-b-20">
 					<div class="card-header">
 						<h3 class="card-title">网站栏目新建</h3>
-						
+
 					</div>
 					<div class="card-body mb-0">
 						<form class="form-horizontal" method="POST" action="">
@@ -29,7 +28,7 @@
 										<label class="form-label" id="examplenameInputname2">栏目名称</label>
 									</div>
 									<div class="col-md-9">
-										<input name="name" type="text" class="form-control" id="examplenameInputname3"  placeholder="输入栏目名称">
+										<input name="name" type="text" class="form-control" id="examplenameInputname3"  placeholder="输入栏目名称" required="required">
 									</div>
 								</div>
 							</div>
@@ -39,12 +38,12 @@
 										<label class="form-label">选择所属机构</label>
 									</div>
 									<div class="col-md-9">
-										<select name="jigou_name" class="form-control">
-											<option value="" selected>无归属</option>
+										<select id="jigou"  name="jigou_name" class="form-control"  oninput="OnInput (event)" onpropertychange="OnPropChanged (event)">
+
 											{% for jigou in jigous %}
 												<option value="{{ jigou.name }}" >{{ jigou.name }}</option>
 											{% endfor %}
-											<option disabled>等等...</option>
+
 										</select>
 									</div>
 								</div>
@@ -52,16 +51,19 @@
               <div class="form-group ">
 								<div class="row">
 									<div class="col-md-3">
-										<label class="form-label">选择上级栏目</label>
+										<label class="form-label">选择顶级栏目</label>
 									</div>
-									<div class="col-md-9">
+									<div id="suplanmu" class="col-md-9">
 										<select name="sup_lanmu_name" class="form-control">
-											<option value="" selected>无上级</option>
+
 											{% for sup_lanmu in sup_lanmus %}
 												<option value="{{ sup_lanmu.name }}">{{ sup_lanmu.name }}</option>
 											{% endfor %}
-											<option disabled>等等...</option>
+
 										</select>
+									</div>
+                  <div id="suplanmu2" class="col-md-9" style="display:none;">
+									  非市局机构，无需选择
 									</div>
 								</div>
 							</div>
@@ -77,5 +79,32 @@
 		</div>
 		<!-- end row -->
   </div>
+
+  <script type="text/javascript">
+  // Firefox, Google Chrome, Opera, Safari, Internet Explorer from version 9
+    function OnInput (event) {
+      //alert ("The new content: " + event.target.value);
+      var value = event.target.value;
+      changeJigou(value);
+    }
+  // Internet Explorer
+    function OnPropChanged (event) {
+      if (event.propertyName.toLowerCase () == "value") {
+        var value = event.srcElement.value;
+        changeJigou(value);
+      }
+    }
+
+    function changeJigou(value){
+			var jigou = document.getElementById('jigou').value;
+			if(jigou != '临汾市局'){
+        document.getElementById("suplanmu2").style.display="block";
+        document.getElementById("suplanmu").style.display="none";
+			}else{
+        document.getElementById("suplanmu2").style.display="none";
+        document.getElementById("suplanmu").style.display="block";
+      }
+		}
+  </script>
 
 {% endblock %}

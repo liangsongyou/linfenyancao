@@ -43,6 +43,13 @@
 
 		<!---Font icons-->
 		<link href="{% static "dwebcms/assets/plugins/iconfonts/plugin.css" %}" rel="stylesheet" />
+
+		<!-- ueditor -->
+		<script src="{% static "ueditor/ueditor.config.js" %}" charset="utf-8"></script>
+		<script src="{% static "ueditor/ueditor.all.js" %}" charset="utf-8"></script>
+		{% block fuwebbenStyle %}
+			{{ form.media }}
+		{% endblock %}
 	</head>
 
 	<body>
@@ -161,18 +168,18 @@
 								</ul>
 							</li>
 							<li>
-								<a href="#Submenu6" class="accordion-toggle wave-effect" data-toggle="collapse" aria-expanded="false">
+								<a href="#Submenu6" class="accordion-toggle wave-effect " data-toggle="collapse" aria-expanded="false">
 									<i class="fa fa-file-text mr-2 sidebarblue"></i> 文章管理
 								</a>
 								<ul class="collapse list-unstyled" id="Submenu6" data-parent="#accordion">
 									<li>
-										<a href="">发布文章</a>
+										<a href="{% url 'wzTijiao' '临汾市局' %}">发布文章</a>
 									</li>
 									<li>
-										<a href="">文章列表</a>
+										<a href="/cms/wzlist">文章列表</a>
 									</li>
 									<li>
-										<a href="">回收站</a>
+										<a href="/cms/wzhuishou">回收站</a>
 									</li>
 								</ul>
 							</li>
@@ -452,7 +459,7 @@
 		<script src="{% static "dwebcms/assets/plugins/scroll-bar/jquery.mCustomScrollbar.concat.min.js" %}"></script>
 
 		<!-- jQuery Sparklines -->
-		<script src="{% static "dwebcms/ssets/plugins/jquery-sparkline/jquery.sparkline.min.js" %}"></script>
+		<script src="{% static "dwebcms/assets/plugins/jquery-sparkline/jquery.sparkline.min.js" %}"></script>
 
 		<!-- JQVMap -->
 		<script src="{% static "dwebcms/assets/plugins/jqvmap/jquery.vmap.js" %}"></script>

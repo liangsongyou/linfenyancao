@@ -1,0 +1,124 @@
+{% extends "dwebcms/index.html" %}
+{% block webRight %}
+
+
+<div class=" content-area">
+  <div class="page-header">
+    <h4 class="page-title">文章发布</h4>
+  </div>
+  <div class="row">
+
+    <div class="col-12">
+      <div   class="card">
+        <div class="card-header">
+          <h3 class="card-title">填写文章详细内容</h3>
+
+        </div>
+        <form method="POST" enctype="multipart/form-data" action="{% url 'wzTijiao' jigou_name=jigou.name %}">
+        <div class="card-body">
+          <div class="row">
+
+
+            <div class="col-md-12 col-lg-12">
+              <div class="form-group">
+                <label class="form-label">文章标题</label>
+                <input id="id_biaoti" type="text" class="form-control" name="biaoti" placeholder="输入文章标题">
+              </div>
+              <div class="form-group col-md-4 col-lg-4">
+                <label class="form-label"> 所属机构</label>
+                <select class="form-control select2-show-search" data-placeholder="Choose one (with searchbox)" onchange="javascript:location.href=this.value;">
+                    <option value="{% with jigou.name as jigou_name %}
+                        {% url 'wzTijiao' jigou_name=jigou_name %}
+                    {% endwith %} ">
+                      {{ jigou.name }}
+                    </option>
+                  {% for item in jigous %}
+                    {% if item.name != jigou.name %}
+                      <option value="{% with item.name as jigou_name %}
+                          {% url 'wzTijiao' jigou_name=jigou_name %}
+                      {% endwith %} ">
+                        {{ item.name }}
+                      </option>
+                    {% endif %}
+                  {% endfor %}
+                </select>
+              </div>
+              <div class="form-group col-md-4 col-lg-4">
+                <label class="form-label"> 发布栏目</label>
+                {% if jigou.get_sub_lanmu %}
+                <select id="id_lanmu_name" name="lanmu_name" class="form-control select2-show-search" data-placeholder="Choose one (with searchbox)" required>
+                  {% for lanmu in jigou.get_sub_lanmu %}
+                  <option value="{{ lanmu.name }}">{{ lanmu.name }}</option>
+                  {% endfor %}
+                </select>
+                {% else %}
+                <span>
+                  <a href="{% url 'newLanmu' %}">请先为机构新建一个栏目！</a>
+                </span>
+                {% endif %}
+              </div>
+              <div class="form-group col-md-4 col-lg-4">
+                <div class="form-label">文档文件上传</div>
+                <div class="custom-file">
+                  <input id="id_file" type="file" class="" name="file">
+
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">文章内容</label>
+                {{ form.neirong }}
+              </div>
+
+
+
+
+            </div>
+          </div>
+        </div>
+        <div class="card-footer text-right">
+          <div class="d-flex">
+
+              {% csrf_token %}
+            <button type="submit" class="btn btn-primary ml-auto">提交发布</button>
+          </div>
+        </div>
+        </form>
+      </div>
+
+      <div class="card" style="display:none;">
+        <div class="card-header">
+          <h3 class="card-title">File Uploads</h3>
+          <div class="card-options">
+            <a href="#" class="card-options-collapse" data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
+            <a href="#" class="card-options-remove" data-toggle="card-remove"><i class="fe fe-x"></i></a>
+          </div>
+        </div>
+        <div class=" card-body">
+          <div class="row">
+            <div class="col-lg-4 col-sm-12">
+              <input type="file" class="dropify" data-height="180" />
+            </div>
+            <div class="col-lg-4 col-sm-12">
+              <input type="file" class="dropify" data-default-file="assets/images/media/media1.jpg" data-height="180"  />
+            </div>
+            <div class="col-lg-4 col-sm-12">
+              <input type="file" class="dropify" disabled="disabled" data-height="180" />
+            </div>
+          </div>
+          <br>
+          <div class="form-group">
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" name="example-file-input-custom">
+              <label class="custom-file-label">Choose file</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+{% endblock %}

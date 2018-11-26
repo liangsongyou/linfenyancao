@@ -1,0 +1,96 @@
+{% extends "dwebcms/index.html" %}
+{% block webRight %}
+<div class=" content-area">
+  <div class="page-header">
+    <h4 class="page-title">文章发布</h4>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div   class="card">
+        <div class="card-header">
+          <h3 class="card-title">填写文章详细内容</h3>
+
+        </div>
+        <form method="POST" enctype="multipart/form-data" action="{% url 'wzXiugai' artical.pk %}">
+          {% csrf_token %}
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-12 col-lg-12">
+              <div class="form-group">
+                <label class="form-label">文章标题</label>
+                <input type="text" class="form-control" name="biaoti" placeholder="{{ artical.biaoti }}" value="{{ artical.biaoti }}">
+              </div>
+              <div class="form-group col-md-4 col-lg-4">
+                <label class="form-label"> 所属机构</label>
+                <select class="form-control select2-show-search" data-placeholder="Choose one (with searchbox)">
+                  <option value="0">{{ artical.lanmu.jigou.name }}</option>
+                </select>
+              </div>
+              <div class="form-group col-md-4 col-lg-4">
+                <label class="form-label"> 发布栏目</label>
+                <select name="lanmu_pk" class="form-control select2-show-search" data-placeholder="Choose one (with searchbox)">
+                  <option value="artical.lanmu.pk">{{ artical.lanmu.name }}</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">文章内容</label>
+                <script id="wzXiugai" name="neirong"  type="text/platin">
+                </script>
+                <script type="text/javascript">
+                  var ue = UE.getEditor('wzXiugai',{
+                      serverUrl: "/ueditor/",
+                      initialFrameWidth : 960,
+                      initialFrameHeight: 500,
+                  });
+                  ue.ready(function(){
+                    //显示默认内容
+                    ue.setContent('{{ artical.neirong|safe|escape }}')
+                  })
+              </script>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer text-right">
+          <div class="d-flex">
+
+            <button type="submit" class="btn btn-primary ml-auto">提交发布</button>
+          </div>
+        </div>
+      </form>
+      </div>
+      <div class="card" style="display:none;">
+        <div class="card-header">
+          <h3 class="card-title">File Uploads</h3>
+          <div class="card-options">
+            <a href="#" class="card-options-collapse" data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
+            <a href="#" class="card-options-remove" data-toggle="card-remove"><i class="fe fe-x"></i></a>
+          </div>
+        </div>
+        <div class=" card-body">
+          <div class="row">
+            <div class="col-lg-4 col-sm-12">
+              <input type="file" class="dropify" data-height="180" />
+            </div>
+            <div class="col-lg-4 col-sm-12">
+              <input type="file" class="dropify" data-default-file="assets/images/media/media1.jpg" data-height="180"  />
+            </div>
+            <div class="col-lg-4 col-sm-12">
+              <input type="file" class="dropify" disabled="disabled" data-height="180" />
+            </div>
+          </div>
+          <br>
+          <div class="form-group">
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" name="example-file-input-custom">
+              <label class="custom-file-label">Choose file</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

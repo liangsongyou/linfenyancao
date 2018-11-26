@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'DjangoUeditor',
     'shiju',
 ]
 
@@ -126,11 +127,3 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 # Login
 LOGIN_REDIRECT_URL = '/cms/index/'
-
-
-
-
-
-
-
-

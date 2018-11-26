@@ -8,7 +8,7 @@
 		<div class="col-md-6">
 			<div class="card">
 				<div class="card-header">
-					<h3 class="card-title">所有顶级栏目</h3>
+					<h3 class="card-title">所有市局栏目</h3>
 				</div>
 				<div class="card-body">
 					<div class="panel-group" id="accordion1" role="tablist" aria-multiselectable="true">
@@ -18,6 +18,7 @@
   								<h4 class="panel-title">
   									<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion1" href="#lanmu{{ dj_lanmu.pk }}" aria-expanded="false" aria-controls="lanmu{{ dj_lanmu.pk }}">
   										{{ dj_lanmu.name }}
+
   									</a>
   								</h4>
   							</div>
@@ -59,15 +60,12 @@
       <div class="card">
         <div class="card-header">
           <h3 class="card-title">所有机构栏目</h3>
-          <div class="card-options">
-            <a href="#" class="card-options-collapse" data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
-            <a href="#" class="card-options-remove" data-toggle="card-remove"><i class="fe fe-x"></i></a>
-          </div>
+          
         </div>
         <div class="card-body">
           <div class="panel-group1" id="accordion2">
             {% for jigou in jigous %}
-            {% if jigou.name != "市局" %}
+            {% if jigou.name != "临汾市局" %}
               <div class="panel panel-default mb-4">
               <div class="panel-heading1 ">
                 <h4 class="panel-title1">
@@ -77,7 +75,7 @@
               <div id="jigou{{ jigou.pk }}" class="panel-collapse collapse" role="tabpanel" aria-expanded="false">
                 <div class="card-body">
                   <ul class="list-group">
-                    
+
                       {% for sub_lanmu in jigou.get_sub_lanmu %}
                       <li class="list-group-item justify-content-between">
                       {{ sub_lanmu.name }}
@@ -90,7 +88,7 @@
                         无子栏目
                         </li>
                       {% endfor %}
-                   
+
                   </ul>
                 </div>
               </div>
