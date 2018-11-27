@@ -46,7 +46,7 @@ urlpatterns = [
     path('cms/wzhuishou/<int:pk>/',views.cms_wzDelete_cd, name='wzDelete_cd'),
 
     # accounts
-    path('cms/', include('django.contrib.auth.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),
 
     # 默认
     path('', views.shiju, ),

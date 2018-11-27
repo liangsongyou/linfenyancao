@@ -45,7 +45,7 @@
                   >
                     {% if jigou.name == "临汾市局" %}
                       {% for item in jigou.get_sup_lanmu %}
-                        <option value="{{item.pk}}">{{ item.name }}</option>
+                        <option value="{{item.pk}}" >{{ item.name }}</option>
                       {% endfor %}
                     {% else %}
                       <option value="">请选择市局</option>

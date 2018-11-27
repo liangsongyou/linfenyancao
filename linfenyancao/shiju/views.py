@@ -164,7 +164,7 @@ def cms_wzList(request):
     jigou_pk = request.GET.get('jigou_pk',None)
     sup_lanmu_pk = request.GET.get('sup_lanmu_pk',None)
 
-    if sup_lanmu_pk is not None and jigou_pk is not "":
+    if sup_lanmu_pk is not None and sup_lanmu_pk is not "":
         sup_lanmu = Suplanmu.objects.get(pk=int(sup_lanmu_pk))
     else:
         sup_lanmu = None
@@ -179,7 +179,8 @@ def cms_wzList(request):
 
             jigou = Jigou.objects.get(pk=int(jigou_pk))
             if jigou.name == "临汾市局":
-                if sup_lanmu_pk is not None:
+                if sup_lanmu_pk is not None and sup_lanmu_pk is not "":
+
                     sup_lanmu = Suplanmu.objects.get(pk=int(sup_lanmu_pk))
 
                     artical_list = sup_lanmu.get_all_undelete_articals()
