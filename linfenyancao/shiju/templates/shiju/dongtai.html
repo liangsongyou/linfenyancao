@@ -11,53 +11,58 @@
           <div class="ui secondary pointing menu">
             <a class="active item wow fadeInLeftBig" style="color:#008854;">
               <i class="fa fa-caret-right" aria-hidden="true" style="margin-right: 5px;color:#008854;"></i>
-               临烟动态
+               {{ lanmu.name }}
             </a>
             <div class="right menu">
               <div class="ui breadcrumb" style="margin-top: 20px;">
-                <a class="section">首页</a>
+                <a href="/" class="section">首页</a>
                 <div class="divider"> / </div>
-                <a class="section">临烟动态</a>
+                <a class="section">{{ lanmu.name }}</a>
               </div>
             </div>
           </div>
 
           <div class="ui bulleted list wow fadeInUp">
-            {% if articals %}
               {% for item in articals %}
               <div class="item">
-                <a href="{{ item.get_absolute_url }}">{{ item.biaoti }}</a>
+                <a href="{% url 'artical' item.pk %}">{{ item.biaoti }}</a>
                 <span>{{ item.fabiao_riqi|date:'Y-m-d'}}</span>
               </div>
               {% endfor %}
-            {% else %}
-              <p>
-                无内容
-              </p>
-            {% endif %}
           </div>
 
 
           <div class="center aligned ui vertical segment">
               <div class="ui pagination menu">
-                <a href="" class="item">
+                {% if articals.has_previous %}
+                <a href="?page={{ articals.previous_page_number }}" class="item" tabindex="-1">
                   <i class="icon green left caret"></i>
                 </a>
-                <a href="" class="active item" style="background-color: #008854; color:white">1
+                {% else %}
+                <a href="" class="item">
+                  <i class="icon left caret"></i>
                 </a>
-                <a href="" class="item" style="color:#000;">2
+                {% endif %}
+
+                {% for page_number in articals.paginator.page_range %}
+                    {% ifequal page_number  articals.number %}
+                    <a href="?page={{ page_number }}" class="active item" style="background-color: #008854; color:white">{{ page_number }}
+                    </a>
+                    {% else %}
+                    <a href="?page={{ page_number }}" class="item">{{ page_number }}
+                    </a>
+                    {% endifequal %}
+                {% endfor %}
+
+                {% if  articals.has_next %}
+                <a href="?page={{ articals.next_page_number }}" class="item">
+                  <i class="icon green right caret"></i>
                 </a>
-                <a href="" class="item" style="color:#000;">3
-                </a>
-                <a href="" class="item" style="color:#000;">4
-                </a>
+                {% else %}
                 <a href="" class="item">
                   <i class="icon right caret"></i>
                 </a>
-
-                      <!-- <a href="?page={{ article_list.paginator.num_pages }}" class="disabled item">
-                          <i class="icon  right caret"></i>
-                      </a> -->
+                {% endif %}
               </div>
           </div>
       </div>
@@ -71,25 +76,20 @@
 
           <div class="ui segment wow fadeInUp">
             <div class="ui list">
-              {% if articals %}
-                {% for item in articals %}
-                <a class="item" href="artical.html">
+                {% for item in dajia %}
+                <a class="item" href="{% url 'artical' item.pk %}">
                   <i class="right triangle icon"></i>
                   <div class="content">
                       {{ item.biaoti }}...
                   </div>
                 </a>
                 {% endfor %}
-              {% else %}
-                <p>
-                  无内容
-                </p>
-              {% endif %}
+
             </div>
           </div>
 
       </div>
-      
+
     </div>
   </div>
 </div>

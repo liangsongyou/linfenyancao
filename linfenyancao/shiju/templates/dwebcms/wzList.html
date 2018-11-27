@@ -23,20 +23,20 @@
                 >
                   {% if jigou %}
                     <option value="{{jigou.pk}}" selected>
-                      {{ jigou.name }} 
+                      {{ jigou.name }}
                     </option>
                   {% else %}
                     <option value="" selected>
                       Select
                     </option>
                   {% endif %}
-                  
+
                     {% for item in jigous %}
                         <option value="{{ item.pk }}" >
-                            {{ item.name }} 
+                            {{ item.name }}
                         </option>
                     {% endfor %}
-                  
+
                 </select>
               </div>
               <div class="form-group">
@@ -50,7 +50,7 @@
                     {% else %}
                       <option value="">请选择市局</option>
                     {% endif %}
-                    
+
                 </select>
               </div>
             </div>
@@ -61,9 +61,9 @@
     </div>
     <div class="col-lg-8 col-xl-9">
       <div class="input-group">
-        
+
           <input name="q" value="{{ request.GET.q }}" type="text" class="form-control br-tl-7 br-bl-7" placeholder="输入标题关键词搜索">
-        
+
         <div class="input-group-append ">
           <button type="submit" class="btn btn-white br-tr-7 br-br-7">
             <i class="fa fa-search" aria-hidden="true"></i>
@@ -73,10 +73,10 @@
       <div class="card mt-5 store">
         <div class="table-responsive">
           <table class="table card-table table-vcenter text-nowrap">
-            
+
               {% for artical in articals %}
                   <tr>
-                    
+
                     <td>
                       {% if title == "文章列表" %}
                        <a href="{% url 'wzXiugai' artical.pk %}" style="color:#000;">{{ artical.biaoti }}</a>
@@ -85,7 +85,7 @@
                       {% if title == "文章回收站" %}
                         <a href="{% url 'wzHuanyuan' artical.pk %}" style="color:#000;">{{ artical.biaoti }}</a>
                       {% endif %}
-                      
+
                     </td>
                     <td class="text-right text-muted d-none d-md-table-cell text-nowrap">{{ artical.fabiao_riqi|date:'Y-m-d' }}</td>
                     <td class="text-right text-muted d-none d-md-table-cell text-nowrap">
@@ -104,10 +104,10 @@
                       <strong>{{ artical.lanmu.jigou.name }}</strong>
                     </td>
                   </tr>
-                    
+
               {% endfor %}
 
-          
+
           </table>
         </div>
       </div>
@@ -123,7 +123,7 @@
           <li class="page-item active"><a class="page-link" href="#">{{ articals.number }}</a></li>
 
           {% if articals.has_next %}
-            
+
             <li class="page-item page-next">
               <a class="page-link" href="?page={{ articals.next_page_number }}">下一页</a>
             </li>

@@ -1,6 +1,9 @@
+from datetime import date
+
 from django.db import models
 from django.urls import reverse
 from django.shortcuts import  get_object_or_404, redirect
+from django.contrib.auth.models import User
 
 from DjangoUeditor.models import UEditorField
 
@@ -38,6 +41,15 @@ class Jigou(models.Model):
             for artical in lanmu.get_all_deleted_articals():
                 articals.append(artical)
         return articals
+
+    def get_absolute_url(self):
+        return reverse('xianju',args=[self.pk])
+
+    def get_xianju_url(self):
+        return reverse('xianju',args=[self.pk])
+
+    def get_keshi_url(self):
+        return reverse('keshi',args=[self.pk])
 
 
 class Suplanmu(models.Model):
@@ -124,3 +136,68 @@ class Artical(models.Model):
 
     def get_delete_cd_url(self):
         return reverse('wzDelete_cd',args=(self.pk,))
+
+
+class Profile(models.Model):
+    ZHI_BAN_DATE = (
+        ('0','星期一'),
+        ('1','星期二'),
+        ('2','星期三'),
+        ('3','星期四'),
+        ('4','星期五'),
+        ('5','星期六'),
+        ('6','星期日'),
+        ('7','无'),
+    )
+    user = models.OneToOneField(User,on_delete=models.CASCADE,blank=True, null=True)
+    display_name = models.CharField(default='',max_length=100)
+    zhiwei = models.CharField(default='',max_length=100)
+    zhiban_date = models.CharField(max_length=10,
+                                   choices=ZHI_BAN_DATE,
+                                   default='7',)
+    jigou = models.ForeignKey(Jigou, on_delete=models.CASCADE,blank=True, null=True)
+
+    def __str__(self):
+        return '%s' % self.display_name
+
+    @property
+    def is_zhiban(self):
+        return int(self.zhiban_date) == date.today().weekday()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

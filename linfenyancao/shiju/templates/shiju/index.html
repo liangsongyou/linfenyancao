@@ -47,10 +47,10 @@
             <i class="fa fa-clipboard" aria-hidden="true"></i>
             加入收藏
           </span>
-          <button class="ui circular green button" type="" name="button" style="margin-top: 20px;">
-            <i class="fa fa-user" aria-hidden="true"></i>
-            管理登录
-          </button>
+          <a href="/cms/index" class="ui circular green button" style="margin-top: 20px;">
+            <i class="fa fa-user" aria-hidden="true"></i>管理登录
+
+          </a>
 
         </div>
       </div>
@@ -60,11 +60,11 @@
         <div class="ui grid container">
           <div class="twelve wide column" style="padding-top: 0px;padding-bottom: 0px;">
             <div class="ui inverted green menu">
-              <a class="item" href="index.html">首页</a>
+              <a class="item" href="/">首页</a>
               <div class="ui dropdown item">临汾烟草
                 <div class="menu flipInX animated">
                   <a class="item">概况</a>
-                  <a class="item" href="{% url '领导班子' %}">领导班子</a>
+                  <a class="item" href="">领导班子</a>
                 </div>
               </div>
               <div class="ui dropdown item">组织机构
@@ -76,7 +76,7 @@
               </div>
               <div class="ui dropdown item">新闻频道
                 <div class="menu flipInX animated">
-                  <a href="{% url '临烟动态' '临烟动态' %}" class="item">临烟新闻</a>
+                  <a href="" class="item">临烟新闻</a>
                   <a class="item">基层动态</a>
                   <a class="item">队伍建设</a>
                 </div>
@@ -89,7 +89,7 @@
                 </div>
               </div>
               <a class="item" href="http://10.20.0.198:81/workpublic/index/index.do">办事公开</a>
-              <a class="item" href="dongtai.html">法律法规</a>
+              <a class="item" href="">法律法规</a>
               <div class="ui dropdown item">党建工作
                 <div class="menu flipInX animated">
 
@@ -127,10 +127,10 @@
       <img class="ui image" src="{% static 'shiju/img/m-logo.png' %}" alt="" style="width:150px;height:40px;margin-top:10px;">
       <div class="right menu">
         <div class="item">
-          <button class="ui circular green button" type="button" name="button">
+          <a href="/cms/index" class="ui circular green button" type="button" name="button">
             <i class="fa fa-user" aria-hidden="true"></i>
             管理登录
-          </button>
+          </a>
 
         </div>
       </div>
@@ -190,58 +190,18 @@
                领导讲话
             </a>
             <div class="right menu">
-              <a class="ui item" style="color:#008854;">more </a>
+              <a href="{% url 'articallist' ldjh_list.pk %}" class="ui item" style="color:#008854;">more </a>
             </div>
           </div>
           <div class="ui bulleted list">
+            {% for ldjh in ldjh %}
             <div class="item">
-              <a href="artical.html">国家局党组召开党组(扩...</a>
-              <span>2018-11-11</span>
-            </div>
-            <div class="item">
-              <a href="artical.html">国家局党组召开党组(扩...</a>
-              <span>2018-11-11</span>
-            </div>
-            <div class="item">
-              <a href="artical.html">国家局党组召开党组会议...</a>
-              <span>2018-11-11</span>
-            </div>
-            <div class="item">
-              <a href="artical.html">党的十九大后国家局党组...</a>
-              <span>2018-11-11</span>
-            </div>
-            <div class="item">
-              <a href="artical.html">2018烟草行业个各直属...</a>
-              <span>2018-11-11</span>
-            </div>
-            <div class="item">
-              <a href="artical.html">2018烟草行业个各直属...</a>
-              <span>2018-11-11</span>
-            </div>
-            <div class="item">
-              <a href="artical.html">国家局党组召开党组(扩...</a>
-              <span>2018-11-11</span>
-            </div>
-            <div class="item">
-              <a href="artical.html">国家局党组召开党组(扩...</a>
-              <span>2018-11-11</span>
-            </div>
-            <div class="item">
-              <a href="artical.html">国家局党组召开党组会议...</a>
-              <span>2018-11-11</span>
-            </div>
-            <div class="item">
-              <a href="artical.html">党的十九大后国家局党组...</a>
-              <span>2018-11-11</span>
-            </div>
-            <div class="item">
-              <a href="artical.html">2018烟草行业个各直属...</a>
-              <span>2018-11-11</span>
+              <a href="{% url 'artical' ldjh.pk %}">{{ ldjh.biaoti | truncatechars:21 }}...</a>
+              <span>{{ ldjh.fabiao_riqi | date:'Y-m-d' }}</span>
             </div>
 
+            {% endfor %}
           </div>
-
-
         </div>
 
         <div class="eight wide column wow fadeInUp">
@@ -251,37 +211,30 @@
                图片新闻
             </a>
             <div class="right menu">
-              <a class="ui item" style="color:#008854;">more </a>
+              <a href="{% url 'articallist' tpxw_list.pk %}" class="ui item" style="color:#008854;">more </a>
             </div>
           </div>
           <div class="center aligned ui vertical basic segment">
-            <h4 style="color:#008854;">习近平：加快推进战区指挥能力建设 坚决完成担负的使命任务</h4>
-            <p style="color:#666;">习近平强调：深入贯彻新时代党的强军思想,贯彻新形式下军事战略方针|勉励战区发扬改革创新精神,持续深化实践探索</p>
+            <h4 style="color:#008854;">
+              <a href="{% url 'artical' IMGtpxw.pk %}">{{ IMGtpxw.biaoti | truncatechars:55 }}</a>
+
+            </h4>
+            {% autoescape off %}
+            <p style="color:#666;">{{ IMGtpxw.neirong | truncatechars:150 }}</p>
+            {% endautoescape %}
+
           </div>
           <div class="ui two column stackable grid container">
             <div class="six wide column">
-              <img class="ui fluid image" src="{% static 'shiju/img/artical-img.png' %}" alt="">
+              <img class="ui fluid image" src="/media/{{ IMGtpxw.file }}" alt="">
             </div>
             <div class="ten wide column">
               <div class="ui bulleted list">
+                {% for IMGlist in IMGlist %}
                 <div class="item">
-                  <a href="#">山西省局(公司)宋政峰局长一行到晋中市局..</a>
+                  <a href="{% url 'artical' IMGlist.pk %}">{{IMGlist.biaoti | truncatechars:30}}..</a>
                 </div>
-                <div class="item">
-                  <a href="#">山西省局(公司)组织开展全省系统2018年卷烟..</a>
-                </div>
-                <div class="item">
-                  <a href="#">山西省局(公司)召开巡查及巡视巡查整改“回头..</a>
-                </div>
-                <div class="item">
-                  <a href="#">山西省局(公司)烟草收购工作检查组到长治指导..</a>
-                </div>
-                <div class="item">
-                  <a href="#">山西省局(公司)举办全省系统人事管理工作培训..</a>
-                </div>
-                <div class="item">
-                  <a href="#">山西省局(公司)机关第三党支部开展‘自觉交纳党..</a>
-                </div>
+                {% endfor %}
               </div>
             </div>
           </div>
@@ -299,16 +252,16 @@
           </div>
 
           <div class="center aligned ui segment">
-            <a href="#">2018年10月27日</a>
-            <span style="float:right;">星期五</span>
+            <a href="#">{% now "" %}</a>
+            <span style="float:right;">{% now "l" %}</span>
             <a class="ui horizontal divider header"><i class="tag icon"></i> 值班人员 </a>
-            <button class="ui button" type="button" name="button">
-              副经理：周满超
-            </button>
+            {% for item in zhiban_list %}
+              <button class="ui button" type="button" name="button" style="margin-top: 5px;">
+                {{item.zhiwei}}：{{item.display_name}}
+              </button>
+            {% endfor %}
 
-            <button class="ui button" type="button" name="button" style="margin-top: 5px;">
-              值班人员：雷云
-            </button>
+            
           </div>
         </div>
 
@@ -319,55 +272,16 @@
                例会专会
             </a>
             <div class="right menu">
-              <a class="ui item" style="color:#008854;">more </a>
+              <a href="{% url 'articallist' lhzh_list.pk %}" class="ui item" style="color:#008854;">more </a>
             </div>
           </div>
           <div class="ui bulleted list">
+            {% for lhzh in lhzh %}
             <div class="item">
-              <a href="artical.html">国家局党组召开党组(扩...</a>
-              <span>2018-11-11</span>
+              <a href="{% url 'artical' lhzh.pk %}">{{ lhzh.biaoti | truncatechars:30 }}...</a>
+              <span>{{ lhzh.fabiao_riqi | date:'Y-m-d' }}</span>
             </div>
-            <div class="item">
-              <a href="artical.html">国家局党组召开党组(扩...</a>
-              <span>2018-11-11</span>
-            </div>
-            <div class="item">
-              <a href="artical.html">国家局党组召开党组会议...</a>
-              <span>2018-11-11</span>
-            </div>
-            <div class="item">
-              <a href="artical.html">党的十九大后国家局党组...</a>
-              <span>2018-11-11</span>
-            </div>
-            <div class="item">
-              <a href="artical.html">2018烟草行业个各直属...</a>
-              <span>2018-11-11</span>
-            </div>
-            <div class="item">
-              <a href="artical.html">2018烟草行业个各直属...</a>
-              <span>2018-11-11</span>
-            </div>
-            <div class="item">
-              <a href="artical.html">国家局党组召开党组(扩...</a>
-              <span>2018-11-11</span>
-            </div>
-            <div class="item">
-              <a href="artical.html">国家局党组召开党组(扩...</a>
-              <span>2018-11-11</span>
-            </div>
-            <div class="item">
-              <a href="artical.html">国家局党组召开党组会议...</a>
-              <span>2018-11-11</span>
-            </div>
-            <div class="item">
-              <a href="artical.html">党的十九大后国家局党组...</a>
-              <span>2018-11-11</span>
-            </div>
-            <div class="item">
-              <a href="artical.html">2018烟草行业个各直属...</a>
-              <span>2018-11-11</span>
-            </div>
-
+            {% endfor %}
           </div>
 
 
@@ -380,55 +294,16 @@
                局发文件
             </a>
             <div class="right menu">
-              <a class="ui item" style="color:#008854;">more </a>
+              <a href="{% url 'articallist' jfwj_list.pk %}" class="ui item" style="color:#008854;">more </a>
             </div>
           </div>
           <div class="ui bulleted list">
+            {% for jfwj in jfwj %}
             <div class="item">
-              <a href="#">李克强对2018世界生命科学大会做出重要批示...</a>
-              <span>2018-11-11</span>
+              <a href="{% url 'artical' jfwj.pk %}">{{ jfwj.biaoti | truncatechars:80 }}...</a>
+              <span>{{ jfwj.fabiao_riqi | date:'Y-m-d' }}</span>
             </div>
-            <div class="item">
-              <a href="#">人民大会堂这条走廊只有几十米,但浓缩了中日友好和经贸合作40年...</a>
-              <span>2018-11-11</span>
-            </div>
-            <div class="item">
-              <a href="#">李克强和日本首相安倍晋三共同出席首届中日第三方市场合作论坛...</a>
-              <span>2018-11-11</span>
-            </div>
-            <div class="item">
-              <a href="#">李克强和日本首相安倍晋三共同会见记者...</a>
-              <span>2018-11-11</span>
-            </div>
-            <div class="item">
-              <a href="#">李克强和日本首相安倍晋举行会谈...</a>
-              <span>2018-11-11</span>
-            </div>
-            <div class="item">
-              <a href="#">日历|推动中日关系在重回正轨基础上行稳致远...</a>
-              <span>2018-11-11</span>
-            </div>
-            <div class="item">
-              <a href="#">孙春兰在辽宁调研...</a>
-              <span>2018-11-11</span>
-            </div>
-            <div class="item">
-              <a href="#">魏凤和与出席北京香山论坛客人会见会谈...</a>
-              <span>2018-11-11</span>
-            </div>
-            <div class="item">
-              <a href="#">王毅会见日本外相河野太郎...</a>
-              <span>2018-11-11</span>
-            </div>
-            <div class="item">
-              <a href="#">赵克志与孟加拉国内政部部长阿萨杜扎曼·汗举行会谈...</a>
-              <span>2018-11-11</span>
-            </div>
-            <div class="item">
-              <a href="#">首届中日第三方市场合作论坛上，李克强与安倍都说了什么...</a>
-              <span>2018-11-11</span>
-            </div>
-
+            {% endfor %}
           </div>
         </div>
 
@@ -439,54 +314,16 @@
                通知信息
             </a>
             <div class="right menu">
-              <a class="ui item" style="color:#008854;">more </a>
+              <a href="{% url 'articallist' tzxx_list.pk %}" class="ui item" style="color:#008854;">more </a>
             </div>
           </div>
           <div class="ui bulleted list">
+            {% for tzxx in tzxx %}
             <div class="item">
-              <a href="#">国家局党组召开党组(扩...</a>
-              <span>2018-11-11</span>
+              <a href="{% url 'artical' tzxx.pk %}">{{ tzxx.biaoti | truncatechars:30 }}...</a>
+              <span>{{ tzxx.fabiao_riqi | date:'Y-m-d' }}</span>
             </div>
-            <div class="item">
-              <a href="#">国家局党组召开党组(扩...</a>
-              <span>2018-11-11</span>
-            </div>
-            <div class="item">
-              <a href="#">国家局党组召开党组会议...</a>
-              <span>2018-11-11</span>
-            </div>
-            <div class="item">
-              <a href="#">党的十九大后国家局党组...</a>
-              <span>2018-11-11</span>
-            </div>
-            <div class="item">
-              <a href="#">2018烟草行业个各直属...</a>
-              <span>2018-11-11</span>
-            </div>
-            <div class="item">
-              <a href="#">2018烟草行业个各直属...</a>
-              <span>2018-11-11</span>
-            </div>
-            <div class="item">
-              <a href="#">国家局党组召开党组(扩...</a>
-              <span>2018-11-11</span>
-            </div>
-            <div class="item">
-              <a href="#">国家局党组召开党组(扩...</a>
-              <span>2018-11-11</span>
-            </div>
-            <div class="item">
-              <a href="#">国家局党组召开党组会议...</a>
-              <span>2018-11-11</span>
-            </div>
-            <div class="item">
-              <a href="#">党的十九大后国家局党组...</a>
-              <span>2018-11-11</span>
-            </div>
-            <div class="item">
-              <a href="#">2018烟草行业个各直属...</a>
-              <span>2018-11-11</span>
-            </div>
+            {% endfor %}
 
           </div>
         </div>
@@ -506,10 +343,18 @@
             <button class="huge ui green button" style="margin-top: 2px;width:100%;">法治在线</button>
             <button class="huge ui green button" style="margin-top: 2px;width:100%;">精益管理</button>
             <button class="huge ui green button" style="margin-top: 2px;width:100%;">在线教育</button>
-            <button class="huge ui green button" style="margin-top: 2px;width:100%;">专卖管理</button>
-            <button class="huge ui green button" style="margin-top: 2px;width:100%;">营销管理</button>
-            <button class="huge ui green button" style="margin-top: 2px;width:100%;">财务管理</button>
-            <button class="huge ui green button" style="margin-top: 2px;width:100%;">物流管理</button>
+            <button class="huge ui green button" style="margin-top: 2px;width:100%;">
+              <a href="{% url 'teshukeshi' %}">专卖管理</a>
+            </button>
+            <button class="huge ui green button" style="margin-top: 2px;width:100%;">
+              <a href="{% url 'teshukeshi' %}">营销管理</a>
+            </button>
+            <button class="huge ui green button" style="margin-top: 2px;width:100%;">
+              <a href="{% url 'teshukeshi' %}">财务管理</a>
+            </button>
+            <button class="huge ui green button" style="margin-top: 2px;width:100%;">
+              <a href="{% url 'teshukeshi' %}">物流管理</a>
+            </button>
 
           </div>
         </div>
@@ -521,46 +366,16 @@
                行业动态
             </a>
             <div class="right menu">
-              <a class="ui item" style="color:#008854;">more </a>
+              <a href="{% url 'articallist' hydt_list.pk %}" class="ui item" style="color:#008854;">more </a>
             </div>
           </div>
           <div class="ui bulleted list">
+            {% for hydt in hydt %}
             <div class="item">
-              <a href="#">李克强对2018世界生命科学大会做出重要批示...</a>
-              <span>2018-11-11</span>
+              <a href="{% url 'artical' hydt.pk %}">{{ hydt.biaoti | truncatechars:80 }}...</a>
+              <span>{{ hydt.fabiao_riqi | date:'Y-m-d' }}</span>
             </div>
-            <div class="item">
-              <a href="#">人民大会堂这条走廊只有几十米,但浓缩了中日友好和经贸合作40年...</a>
-              <span>2018-11-11</span>
-            </div>
-            <div class="item">
-              <a href="#">李克强和日本首相安倍晋三共同出席首届中日第三方市场合作论坛...</a>
-              <span>2018-11-11</span>
-            </div>
-            <div class="item">
-              <a href="#">李克强和日本首相安倍晋三共同会见记者...</a>
-              <span>2018-11-11</span>
-            </div>
-            <div class="item">
-              <a href="#">李克强和日本首相安倍晋举行会谈...</a>
-              <span>2018-11-11</span>
-            </div>
-            <div class="item">
-              <a href="#">日历|推动中日关系在重回正轨基础上行稳致远...</a>
-              <span>2018-11-11</span>
-            </div>
-            <div class="item">
-              <a href="#">孙春兰在辽宁调研...</a>
-              <span>2018-11-11</span>
-            </div>
-            <div class="item">
-              <a href="#">魏凤和与出席北京香山论坛客人会见会谈...</a>
-              <span>2018-11-11</span>
-            </div>
-            <div class="item">
-              <a href="#">王毅会见日本外相河野太郎...</a>
-              <span>2018-11-11</span>
-            </div>
+            {% endfor %}
           </div>
 
           <div class="ui secondary pointing menu">
@@ -569,42 +384,16 @@
                临烟动态
             </a>
             <div class="right menu">
-              <a class="ui item" style="color:#008854;">more </a>
+              <a href="{% url 'artical' lydt_list.pk %}" class="ui item" style="color:#008854;">more </a>
             </div>
           </div>
           <div class="ui bulleted list">
+            {% for lydt in lydt %}
             <div class="item">
-              <a href="#">李克强对2018世界生命科学大会做出重要批示...</a>
-              <span>2018-11-11</span>
+              <a href="{% url 'artical' lydt.pk %}">{{ lydt.biaoti | truncatechars:80 }}...</a>
+              <span>{{ lydt.fabiao_riqi | date:'Y-m-d' }}</span>
             </div>
-            <div class="item">
-              <a href="#">人民大会堂这条走廊只有几十米,但浓缩了中日友好和经贸合作40年...</a>
-              <span>2018-11-11</span>
-            </div>
-            <div class="item">
-              <a href="#">李克强和日本首相安倍晋三共同出席首届中日第三方市场合作论坛...</a>
-              <span>2018-11-11</span>
-            </div>
-            <div class="item">
-              <a href="#">李克强和日本首相安倍晋三共同会见记者...</a>
-              <span>2018-11-11</span>
-            </div>
-            <div class="item">
-              <a href="#">李克强和日本首相安倍晋举行会谈...</a>
-              <span>2018-11-11</span>
-            </div>
-            <div class="item">
-              <a href="#">日历|推动中日关系在重回正轨基础上行稳致远...</a>
-              <span>2018-11-11</span>
-            </div>
-            <div class="item">
-              <a href="#">孙春兰在辽宁调研...</a>
-              <span>2018-11-11</span>
-            </div>
-            <div class="item">
-              <a href="#">魏凤和与出席北京香山论坛客人会见会谈...</a>
-              <span>2018-11-11</span>
-            </div>
+            {% endfor %}
           </div>
         </div>
 
@@ -615,90 +404,16 @@
                公示公告
             </a>
             <div class="right menu">
-              <a class="ui item" style="color:#008854;">more </a>
+              <a href="{% url 'articallist' gsgg_list.pk %}" class="ui item" style="color:#008854;">more </a>
             </div>
           </div>
           <div class="ui bulleted list">
+            {% for gsgg in gsgg %}
             <div class="item">
-              <a href="#">国家局党组召开党组(扩...</a>
-              <span>2018-11-11</span>
+              <a href="{% url 'artical' gsgg.pk %}">{{ gsgg.biaoti | truncatechars:30 }}...</a>
+              <span>{{ gsgg.fabiao_riqi | date:'Y-m-d' }}</span>
             </div>
-            <div class="item">
-              <a href="#">国家局党组召开党组(扩...</a>
-              <span>2018-11-11</span>
-            </div>
-            <div class="item">
-              <a href="#">国家局党组召开党组会议...</a>
-              <span>2018-11-11</span>
-            </div>
-            <div class="item">
-              <a href="#">党的十九大后国家局党组...</a>
-              <span>2018-11-11</span>
-            </div>
-            <div class="item">
-              <a href="#">2018烟草行业个各直属...</a>
-              <span>2018-11-11</span>
-            </div>
-            <div class="item">
-              <a href="#">2018烟草行业个各直属...</a>
-              <span>2018-11-11</span>
-            </div>
-            <div class="item">
-              <a href="#">国家局党组召开党组(扩...</a>
-              <span>2018-11-11</span>
-            </div>
-            <div class="item">
-              <a href="#">国家局党组召开党组(扩...</a>
-              <span>2018-11-11</span>
-            </div>
-            <div class="item">
-              <a href="#">国家局党组召开党组会议...</a>
-              <span>2018-11-11</span>
-            </div>
-            <div class="item">
-              <a href="#">党的十九大后国家局党组...</a>
-              <span>2018-11-11</span>
-            </div>
-            <div class="item">
-              <a href="#">2018烟草行业个各直属...</a>
-              <span>2018-11-11</span>
-            </div>
-            <div class="item">
-              <a href="#">国家局党组召开党组(扩...</a>
-              <span>2018-11-11</span>
-            </div>
-            <div class="item">
-              <a href="#">国家局党组召开党组(扩...</a>
-              <span>2018-11-11</span>
-            </div>
-            <div class="item">
-              <a href="#">国家局党组召开党组会议...</a>
-              <span>2018-11-11</span>
-            </div>
-            <div class="item">
-              <a href="#">党的十九大后国家局党组...</a>
-              <span>2018-11-11</span>
-            </div>
-            <div class="item">
-              <a href="#">国家局党组召开党组(扩...</a>
-              <span>2018-11-11</span>
-            </div>
-            <div class="item">
-              <a href="#">国家局党组召开党组(扩...</a>
-              <span>2018-11-11</span>
-            </div>
-            <div class="item">
-              <a href="#">国家局党组召开党组会议...</a>
-              <span>2018-11-11</span>
-            </div>
-            <div class="item">
-              <a href="#">党的十九大后国家局党组...</a>
-              <span>2018-11-11</span>
-            </div>
-            <div class="item">
-              <a href="#">党的十九大后国家局党组...</a>
-              <span>2018-11-11</span>
-            </div>
+            {% endfor %}
 
           </div>
         </div>
@@ -722,51 +437,13 @@
             </div>
           </div>
           <div class="ui three column triple grid">
-            <div class="column">
-              <button class="ui green basic button" type="button" name="button">整顿办</button>
-            </div>
-            <div class="column">
-              <button class="ui green basic button" type="button" name="button">人事科</button>
-            </div>
-            <div class="column">
-              <button class="ui green basic button" type="button" name="button">保卫科</button>
-            </div>
-            <div class="column">
-              <button class="ui green basic button" type="button" name="button" style="font-size: 13px;padding-left: 5px;padding-right: 5px;">信息中心</button>
-            </div>
-            <div class="column">
-              <button class="ui green basic button" type="button" name="button" style="font-size: 13px;padding-left: 5px;padding-right: 5px;">机关后勤</button>
-            </div>
-            <div class="column">
-              <button class="ui green basic button" type="button" name="button">企管科</button>
-            </div>
-            <div class="column">
-              <button class="ui green basic button" type="button" name="button">项目办</button>
-            </div>
-            <div class="column">
-              <button class="ui green basic button" type="button" name="button">法规科</button>
-            </div>
-            <div class="column">
-              <button class="ui green basic button" type="button" name="button">烟叶科</button>
-            </div>
-            <div class="column">
-              <button class="ui green basic button" type="button" name="button">三项办</button>
-            </div>
-            <div class="column">
-              <button class="ui green basic button" type="button" name="button">监察科</button>
-            </div>
-            <div class="column">
-              <button class="ui green basic button" type="button" name="button">审计科</button>
-            </div>
-            <div class="column">
-              <button class="ui green basic button" type="button" name="button">政工科</button>
-            </div>
-            <div class="column">
-              <button class="ui green basic button" type="button" name="button">办公室</button>
-            </div>
-            <div class="column">
-              <button class="ui green basic button" type="button" name="button">内管办</button>
-            </div>
+            {% for item in keshi_list %}
+              <div class="column">
+                <button class="ui green basic button" type="button" name="button">
+                  <a href="{{item.get_keshi_url}}">{{item.name}}</a>
+                </button>
+              </div>
+            {% endfor %}
 
           </div>
         </div>
@@ -778,52 +455,16 @@
                县局动态
             </a>
             <div class="right menu">
-              <a class="ui item" style="color:#008854;">more </a>
+              <a href="{% url 'articallist' xjdt_list.pk %}" class="ui item" style="color:#008854;">more </a>
             </div>
           </div>
           <div class="ui bulleted list">
+            {% for xjdt in xjdt %}
             <div class="item">
-              <a href="#">李克强对2018世界生命科学大会做出重要批示...</a>
-              <span>2018-11-11</span>
+              <a href="{% url 'artical' xjdt.pk %}">{{ xjdt.biaoti | truncatechars:80 }}...</a>
+              <span>{{ xjdt.fabiao_riqi | date:'Y-m-d' }}</span>
             </div>
-            <div class="item">
-              <a href="#">人民大会堂这条走廊只有几十米,但浓缩了中日友好和经贸合作40年...</a>
-              <span>2018-11-11</span>
-            </div>
-            <div class="item">
-              <a href="#">李克强和日本首相安倍晋三共同出席首届中日第三方市场合作论坛...</a>
-              <span>2018-11-11</span>
-            </div>
-            <div class="item">
-              <a href="#">李克强和日本首相安倍晋三共同会见记者...</a>
-              <span>2018-11-11</span>
-            </div>
-            <div class="item">
-              <a href="#">李克强和日本首相安倍晋举行会谈...</a>
-              <span>2018-11-11</span>
-            </div>
-            <div class="item">
-              <a href="#">日历|推动中日关系在重回正轨基础上行稳致远...</a>
-              <span>2018-11-11</span>
-            </div>
-            <div class="item">
-              <a href="#">孙春兰在辽宁调研...</a>
-              <span>2018-11-11</span>
-            </div>
-            <div class="item">
-              <a href="#">魏凤和与出席北京香山论坛客人会见会谈...</a>
-              <span>2018-11-11</span>
-            </div>
-            <div class="item">
-              <a href="#">王毅会见日本外相河野太郎...</a>
-              <span>2018-11-11</span>
-            </div>
-            <div class="item">
-              <a href="#">赵克志与孟加拉国内政部部长阿萨杜扎曼·汗举行会谈...</a>
-              <span>2018-11-11</span>
-            </div>
-
-
+            {% endfor %}
           </div>
         </div>
 
@@ -855,58 +496,13 @@
             </div>
           </div>
           <div class="ui three column triple grid">
-            <div class="column">
-              <button class="ui green basic button" type="button" name="button">隰县</button>
-            </div>
-            <div class="column">
-              <button class="ui green basic button" type="button" name="button">大宁县</button>
-            </div>
-            <div class="column">
-              <button class="ui green basic button" type="button" name="button">乡宁县</button>
-            </div>
-            <div class="column">
-              <button class="ui green basic button" type="button" name="button">汾西县</button>
-            </div>
-            <div class="column">
-              <button class="ui green basic button" type="button" name="button">洪洞县</button>
-            </div>
-            <div class="column">
-              <button class="ui green basic button" type="button" name="button">蒲县</button>
-            </div>
-            <div class="column">
-              <button class="ui green basic button" type="button" name="button">曲沃县</button>
-            </div>
-            <div class="column">
-              <button class="ui green basic button" type="button" name="button">永和县</button>
-            </div>
-            <div class="column">
-              <button class="ui green basic button" type="button" name="button">霍州县</button>
-            </div>
-            <div class="column">
-              <button class="ui green basic button" type="button" name="button">浮山县</button>
-            </div>
-            <div class="column">
-              <button class="ui green basic button" type="button" name="button">安泽县</button>
-            </div>
-            <div class="column">
-              <button class="ui green basic button" type="button" name="button">古县</button>
-            </div>
-            <div class="column">
-              <button class="ui green basic button" type="button" name="button">翼城县</button>
-            </div>
-            <div class="column">
-              <button class="ui green basic button" type="button" name="button">襄汾县</button>
-            </div>
-            <div class="column">
-              <button class="ui green basic button" type="button" name="button">侯马县</button>
-            </div>
-            <div class="column">
-              <button class="ui green basic button" type="button" name="button" style="font-size: 13px;padding-left: 5px;padding-right: 5px;">尧都区县</button>
-            </div>
-            <div class="column">
-              <button class="ui green basic button" type="button" name="button">吉县</button>
-            </div>
-
+            {% for item in xianju_list %}
+              <div class="column">
+                <button class="ui green basic button" type="button" name="button">
+                  <a href="{{item.get_xianju_url}}">{{item.name}}</a>
+                </button>
+              </div>
+            {% endfor %}
           </div>
         </div>
 
@@ -919,55 +515,16 @@
                文学园地
             </a>
             <div class="right menu">
-              <a class="ui item" style="color:#008854;">more </a>
+              <a href="{% url 'articallist' wxyd_list.pk %}" class="ui item" style="color:#008854;">more </a>
             </div>
           </div>
           <div class="ui bulleted list">
+            {% for wxyd in wxyd %}
             <div class="item">
-              <a href="#">国家局党组召开党组(扩...</a>
-              <span>2018-11-11</span>
+              <a href="{% url 'artical' wxyd.pk %}">{{ wxyd.biaoti | truncatechars:30 }}...</a>
+              <span>{{ wxyd.fabiao_riqi | date:'Y-m-d' }}</span>
             </div>
-            <div class="item">
-              <a href="#">国家局党组召开党组(扩...</a>
-              <span>2018-11-11</span>
-            </div>
-            <div class="item">
-              <a href="#">国家局党组召开党组会议...</a>
-              <span>2018-11-11</span>
-            </div>
-            <div class="item">
-              <a href="#">党的十九大后国家局党组...</a>
-              <span>2018-11-11</span>
-            </div>
-            <div class="item">
-              <a href="#">2018烟草行业个各直属...</a>
-              <span>2018-11-11</span>
-            </div>
-            <div class="item">
-              <a href="#">2018烟草行业个各直属...</a>
-              <span>2018-11-11</span>
-            </div>
-            <div class="item">
-              <a href="#">国家局党组召开党组(扩...</a>
-              <span>2018-11-11</span>
-            </div>
-            <div class="item">
-              <a href="#">国家局党组召开党组(扩...</a>
-              <span>2018-11-11</span>
-            </div>
-            <div class="item">
-              <a href="#">国家局党组召开党组会议...</a>
-              <span>2018-11-11</span>
-            </div>
-            <div class="item">
-              <a href="#">党的十九大后国家局党组...</a>
-              <span>2018-11-11</span>
-            </div>
-            <div class="item">
-              <a href="#">2018烟草行业个各直属...</a>
-              <span>2018-11-11</span>
-            </div>
-
+            {% endfor %}
           </div>
         </div>
 

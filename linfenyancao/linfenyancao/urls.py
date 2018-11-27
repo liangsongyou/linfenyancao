@@ -11,10 +11,16 @@ urlpatterns = [
     path('shiju/', views.shiju, name='shiju'),
     # 领导
     path('lingdao/',views.lingdao, name='领导班子'),
-    # 领导讲话
-    path('<str:name>/', views.dongtai, name='临烟动态'),
+    # 文章列表
+    path('list/<int:pk>/', views.artical_list, name='articallist'),
     # 文章细节页面
-    path('artical/<int:pk>/',views.artical, name='文章'),
+    path('artical/<int:pk>/',views.artical, name='artical'),
+
+    # 县局页面
+    path('xianju/<int:pk>/',views.xianju, name="xianju"),
+    path('keshi/<int:pk>/',views.keshi,name='keshi'),
+    path('keshi/teshu/',views.teshu_keshi,name='teshukeshi'),
+
 
     # dwebcms登录
     # path('cms/login',views.cms_login, name='登录'),

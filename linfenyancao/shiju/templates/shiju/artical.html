@@ -22,15 +22,27 @@
             <span style="color:#bbbbbb">88 点赞</span>
             <div class="ui divider"></div>
             <p>
-              {{ item.neirong|linebreaks}}
+              <img src="/media/{{ item.file }}" alt="">
+              {% autoescape off %}
+              {{ item.neirong }}
+
+              {% endautoescape %}
             </p>
             <div class="ui divider"></div>
           </div>
           <div class="center aligned ui vertical segment wow fadeInUp">
             <div class="ui buttons">
-              <button class="ui button">上一篇</button>
+              {% if pre %}
+              <a href="{% url 'artical' pre.pk %}" class="ui button">上一篇</a>
+              {% else %}
+              <a href="{% url 'articallist' item.lanmu.pk %}" class="ui button">返回栏目</a>
+              {% endif %}
               <div class="or"></div>
-              <button class="ui positive button">下一篇</button>
+              {% if next %}
+              <a href="{% url 'artical' next.pk %}" class="ui positive button">下一篇</a>
+              {% else %}
+              <a class="ui positive button">没有了</a>
+              {% endif %}
             </div>
           </div>
 
@@ -63,5 +75,3 @@
 
     <!-- end 内容页内容 -->
 {% endblock content %}
-
-
