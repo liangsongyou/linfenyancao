@@ -10,6 +10,9 @@ from django.contrib.auth.decorators import login_required
 from .models import  Artical, Lanmu, Jigou, Suplanmu, Profile
 from .forms import LanmuForm, ArticalForm
 
+FIXED_LANMU_LIST = ['县局动态','县局例会','公示公告','局发文件','通知信息']
+FIXED_KESHI_LIST = ['机构职能','工作制度','计划规划','部门动态']
+
 
 # 市局首页
 def shiju(request):
@@ -77,20 +80,40 @@ def shiju(request):
     context['keshi_list'] = keshi_list
     return render(request, 'shiju/index.html',context)
 
+# 县局
 def xianju(request,pk=None):
     item = get_object_or_404(Jigou,pk=pk)
-    context = {
-        'item':item,
-    }
+
+    fixed_lanmu_list = []
+    for name in FIXED_LANMU_LIST:
+        fixed_lanmu_list.append(Lanmu.objects.get_or_create(name=name,jigou=item)[0])
+
+    context = {}
+    context['fixed_lanmu_list'] = fixed_lanmu_list
+    context['item'] = item
     return render(request,'shiju/xianju.html',context)
 
+# 科室
 def keshi(request,pk=None):
     item = get_object_or_404(Jigou,pk=pk)
+    q = request.GET.get('q',None)
+
+    results = ''
+    if q is not None and q is not '':
+        results = Artical.objects.filter(biaoti__contains=q)
+
+    fixed_keshi_list = []
+    for name in FIXED_KESHI_LIST:
+        fixed_keshi_list.append(Lanmu.objects.get_or_create(name=name,jigou=item)[0])
+
     context = {
         'item':item,
+        'fixed_keshi_list':fixed_keshi_list,
+        'results':results,
     }
     return render(request,'shiju/keshi1.html',context)
 
+# 特殊科室
 def teshu_keshi(request):
     context = {}
     return render(request,'shiju/keshi2.html',context)

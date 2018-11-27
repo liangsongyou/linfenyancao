@@ -10,6 +10,8 @@ from DjangoUeditor.models import UEditorField
 # Create your models here.
 class Jigou(models.Model):
     name = models.CharField(default='',blank=True,null=True,max_length=255)
+    telephone = models.CharField(default='',blank=True,null=True,max_length=255)
+    email = models.CharField(default='',blank=True,null=True,max_length=255)
 
 
     def __str__(self):
@@ -104,6 +106,12 @@ class Lanmu(models.Model):
     def get_all_deleted_articals(self):
         return self.artical_set.filter(huishou=True)
 
+    def get_first_ten_articals(self):
+        if len(self.get_all_undelete_articals()) > 10:
+            return self.get_all_undelete_articals()[:10]
+        else:
+            return self.get_all_undelete_articals()
+
 
 class Artical(models.Model):
     biaoti = models.CharField(max_length=255, default='')
@@ -123,7 +131,7 @@ class Artical(models.Model):
         return '%s' % self.biaoti
 
     def get_absolute_url(self):
-        return reverse('文章',args=(self.pk,))
+        return reverse('artical',args=(self.pk,))
 
     def get_delete_url(self):
         return reverse('wzDelete',args=(self.pk,))

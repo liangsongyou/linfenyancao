@@ -9,7 +9,7 @@
         <span class="divider">/</span>
         <a class="section">市局各科室</a>
         <span class="divider">/</span>
-        <div class="active section">办公室</div>
+        <div class="active section">{{item.name}}</div>
       </div>
 
     </div>
@@ -18,171 +18,83 @@
       <div class="three wide column">
         <div class="ui vertical inverted green menu">
           <div class="item">
-            <div class="ui input"><input type="text" placeholder="搜索..."></div>
+            <div class="ui input">
+              <form method="GET" action="{% url 'keshi' item.pk %}">
+                <input name='q' type="text" value="{{ request.GET.q }}" placeholder="搜索...">
+              </form>
+            </div>
           </div>
-          <a class="item">机构职能</a>
-          <a class="item">工作制度</a>
-          <a class="item">计划规划</a>
-          <a class="item">部门动态</a>
+          {% for fixed_lanmu in fixed_keshi_list %}
+            <a class="item">{{ fixed_lanmu.name }}</a>
+          {% endfor %}
           <div class="item">联系方式
             <div class="menu">
-            <a class="item">电话:2010143</a>
-            <a class="item">邮箱:bgs@sx-lf.com.yc</a>
+            <a class="item">电话:{{item.telephone}}</a>
+            <a class="item">邮箱:{{item.email}}</a>
             </div>
           </div>
         </div>
-
       </div>
 
-      <div class="thirteen wide column" style="background:#fff;">
-        <div class="ui secondary pointing menu">
-          <a class="active item" style="color:#008854;">
-            <i class="fa fa-caret-right" aria-hidden="true" style="margin-right: 5px;color:#008854;"></i>
-             会议组织(办公室)
-          </a>
-          <div class="right menu">
-            <div class="ui breadcrumb" style="margin-top: 20px;">
-              <a class="section">编辑</a>
-              <div class="divider"> / </div>
-              <a class="section">更多</a>
+      {% if results %}
+        <div class="thirteen wide column" style="background:#fff;">
+          <div class="ui secondary pointing menu">
+            <a class="active item" style="color:#008854;">
+              <i class="fa fa-caret-right" aria-hidden="true" style="margin-right: 5px;color:#008854;"></i>
+               {{item.name}}(搜索结果)
+            </a>
+            <div class="right menu">
+              <div class="ui breadcrumb" style="margin-top: 20px;">
+                <a class="section">编辑</a>
+                <div class="divider"> / </div>
+                <a class="section">更多</a>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="ui bulleted list">
-          <div class="item">
-            <a href="artical.html">国家局党组召开党组(扩...</a>
-            <span>2018-11-11</span>
+          <div class="ui bulleted list">
+              {% for artical in results %}
+                {% if artical in item.get_all_undelete_articals %}
+                    <div class="item">
+                      <a href="{{artical.get_absolute_url}}">{{artical.biaoti}}</a>
+                      <span>{{artical.fabu_riqi|date:'Y-m-d'}}</span>
+                    </div>
+                {% endif %}
+                
+              {% endfor %}
           </div>
-          <div class="item">
-            <a href="artical.html">国家局党组召开党组(扩...</a>
-            <span>2018-11-11</span>
-          </div>
-          <div class="item">
-            <a href="artical.html">国家局党组召开党组会议...</a>
-            <span>2018-11-11</span>
-          </div>
-          <div class="item">
-            <a href="artical.html">党的十九大后国家局党组...</a>
-            <span>2018-11-11</span>
-          </div>
-          <div class="item">
-            <a href="artical.html">2018烟草行业个各直属...</a>
-            <span>2018-11-11</span>
-          </div>
-          <div class="item">
-            <a href="artical.html">2018烟草行业个各直属...</a>
-            <span>2018-11-11</span>
-          </div>
-          <div class="item">
-            <a href="artical.html">国家局党组召开党组(扩...</a>
-            <span>2018-11-11</span>
-          </div>
-          <div class="item">
-            <a href="artical.html">国家局党组召开党组(扩...</a>
-            <span>2018-11-11</span>
-          </div>
-          <div class="item">
-            <a href="artical.html">国家局党组召开党组会议...</a>
-            <span>2018-11-11</span>
-          </div>
-          <div class="item">
-            <a href="artical.html">党的十九大后国家局党组...</a>
-            <span>2018-11-11</span>
-          </div>
-          <div class="item">
-            <a href="artical.html">2018烟草行业个各直属...</a>
-            <span>2018-11-11</span>
-          </div>
+      {% else %}
+        {% for lanmu in item.get_sub_lanmu %}
+          {% if lanmu not in fixed_keshi_list %}
+            <div class="thirteen wide column" style="background:#fff;">
+              <div class="ui secondary pointing menu">
+                <a class="active item" style="color:#008854;">
+                  <i class="fa fa-caret-right" aria-hidden="true" style="margin-right: 5px;color:#008854;"></i>
+                   {{lanmu.name}}({{item.name}})
+                </a>
+                <div class="right menu">
+                  <div class="ui breadcrumb" style="margin-top: 20px;">
+                    <a class="section">编辑</a>
+                    <div class="divider"> / </div>
+                    <a class="section">更多</a>
+                  </div>
+                </div>
+              </div>
 
-        </div>
-
-        <div class="ui secondary pointing menu">
-          <a class="active item" style="color:#008854;">
-            <i class="fa fa-caret-right" aria-hidden="true" style="margin-right: 5px;color:#008854;"></i>
-             会议报道(办公室)
-          </a>
-          <div class="right menu">
-            <div class="ui breadcrumb" style="margin-top: 20px;">
-              <a class="section">编辑</a>
-              <div class="divider"> / </div>
-              <a class="section">更多</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="ui bulleted list">
-          <div class="item">
-            <a href="artical.html">国家局党组召开党组(扩...</a>
-            <span>2018-11-11</span>
-          </div>
-          <div class="item">
-            <a href="artical.html">国家局党组召开党组(扩...</a>
-            <span>2018-11-11</span>
-          </div>
-          <div class="item">
-            <a href="artical.html">国家局党组召开党组会议...</a>
-            <span>2018-11-11</span>
-          </div>
-          <div class="item">
-            <a href="artical.html">党的十九大后国家局党组...</a>
-            <span>2018-11-11</span>
-          </div>
-          <div class="item">
-            <a href="artical.html">2018烟草行业个各直属...</a>
-            <span>2018-11-11</span>
-          </div>
-          <div class="item">
-            <a href="artical.html">2018烟草行业个各直属...</a>
-            <span>2018-11-11</span>
-          </div>
-          <div class="item">
-            <a href="artical.html">国家局党组召开党组(扩...</a>
-            <span>2018-11-11</span>
-          </div>
-          <div class="item">
-            <a href="artical.html">国家局党组召开党组(扩...</a>
-            <span>2018-11-11</span>
-          </div>
-          <div class="item">
-            <a href="artical.html">国家局党组召开党组会议...</a>
-            <span>2018-11-11</span>
-          </div>
-          <div class="item">
-            <a href="artical.html">党的十九大后国家局党组...</a>
-            <span>2018-11-11</span>
-          </div>
-          <div class="item">
-            <a href="artical.html">2018烟草行业个各直属...</a>
-            <span>2018-11-11</span>
-          </div>
-
-        </div>
-
-        <div class="ui secondary pointing menu">
-          <a class="active item" style="color:#008854;">
-            <i class="fa fa-caret-right" aria-hidden="true" style="margin-right: 5px;color:#008854;"></i>
-             依申请公开
-          </a>
-          <div class="right menu">
-            <div class="ui breadcrumb" style="margin-top: 20px;">
-              <a class="section">编辑</a>
-              <div class="divider"> / </div>
-              <a class="section">更多</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="ui bulleted list">
-          <div class="item">
-            <a href="artical.html">国家局党组召开党组(扩...</a>
-            <span>2018-11-11</span>
-          </div>
-        </div>
-
+              <div class="ui bulleted list">
+                  {% for artical in lanmu.get_first_ten_articals %}
+                    <div class="item">
+                      <a href="{{artical.get_absolute_url}}">{{artical.biaoti}}</a>
+                      <span>{{artical.fabu_riqi|date:'Y-m-d'}}</span>
+                    </div>
+                  {% endfor %}
+              </div>
+          {% endif %}
+        {% endfor %}  
+      {% endif %}
+          
       </div>
     </div>
-
   </div>
 
   <!-- 科室页面内容 -->
