@@ -92,10 +92,11 @@ class Lanmu(models.Model):
     name = models.CharField(max_length=255, default='')
     jigou = models.ForeignKey(Jigou, on_delete=models.CASCADE,blank=True, null=True)
     sup_lanmu = models.ForeignKey(Suplanmu,on_delete=models.CASCADE,related_name='sub_lanmu',blank=True,null=True)
+    zhiding = models.BooleanField(default=False)
 
 
     def __str__(self):
-        return '%s' % self.name
+        return '%s%s' % (self.jigou.name,self.name)
 
     def get_all_articals(self):
         return self.artical_set.all()

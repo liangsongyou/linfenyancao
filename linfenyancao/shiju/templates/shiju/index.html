@@ -226,7 +226,7 @@
           </div>
           <div class="ui two column stackable grid container">
             <div class="six wide column">
-              <img class="ui fluid image" src="{% static "" %}/media/{{ IMGtpxw.file }}" alt="">
+              <img class="ui fluid image" src="/media/{{ IMGtpxw.file }}" alt="">
             </div>
             <div class="ten wide column">
               <div class="ui bulleted list">
@@ -261,7 +261,7 @@
               </button>
             {% endfor %}
 
-            
+
           </div>
         </div>
 
@@ -343,18 +343,18 @@
             <button class="huge ui green button" style="margin-top: 2px;width:100%;">法治在线</button>
             <button class="huge ui green button" style="margin-top: 2px;width:100%;">精益管理</button>
             <button class="huge ui green button" style="margin-top: 2px;width:100%;">在线教育</button>
-            <button class="huge ui green button" style="margin-top: 2px;width:100%;">
-              <a href="{% url 'teshukeshi' %}">专卖管理</a>
-            </button>
-            <button class="huge ui green button" style="margin-top: 2px;width:100%;">
-              <a href="{% url 'teshukeshi' %}">营销管理</a>
-            </button>
-            <button class="huge ui green button" style="margin-top: 2px;width:100%;">
-              <a href="{% url 'teshukeshi' %}">财务管理</a>
-            </button>
-            <button class="huge ui green button" style="margin-top: 2px;width:100%;">
-              <a href="{% url 'teshukeshi' %}">物流管理</a>
-            </button>
+            <a href="{% url 'teshukeshi' %}" class="huge ui green button" style="margin-top: 2px;width:100%;">
+              专卖管理
+            </a>
+            <a href="{% url 'teshukeshi' %}" class="huge ui green button" style="margin-top: 2px;width:100%;">
+            营销管理
+            </a>
+            <a href="{% url 'teshukeshi' %}" class="huge ui green button" style="margin-top: 2px;width:100%;">
+              财务管理
+            </a>
+            <a href="{% url 'teshukeshi' %}" class="huge ui green button" style="margin-top: 2px;width:100%;">
+              物流管理
+            </a>
 
           </div>
         </div>
@@ -439,9 +439,9 @@
           <div class="ui three column triple grid">
             {% for item in keshi_list %}
               <div class="column">
-                <button class="ui green basic button" type="button" name="button">
-                  <a href="{{item.get_keshi_url}}">{{item.name}}</a>
-                </button>
+                <a href="{{item.get_keshi_url}}" class="ui green basic button" type="button" name="button" style="font-size: 13px;padding-left: 5px;padding-right: 5px;">
+                  {{item.name}}
+                </a>
               </div>
             {% endfor %}
 
@@ -498,9 +498,9 @@
           <div class="ui three column triple grid">
             {% for item in xianju_list %}
               <div class="column">
-                <button class="ui green basic button" type="button" name="button">
-                  <a href="{{item.get_xianju_url}}">{{item.name}}</a>
-                </button>
+                <a href="{{item.get_xianju_url}}" class="ui green basic button" type="button" name="button" style="font-size: 13px;padding-left: 5px;padding-right: 5px;">
+                  {{item.name}}
+                </a>
               </div>
             {% endfor %}
           </div>

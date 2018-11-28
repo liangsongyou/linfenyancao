@@ -10,13 +10,13 @@
         <div class="swiper-container">
           <div class="swiper-wrapper">
             <div class="swiper-slide">
-              <img class="ui fluid image" src="img/xianju.png" alt="">
+              <img class="ui fluid image" src="/static/shiju/img/xianju.png" alt="">
             </div>
             <div class="swiper-slide">
-              <img class="ui fluid image" src="img/xianju.png" alt="">
+              <img class="ui fluid image" src="/static/shiju/img/xianju.png" alt="">
             </div>
             <div class="swiper-slide">
-              <img class="ui fluid image" src="img/xianju.png" alt="">
+              <img class="ui fluid image" src="/static/shiju/img/xianju.png" alt="">
             </div>
           </div>
           <!-- Add Pagination -->
@@ -27,12 +27,12 @@
 
 
 {% for fixed_lanmu in fixed_lanmu_list %}
-  
+
       <div class="column fadeInUp">
         <div class="ui secondary pointing menu">
           <a class="active item" style="color:#008854;">
             <i class="fa fa-caret-right" aria-hidden="true" style="margin-right: 5px;color:#008854;"></i>
-             {{ fixed_lanmu.name }}
+             {{ fixed_lanmu }}
           </a>
           <div class="right menu">
             <a class="ui item" style="color:#008854;">编辑</a>
@@ -50,10 +50,8 @@
       </div>
 {% endfor %}
 
-     
-
       <div class="sixteen wide column wow fadeInUp">
-        <img class="ui fluid image" src="{% static 'shiju/img/banner3.jpg' %}" alt="">
+        <img class="ui fluid image" src="/static/shiju/img/xianju2.png" alt="">
 
       </div>
     {% for lanmu_item in item.get_sub_lanmu %}
@@ -79,9 +77,9 @@
             </div>
           </div>
       {% endif %}
-          
+
     {% endfor %}
-      
+
 
     </div>
 
@@ -89,5 +87,5 @@
 
   <!-- end 县局内容 -->
 
-    
+
   {% endblock  %}
