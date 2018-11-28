@@ -32,6 +32,7 @@ urlpatterns = [
     path('cms/listlanmu',views.cms_listLanmu, name='listLanmu'),
     # dwebcms删除子栏目
     path('cms/sublanmu/<int:pk>/delete/',views.cms_deleteSubLanmu, name="删除子栏目"),
+    path('cms/sublanmu/<int:pk>/zhiding/',views.cms_zhidingSubLanmu, name="zhiding"),
 
     # dwebcms文章发布
     path('cms/wztijiao/<str:jigou_name>/',views.cms_wzTijiao, name="wzTijiao"),

@@ -85,8 +85,14 @@ def xianju(request,pk=None):
     item = get_object_or_404(Jigou,pk=pk)
 
     fixed_lanmu_list = []
-    for name in FIXED_LANMU_LIST:
-        fixed_lanmu_list.append(Lanmu.objects.get_or_create(name=name,jigou=item)[0])
+
+    # for name in FIXED_LANMU_LIST:
+    #     fixed_lanmu_list.append(Lanmu.objects.get_or_create(name=name,jigou=item)[0])
+
+    for lanmu in item.get_sub_lanmu():
+        if lanmu.is_zhiding():
+            fixed_lanmu_list.append(lanmu)
+    
 
     context = {}
     context['fixed_lanmu_list'] = fixed_lanmu_list
@@ -221,6 +227,14 @@ def cms_deleteSubLanmu(request,pk=None):
     item_lanmu.delete()
     return redirect('listLanmu')
 
+def cms_zhidingSubLanmu(request,pk=None):
+    item_lanmu = get_object_or_404(Lanmu,pk=pk)
+    if item_lanmu.is_zhiding():
+        item_lanmu = False
+    else:
+        item_lanmu.zhiding = True
+    item_lanmu.save()
+    return redirect('listLanmu')
 
 # dwebcms文章提交
 @login_required

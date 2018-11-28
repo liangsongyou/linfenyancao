@@ -82,6 +82,18 @@
                       <span class="badgetext badge badge-danger badge-pill">
                         <a href="{% url '删除子栏目' sub_lanmu.pk %}" style="color:#fff;font-weight: 500;">删除</a>
                       </span>
+                      {% if jigou.is_xianju %}
+                        {% if sub_lanmu.is_zhiding %}
+                          <span class="badgetext badge badge-danger badge-pill">
+                            <a href="{% url 'zhiding' sub_lanmu.pk %}" style="color:#fff;font-weight: 500;">取消置顶</a>
+                          </span>
+                        {% else %}
+                          <span class="badgetext badge badge-danger badge-pill">
+                            <a href="{% url 'zhiding' sub_lanmu.pk %}" style="color:#fff;font-weight: 500;">置顶</a>
+                          </span>
+                        {% endif %}
+                        
+                      {% endif %}
                       </li>
                       {% empty %}
                         <li class="list-group-item justify-content-between">

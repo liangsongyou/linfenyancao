@@ -53,6 +53,9 @@ class Jigou(models.Model):
     def get_keshi_url(self):
         return reverse('keshi',args=[self.pk])
 
+    def is_xianju(self):
+        return "县" in self.name
+
 
 class Suplanmu(models.Model):
     name = models.CharField(default='',blank=True,null=True,max_length=255)
@@ -112,6 +115,15 @@ class Lanmu(models.Model):
             return self.get_all_undelete_articals()[:10]
         else:
             return self.get_all_undelete_articals()
+
+    def is_zhiding(self):
+        if self.zhiding:
+            return True
+        else:
+            return False
+
+    def get_absolute_url(self):
+        return reverse('articallist',args=[self.pk,])
 
 
 class Artical(models.Model):
