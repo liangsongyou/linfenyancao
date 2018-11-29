@@ -42,13 +42,15 @@
         <div class="ui bulleted list">
           {% for artical in fixed_lanmu.get_first_ten_articals %}
             <div class="item">
-              <a href="artical.html">{{ artical.biaoti }}</a>
+              <a href="{{artical.get_absolute_url}}">{{ artical.biaoti }}</a>
               <span>{{ artical.fabiao_riqi|date:'Y-m-d' }}</span>
             </div>
           {% endfor %}
         </div>
       </div>
 {% endfor %}
+
+
 
       <div class="sixteen wide column wow fadeInUp">
         <img class="ui fluid image" src="/static/shiju/img/xianju2.png" alt="">
@@ -60,7 +62,7 @@
             <div class="ui secondary pointing menu">
               <a class="active item" style="color:#008854;">
                 <i class="fa fa-caret-right" aria-hidden="true" style="margin-right: 5px;color:#008854;"></i>
-                 {{ lanmu_item.name }}
+                 {{ lanmu_item }}
               </a>
               <div class="right menu">
                 <a class="ui item" style="color:#008854;">编辑</a>
@@ -70,7 +72,7 @@
             <div class="ui bulleted list">
               {% for artical in lanmu_item.get_first_ten_articals %}
                 <div class="item">
-                  <a href="artical.html">{{ artical.biaoti }}</a>
+                  <a href="{{artical.get_absolute_url}}">{{ artical.biaoti }}</a>
                   <span>{{ artical.fabiao_riqi|date:'Y-m-d' }}</span>
                 </div>
               {% endfor %}

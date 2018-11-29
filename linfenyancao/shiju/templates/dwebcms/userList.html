@@ -1,0 +1,87 @@
+{% extends "dwebcms/index.html" %}
+
+{% block webRight %}
+
+<div class=" content-area">
+  <div class="page-header">
+    <h1 class="page-title">所有人员</h1>
+  </div>
+  <div class="row ">
+    <div class="col-lg-12">
+      <div class="input-group mb-3">
+        <input type="text" class="form-control br-tl-7 br-bl-7" placeholder="">
+        <div class="input-group-append ">
+          <button type="button" class="btn btn-white br-tr-7 br-br-7">
+            <i class="fa fa-search" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <div class="table-responsive border-top">
+            <table class="table card-table table-bordered table-hover table-vcenter">
+              <tbody>
+
+              <tr>
+                <th class="w-1">名字</th>
+                <th class="w-1">值班日期</th>
+                <th>所属机构</th>
+                <th>手机</th>
+                <th>电话</th>
+                <th>账号密码</th>
+              </tr>
+                {% for item  in renyuan_list %}
+                <tr>
+                <th>
+                  {{item.display_name}}
+                </th>
+                <td>
+                  {{item.get_zhiban_date_display}}
+                </td>
+                <td>{{item.jigou.name}}</td>
+                <td class="">{{item.telephone}}</td>
+                <td>
+                    {{item.telephone}}
+                </td>
+                <td>
+                  <div class="item-action dropdown">
+                    <a href="javascript:void(0)" data-toggle="dropdown" class="icon"><i class="fe fe-more-vertical fs-20 text-dark"></i></a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                      <a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fe fe-tag"></i> 添加账号绑定 </a>
+                      <a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fe fe-edit-2"></i> 删除 </a>
+                      <a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fe fe-hard-drive"></i> 提交保存</a>
+
+                    </div>
+                  </div>
+                </td>
+              </tr>
+                  
+                {% endfor %}
+              
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <ul class="pagination mb-5">
+        <li class="page-item page-prev disabled">
+          <a class="page-link" href="#" tabindex="-1">上一页</a>
+        </li>
+        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item"><a class="page-link" href="#">4</a></li>
+        <li class="page-item"><a class="page-link" href="#">5</a></li>
+        <li class="page-item page-next">
+          <a class="page-link" href="#">下一页</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+
+
+{% endblock %}

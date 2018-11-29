@@ -1,4 +1,5 @@
 {% extends "dwebcms/index.html" %}
+
 {% block webRight %}
 
 
@@ -8,13 +9,21 @@
   </div>
   <div class="row">
 
+
+
     <div class="col-12">
       <div   class="card">
         <div class="card-header">
           <h3 class="card-title">填写文章详细内容</h3>
 
         </div>
-        <form method="POST" enctype="multipart/form-data" action="{% url 'wzTijiao' jigou_name=jigou.name %}">
+
+
+
+
+        <form id="tijiao" method="POST" enctype="multipart/form-data">
+
+
         <div class="card-body">
           <div class="row">
 
@@ -62,10 +71,18 @@
                 <div class="custom-file">
                   <input id="id_file" type="file" class="" name="file">
 
+                  {% csrf_token %}
+                  <button style="margin-top:30px;" class="btn btn-primary ml-auto" onclick="yulan()">预览模式开启</button>
+                  <div class="form-group" style="margin-top:10px;">
+                      <span >开启一次即可，无需二次同步</span>
+
+                  </div>
+
+
                 </div>
               </div>
 
-              <div class="form-group">
+              <div class="form-group" style="margin-top:30px">
                 <label class="form-label">文章内容</label>
                 {{ form.neirong }}
               </div>
@@ -80,10 +97,33 @@
           <div class="d-flex">
 
               {% csrf_token %}
-            <button type="submit" class="btn btn-primary ml-auto">提交发布</button>
+            <button type="submit" class="btn btn-primary ml-auto" onclick="tijiao()" >提交发布</button>
+
+
+
+            <script type="text/javascript">
+            function yulan(){
+              var aaa = document.getElementById("tijiao"); aaa.action="http://fileup.dweb.club/yancaoupload/";
+              aaa.submit();
+             }
+
+             function tijiao() {
+              var aaa = document.getElementById("tijiao");
+              aaa.action="{% url 'wzTijiao' jigou_name=jigou.name %}";
+              aaa.submit();
+            }
+
+
+            </script>
+
+
           </div>
         </div>
+
+
+
         </form>
+
       </div>
 
       <div class="card" style="display:none;">
@@ -116,6 +156,7 @@
         </div>
       </div>
     </div>
+
 
   </div>
 </div>

@@ -12,10 +12,13 @@ class Jigou(models.Model):
     name = models.CharField(default='',blank=True,null=True,max_length=255)
     telephone = models.CharField(default='',blank=True,null=True,max_length=255)
     email = models.CharField(default='',blank=True,null=True,max_length=255)
+    daihao = models.CharField(default='',blank=True,null=True,max_length=255)
 
+    class Meta:
+        ordering = ['daihao']
 
     def __str__(self):
-        return '%s' % self.name
+        return '%s%s' % (self.daihao,self.name)
 
     def get_sub_lanmu(self):
         return self.lanmu_set.all()
@@ -130,10 +133,10 @@ class Artical(models.Model):
     biaoti = models.CharField(max_length=255, default='')
     neirong = UEditorField(u'内容	', width=600, height=300, toolbars="full", imagePath="",filePath="",upload_settings={"imageMaxSize":1204000},settings={}, command=None,blank=True)
     fabiao_riqi = models.DateTimeField(auto_now_add=True, null=True)
-    image = models.ImageField(default='', blank=True, upload_to='post_images')
+    image = models.ImageField(default='', blank=True)
     yuedu = models.PositiveIntegerField(default=0,)
     dianzan = models.PositiveIntegerField(default=0,)
-    file = models.FileField(default='',blank=True, upload_to='post_files')
+    file = models.FileField(default='',blank=True)
     lanmu = models.ForeignKey(Lanmu, on_delete=models.CASCADE)
     huishou = models.BooleanField(default=False)
 
@@ -177,6 +180,7 @@ class Profile(models.Model):
                                    choices=ZHI_BAN_DATE,
                                    default='7',)
     jigou = models.ForeignKey(Jigou, on_delete=models.CASCADE,blank=True, null=True)
+    telephone = models.CharField(default='',max_length=100)
 
     def __str__(self):
         return '%s' % self.display_name
@@ -184,41 +188,3 @@ class Profile(models.Model):
     @property
     def is_zhiban(self):
         return int(self.zhiban_date) == date.today().weekday()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

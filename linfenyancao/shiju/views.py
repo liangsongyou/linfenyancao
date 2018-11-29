@@ -8,34 +8,34 @@ from django.contrib.auth.decorators import login_required
 
 
 from .models import  Artical, Lanmu, Jigou, Suplanmu, Profile
-from .forms import LanmuForm, ArticalForm
+from .forms import LanmuForm, ArticalForm, ProfileForm
 
-FIXED_LANMU_LIST = ['县局动态','县局例会','公示公告','局发文件','通知信息']
+#FIXED_LANMU_LIST = ['县局动态','县局例会','公示公告','局发文件','通知信息']
 FIXED_KESHI_LIST = ['机构职能','工作制度','计划规划','部门动态']
 
 
 # 市局首页
 def shiju(request):
-    ldjh = Artical.objects.filter(lanmu__name='领导讲话',huishou=False)[:12]
+    ldjh = Artical.objects.filter(lanmu__name='领导讲话',huishou=False)[:12][::-1]
     ldjh_list = Lanmu.objects.filter(name='领导讲话').first()
     IMGtpxw = Artical.objects.filter(lanmu__name='图片新闻',huishou=False).first()
-    IMGlist = Artical.objects.filter(lanmu__name='图片新闻',huishou=False)[:6]
+    IMGlist = Artical.objects.filter(lanmu__name='图片新闻',huishou=False)[:6][::-1]
     tpxw_list = Lanmu.objects.filter(name='图片新闻').first()
-    lhzh = Artical.objects.filter(lanmu__name='例会专会',huishou=False)[:11]
+    lhzh = Artical.objects.filter(lanmu__name='例会专会',huishou=False)[:11][::-1]
     lhzh_list = Lanmu.objects.filter(name='例会专会').first()
     jfwj = Artical.objects.filter(lanmu__name='局发文件',huishou=False)[:11]
     jfwj_list = Lanmu.objects.filter(name='局发文件').first()
-    tzxx = Artical.objects.filter(lanmu__name='通知信息',huishou=False)[:11]
+    tzxx = Artical.objects.filter(lanmu__name='通知信息',huishou=False)[:11][::-1]
     tzxx_list = Lanmu.objects.filter(name='通知信息').first()
-    hydt = Artical.objects.filter(lanmu__name='行业动态',huishou=False)[:9]
+    hydt = Artical.objects.filter(lanmu__name='行业动态',huishou=False)[:9][::-1]
     hydt_list = Lanmu.objects.filter(name='行业动态').first()
-    lydt = Artical.objects.filter(lanmu__name='临烟动态',huishou=False)[:9]
+    lydt = Artical.objects.filter(lanmu__name='临烟动态',huishou=False)[:9][::-1]
     lydt_list = Lanmu.objects.filter(name='临烟动态').first()
-    gsgg = Artical.objects.filter(lanmu__name='公示公告',huishou=False)[:20]
+    gsgg = Artical.objects.filter(lanmu__name='公示公告',huishou=False)[:20][::-1]
     gsgg_list = Lanmu.objects.filter(name='公示公告').first()
-    xjdt = Artical.objects.filter(lanmu__name='县局动态',huishou=False)[:10]
+    xjdt = Artical.objects.filter(lanmu__name='县局动态',huishou=False)[:10][::-1]
     xjdt_list = Lanmu.objects.filter(name='县局动态').first()
-    wxyd = Artical.objects.filter(lanmu__name='文学园地',huishou=False)[:11]
+    wxyd = Artical.objects.filter(lanmu__name='文学园地',huishou=False)[:11][::-1]
     wxyd_list = Lanmu.objects.filter(name='文学园地').first()
 
     renyuan_list = Profile.objects.all()
@@ -92,7 +92,7 @@ def xianju(request,pk=None):
     for lanmu in item.get_sub_lanmu():
         if lanmu.is_zhiding():
             fixed_lanmu_list.append(lanmu)
-    
+
 
     context = {}
     context['fixed_lanmu_list'] = fixed_lanmu_list
@@ -230,7 +230,7 @@ def cms_deleteSubLanmu(request,pk=None):
 def cms_zhidingSubLanmu(request,pk=None):
     item_lanmu = get_object_or_404(Lanmu,pk=pk)
     if item_lanmu.is_zhiding():
-        item_lanmu = False
+        item_lanmu.zhiding = False
     else:
         item_lanmu.zhiding = True
     item_lanmu.save()
@@ -276,6 +276,7 @@ def cms_wzXiugai(request,pk):
     if request.method == "GET":
         form = ArticalForm()
     if request.method == "POST":
+        form = ArticalForm(request.POST,request.FILES)
         artical.biaoti = request.POST['biaoti']
         artical.neirong = request.POST['neirong']
         artical.save()
@@ -416,3 +417,80 @@ def cms_wzHuishou(request):
         'title':'文章回收站'
     }
     return render(request,'dwebcms/wzList.html',context)
+
+# 添加人员
+def cms_addRenYuan(request):
+    jigou_list = Jigou.objects.all()
+    error_message=[]
+    if request.method == 'POST':
+        form = ProfileForm(request.POST)
+        if form.is_valid():
+            display_name = form.cleaned_data['display_name']
+            jigou_name = form.cleaned_data['jigou_name']
+            jigou = get_object_or_404(Jigou,name=jigou_name)
+            telephone = form.cleaned_data['telephone']
+            zhiban_riqi = form.cleaned_data['zhiban_date']
+            new_renyuan = Profile.objects.create(
+                                    display_name=display_name,
+                                    jigou=jigou,
+                                    telephone=telephone,
+                                    zhiban_date=zhiban_riqi)
+            new_renyuan.save()
+        else:
+            error_message=form.non_field_errors()
+    else:
+        form = ProfileForm()
+
+    context = {
+        'jigou_list':jigou_list,
+        'form':form,
+        'error_message':error_message,
+    }
+    return render(request,'dwebcms/userTianjia.html',context)
+
+def cms_listRenYuan(request):
+    renyuan_list = Profile.objects.all()
+    context = {
+        'renyuan_list':renyuan_list,
+    }
+    return render(request,'dwebcms/userList.html',context)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

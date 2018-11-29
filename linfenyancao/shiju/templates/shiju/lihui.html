@@ -1,0 +1,681 @@
+{% extends "shiju/index.html" %}
+{% block content %}
+  <!-- 科室样式2-页面内容 -->
+
+  <div class="ui vertical basic segment" style="margin-top: 40px;">
+    <div class="ui stackable grid container" style="background:#fff;">
+      <div class="six wide column">
+        <div class="column wow fadeInUp">
+          <div class="ui secondary pointing menu">
+            <a class="active item" style="color:#008854;">
+              <i class="fa fa-caret-right" aria-hidden="true" style="margin-right: 5px;color:#008854;"></i>
+               市局例会
+            </a>
+            <div class="right menu">
+              <a href="{% url 'articallist' sjlihui_list.pk %}" class="ui item" style="color:#008854;">更多</a>
+            </div>
+          </div>
+
+          <div class="ui bulleted list">
+            {% for shiju in shiju_lihui %}
+            <div class="item">
+              <a href="{% url 'artical' shiju.pk %}">{{ shiju.biaoti | truncatechars:15 }}</a>
+              <span>{{ shiju.fabiao_riqi | date:'Y-m-d' }}</span>
+            </div>
+
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="column wow fadeInUp">
+          <div class="ui secondary pointing menu">
+            <a class="active item" style="color:#008854;">
+              <i class="fa fa-caret-right" aria-hidden="true" style="margin-right: 5px;color:#008854;"></i>
+               科室（中心）例会专会
+            </a>
+          </div>
+          <div class="ui bulleted list">
+            {% if keshi %}
+            {% for keshi in keshi_lihui %}
+            <div class="item">
+              <a href="{% url 'artical' keshi.pk %}">{{ keshi.biaoti | truncatechars:15 }}</a>
+              <span>{{ keshi.fabiao_riqi | date:'Y-m-d' }}</span>
+            </div>
+            {% endfor %}
+            {% else %}
+            <div class="item">
+              <a >暂无发布</a>
+            </div>
+
+            {% endif %}
+          </div>
+        </div>
+
+        <div class="column wow fadeInUp">
+          <div class="ui secondary pointing menu">
+            <a class="active item" style="color:#008854;">
+              <i class="fa fa-caret-right" aria-hidden="true" style="margin-right: 5px;color:#008854;"></i>
+               财务通知
+            </a>
+            <div class="right menu">
+              <a class="ui item" style="color:#008854;">编辑</a>
+              <a class="ui item" style="color:#008854;">更多</a>
+            </div>
+          </div>
+          <div class="ui bulleted list">
+            <div class="item">
+              <a href="artical.html">国家局党组召开党组(扩...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">国家局党组召开党组(扩...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">国家局党组召开党组会议...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">党的十九大后国家局党组...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">2018烟草行业个各直属...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">2018烟草行业个各直属...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">国家局党组召开党组(扩...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">国家局党组召开党组(扩...</a>
+              <span>2018-11-11</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ten wide column" style="margin-bottom:20px;margin-top:20px">
+        <div class="ui two column stackable grid container">
+        <div class="column wow fadeInUp">
+          <div class="ui secondary pointing menu">
+            <a class="active item" style="color:#008854;">
+              <i class="fa fa-caret-right" aria-hidden="true" style="margin-right: 5px;color:#008854;"></i>
+               财务科例会工作安排
+            </a>
+            <div class="right menu">
+              <a class="ui item" style="color:#008854;">编辑</a>
+              <a class="ui item" style="color:#008854;">更多</a>
+            </div>
+          </div>
+          <div class="ui bulleted list">
+            <div class="item">
+              <a href="artical.html">国家局党组召开党组(扩...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">国家局党组召开党组(扩...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">国家局党组召开党组会议...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">党的十九大后国家局党组...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">2018烟草行业个各直属...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">2018烟草行业个各直属...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">国家局党组召开党组(扩...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">国家局党组召开党组(扩...</a>
+              <span>2018-11-11</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="column wow fadeInUp">
+          <div class="ui secondary pointing menu">
+            <a class="active item" style="color:#008854;">
+              <i class="fa fa-caret-right" aria-hidden="true" style="margin-right: 5px;color:#008854;"></i>
+               财务管理科工作动态
+            </a>
+            <div class="right menu">
+              <a class="ui item" style="color:#008854;">编辑</a>
+              <a class="ui item" style="color:#008854;">更多</a>
+            </div>
+          </div>
+          <div class="ui bulleted list">
+            <div class="item">
+              <a href="artical.html">国家局党组召开党组(扩...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">国家局党组召开党组(扩...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">国家局党组召开党组会议...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">党的十九大后国家局党组...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">2018烟草行业个各直属...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">2018烟草行业个各直属...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">国家局党组召开党组(扩...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">国家局党组召开党组(扩...</a>
+              <span>2018-11-11</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="column wow fadeInUp">
+          <div class="ui secondary pointing menu">
+            <a class="active item" style="color:#008854;">
+              <i class="fa fa-caret-right" aria-hidden="true" style="margin-right: 5px;color:#008854;"></i>
+               财务管理公告
+            </a>
+            <div class="right menu">
+              <a class="ui item" style="color:#008854;">编辑</a>
+              <a class="ui item" style="color:#008854;">更多</a>
+            </div>
+          </div>
+          <div class="ui bulleted list">
+            <div class="item">
+              <a href="artical.html">国家局党组召开党组(扩...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">国家局党组召开党组(扩...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">国家局党组召开党组会议...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">党的十九大后国家局党组...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">2018烟草行业个各直属...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">2018烟草行业个各直属...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">国家局党组召开党组(扩...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">国家局党组召开党组(扩...</a>
+              <span>2018-11-11</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="column wow fadeInUp">
+          <div class="ui secondary pointing menu">
+            <a class="active item" style="color:#008854;">
+              <i class="fa fa-caret-right" aria-hidden="true" style="margin-right: 5px;color:#008854;"></i>
+               财务管理科简报
+            </a>
+            <div class="right menu">
+              <a class="ui item" style="color:#008854;">编辑</a>
+              <a class="ui item" style="color:#008854;">更多</a>
+            </div>
+          </div>
+          <div class="ui bulleted list">
+            <div class="item">
+              <a href="artical.html">国家局党组召开党组(扩...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">国家局党组召开党组(扩...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">国家局党组召开党组会议...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">党的十九大后国家局党组...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">2018烟草行业个各直属...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">2018烟草行业个各直属...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">国家局党组召开党组(扩...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">国家局党组召开党组(扩...</a>
+              <span>2018-11-11</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="column wow fadeInUp">
+          <div class="ui secondary pointing menu">
+            <a class="active item" style="color:#008854;">
+              <i class="fa fa-caret-right" aria-hidden="true" style="margin-right: 5px;color:#008854;"></i>
+               县局主要指标参考
+            </a>
+            <div class="right menu">
+              <a class="ui item" style="color:#008854;">编辑</a>
+              <a class="ui item" style="color:#008854;">更多</a>
+            </div>
+          </div>
+          <div class="ui bulleted list">
+            <div class="item">
+              <a href="artical.html">国家局党组召开党组(扩...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">国家局党组召开党组(扩...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">国家局党组召开党组会议...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">党的十九大后国家局党组...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">2018烟草行业个各直属...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">2018烟草行业个各直属...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">国家局党组召开党组(扩...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">国家局党组召开党组(扩...</a>
+              <span>2018-11-11</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="column wow fadeInUp">
+          <div class="ui secondary pointing menu">
+            <a class="active item" style="color:#008854;">
+              <i class="fa fa-caret-right" aria-hidden="true" style="margin-right: 5px;color:#008854;"></i>
+               财务管理规章制度
+            </a>
+            <div class="right menu">
+              <a class="ui item" style="color:#008854;">编辑</a>
+              <a class="ui item" style="color:#008854;">更多</a>
+            </div>
+          </div>
+          <div class="ui bulleted list">
+            <div class="item">
+              <a href="artical.html">国家局党组召开党组(扩...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">国家局党组召开党组(扩...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">国家局党组召开党组会议...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">党的十九大后国家局党组...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">2018烟草行业个各直属...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">2018烟草行业个各直属...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">国家局党组召开党组(扩...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">国家局党组召开党组(扩...</a>
+              <span>2018-11-11</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="column wow fadeInUp">
+          <div class="ui secondary pointing menu">
+            <a class="active item" style="color:#008854;">
+              <i class="fa fa-caret-right" aria-hidden="true" style="margin-right: 5px;color:#008854;"></i>
+               班前半小时
+            </a>
+            <div class="right menu">
+              <a class="ui item" style="color:#008854;">编辑</a>
+              <a class="ui item" style="color:#008854;">更多</a>
+            </div>
+          </div>
+          <div class="ui bulleted list">
+            <div class="item">
+              <a href="artical.html">国家局党组召开党组(扩...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">国家局党组召开党组(扩...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">国家局党组召开党组会议...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">党的十九大后国家局党组...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">2018烟草行业个各直属...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">2018烟草行业个各直属...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">国家局党组召开党组(扩...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">国家局党组召开党组(扩...</a>
+              <span>2018-11-11</span>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="column wow fadeInUp">
+          <div class="ui secondary pointing menu">
+            <a class="active item" style="color:#008854;">
+              <i class="fa fa-caret-right" aria-hidden="true" style="margin-right: 5px;color:#008854;"></i>
+               财务知识
+            </a>
+            <div class="right menu">
+              <a class="ui item" style="color:#008854;">编辑</a>
+              <a class="ui item" style="color:#008854;">更多</a>
+            </div>
+          </div>
+          <div class="ui bulleted list">
+            <div class="item">
+              <a href="artical.html">国家局党组召开党组(扩...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">国家局党组召开党组(扩...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">国家局党组召开党组会议...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">党的十九大后国家局党组...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">2018烟草行业个各直属...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">2018烟草行业个各直属...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">国家局党组召开党组(扩...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">国家局党组召开党组(扩...</a>
+              <span>2018-11-11</span>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="column wow fadeInUp">
+          <div class="ui secondary pointing menu">
+            <a class="active item" style="color:#008854;">
+              <i class="fa fa-caret-right" aria-hidden="true" style="margin-right: 5px;color:#008854;"></i>
+               财务管理意见箱
+            </a>
+            <div class="right menu">
+              <a class="ui item" style="color:#008854;">编辑</a>
+              <a class="ui item" style="color:#008854;">更多</a>
+            </div>
+          </div>
+          <div class="ui bulleted list">
+            <div class="item">
+              <a href="artical.html">国家局党组召开党组(扩...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">国家局党组召开党组(扩...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">国家局党组召开党组会议...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">党的十九大后国家局党组...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">2018烟草行业个各直属...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">2018烟草行业个各直属...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">国家局党组召开党组(扩...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">国家局党组召开党组(扩...</a>
+              <span>2018-11-11</span>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="column wow fadeInUp">
+          <div class="ui secondary pointing menu">
+            <a class="active item" style="color:#008854;">
+              <i class="fa fa-caret-right" aria-hidden="true" style="margin-right: 5px;color:#008854;"></i>
+               财务常用软件下载
+            </a>
+            <div class="right menu">
+              <a class="ui item" style="color:#008854;">编辑</a>
+              <a class="ui item" style="color:#008854;">更多</a>
+            </div>
+          </div>
+          <div class="ui bulleted list">
+            <div class="item">
+              <a href="artical.html">国家局党组召开党组(扩...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">国家局党组召开党组(扩...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">国家局党组召开党组会议...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">党的十九大后国家局党组...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">2018烟草行业个各直属...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">2018烟草行业个各直属...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">国家局党组召开党组(扩...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">国家局党组召开党组(扩...</a>
+              <span>2018-11-11</span>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="column wow fadeInUp">
+          <div class="ui secondary pointing menu">
+            <a class="active item" style="color:#008854;">
+              <i class="fa fa-caret-right" aria-hidden="true" style="margin-right: 5px;color:#008854;"></i>
+               用友NC动态
+            </a>
+            <div class="right menu">
+              <a class="ui item" style="color:#008854;">编辑</a>
+              <a class="ui item" style="color:#008854;">更多</a>
+            </div>
+          </div>
+          <div class="ui bulleted list">
+            <div class="item">
+              <a href="artical.html">国家局党组召开党组(扩...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">国家局党组召开党组(扩...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">国家局党组召开党组会议...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">党的十九大后国家局党组...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">2018烟草行业个各直属...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">2018烟草行业个各直属...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">国家局党组召开党组(扩...</a>
+              <span>2018-11-11</span>
+            </div>
+            <div class="item">
+              <a href="artical.html">国家局党组召开党组(扩...</a>
+              <span>2018-11-11</span>
+            </div>
+          </div>
+
+        </div>
+
+
+                <div class="column wow fadeInUp">
+                  <div class="ui secondary pointing menu">
+                    <a class="active item" style="color:#008854;">
+                      <i class="fa fa-caret-right" aria-hidden="true" style="margin-right: 5px;color:#008854;"></i>
+                       管理经验大家谈
+                    </a>
+                    <div class="right menu">
+                      <a class="ui item" style="color:#008854;">编辑</a>
+                      <a class="ui item" style="color:#008854;">更多</a>
+                    </div>
+                  </div>
+                  <div class="ui bulleted list">
+                    <div class="item">
+                      <a href="artical.html">国家局党组召开党组(扩...</a>
+                      <span>2018-11-11</span>
+                    </div>
+                    <div class="item">
+                      <a href="artical.html">国家局党组召开党组(扩...</a>
+                      <span>2018-11-11</span>
+                    </div>
+                    <div class="item">
+                      <a href="artical.html">国家局党组召开党组会议...</a>
+                      <span>2018-11-11</span>
+                    </div>
+                    <div class="item">
+                      <a href="artical.html">党的十九大后国家局党组...</a>
+                      <span>2018-11-11</span>
+                    </div>
+                    <div class="item">
+                      <a href="artical.html">2018烟草行业个各直属...</a>
+                      <span>2018-11-11</span>
+                    </div>
+                    <div class="item">
+                      <a href="artical.html">2018烟草行业个各直属...</a>
+                      <span>2018-11-11</span>
+                    </div>
+                    <div class="item">
+                      <a href="artical.html">国家局党组召开党组(扩...</a>
+                      <span>2018-11-11</span>
+                    </div>
+                    <div class="item">
+                      <a href="artical.html">国家局党组召开党组(扩...</a>
+                      <span>2018-11-11</span>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+              </div>
+            </div>
+
+  <!-- end 科室样式2-页面内容 -->
+  </div>
+
+{% endblock %}

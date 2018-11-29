@@ -52,6 +52,10 @@ urlpatterns = [
     # dwebcms文章彻底删除
     path('cms/wzhuishou/<int:pk>/',views.cms_wzDelete_cd, name='wzDelete_cd'),
 
+    # dwebcoms增加人员
+    path('cms/renyuan/add/',views.cms_addRenYuan, name='addRenYuan'),
+    path('cms/renyuan/list/',views.cms_listRenYuan,name='listRenYuan'),
+
     # accounts
     path('accounts/', include('django.contrib.auth.urls')),
 

@@ -1,0 +1,99 @@
+{% extends "dwebcms/index.html" %}
+
+{% block webRight %}
+
+<div class=" content-area">
+  <div class="page-header">
+    <h4 class="page-title">增加人员</h4>
+  </div>
+
+   <div class="row">
+
+    <!-- end col -->
+    <div class="col-xl-6">
+      <div class="card m-b-20">
+        <div class="card-header">
+          <h3 class="card-title">公司人员增加</h3>
+
+        </div>
+        <div class="card-body mb-0">
+          <form class="form-horizontal" method="POST" action="">
+            {% csrf_token %}
+            <div class="form-group ">
+              <div class="row">
+                <ul>
+                  {% for msg in error_messages %}
+                    <li>msg</li>
+                  {% endfor %}
+                </ul>
+              </div>
+              <div class="row">
+                <div class="col-md-3">
+                  <label class="form-label" id="examplenameInputname2">人员名称</label>
+                </div>
+                <div class="col-md-9">
+                  <input name="display_name" type="text" class="form-control" id="examplenameInputname3"  placeholder="输入栏目名称" required="required">
+                </div>
+              </div>
+            </div>
+            <div class="form-group ">
+              <div class="row">
+                <div class="col-md-3">
+                  <label class="form-label">选择所属机构</label>
+                </div>
+                <div class="col-md-9">
+                  <select id="jigou"  name="jigou_name" class="form-control"  oninput="OnInput (event)" onpropertychange="OnPropChanged (event)">
+
+                    {% for jigou in jigou_list %}
+                      <option value="{{ jigou.name }}" >{{ jigou.name }}</option>
+                    {% endfor %}
+
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="form-group ">
+              <div class="row">
+                <div class="col-md-3">
+                  <label class="form-label">人员电话</label>
+                </div>
+                <div class="col-md-9">
+                  <input name="telephone" type="text" class="form-control"   placeholder="输入人员电话" required="required">
+                </div>
+              </div>
+            </div>
+            <div class="form-group ">
+              <div class="row">
+                <div class="col-md-3">
+                  <label class="form-label">人员值班时间</label>
+                </div>
+                <div class="col-md-9">
+                  <select name="zhiban_date" class="form-control"  oninput="OnInput (event)" onpropertychange="OnPropChanged (event)">
+                    <option value="0" >周一</option>
+                    <option value="1" >周二</option>
+                    <option value="2" >周三</option>
+                    <option value="3" >周四</option>
+                    <option value="4" >周五</option>
+                    <option value="5" >周六</option>
+                    <option value="6" >周日</option>
+                    <option value="7" >无</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="form-group mb-0 row justify-content-end">
+              <div class="col-md-9 float-right">
+                <button type="submit" class="btn btn-primary waves-effect waves-light">提交</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- end row -->
+</div>
+
+
+
+{% endblock %}

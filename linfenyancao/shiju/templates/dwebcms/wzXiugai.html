@@ -18,7 +18,7 @@
             <div class="col-md-12 col-lg-12">
               <div class="form-group">
                 <label class="form-label">文章标题</label>
-                <input type="text" class="form-control" name="biaoti" placeholder="{{ artical.biaoti }}" value="{{ artical.biaoti }}">
+                <input id="id_biaoti" type="text" class="form-control" name="biaoti" placeholder="{{ artical.biaoti }}" value="{{ artical.biaoti }}">
               </div>
               <div class="form-group col-md-4 col-lg-4">
                 <label class="form-label"> 所属机构</label>
@@ -35,10 +35,10 @@
 
               <div class="form-group">
                 <label class="form-label">文章内容</label>
-                <script id="wzXiugai" name="neirong"  type="text/platin">
-                </script>
+                
+                {{ form.neirong }}
                 <script type="text/javascript">
-                  var ue = UE.getEditor('wzXiugai',{
+                  var ue = UE.getEditor('id_neirong',{
                       serverUrl: "/ueditor/",
                       initialFrameWidth : 960,
                       initialFrameHeight: 500,
