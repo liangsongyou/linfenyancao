@@ -248,7 +248,7 @@ def cms_wzTijiao(request,jigou_name=None):
         if form.is_valid():
             item_biaoti = form.cleaned_data['biaoti']
             item_lanmu_name = form.cleaned_data['lanmu_name']
-            item_lanmu = get_object_or_404(Lanmu, name=item_lanmu_name)
+            item_lanmu = get_object_or_404(Lanmu, name=item_lanmu_name,jigou=jigou)
             item_file = form.cleaned_data['file']
             item_neirong = form.cleaned_data['neirong']
             item = Artical.objects.create(biaoti=item_biaoti,
